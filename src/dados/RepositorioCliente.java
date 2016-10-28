@@ -1,6 +1,9 @@
 package dados;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import beans.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente {
@@ -23,22 +26,23 @@ public class RepositorioCliente implements IRepositorioCliente {
 		this.listaClientes = listaClientes;
 	}
 
-	public boolean cadastrarCliente(Cliente cliente){
-		try {
-			listaClientes.add(cliente);
-		} catch (Exception e){
-			return false;
+	public void cadastrarCliente(Cliente cliente){
+		if(cliente !=null){
+			if(listaClientes.contains(cliente) == false){
+				listaClientes.add(cliente);
+			}
 		}
-		return true;
+		
 	}
-	
-	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) {
-				for(Cliente c : listaClientes) {
-					if(novoCliente.getCodigo() == clienteAlterado.getCodigo()) {
-						listaClientes.remove(c);
+	public boolean alterarCliente(Cliente clienteAlterado, Cliente novoCliente) {
+			boolean alt = false;
+				if(listaClientes.contains(clienteAlterado)) {
+					listaClientes.remove(clienteAlterado);
 						listaClientes.add(novoCliente);
-					}
+							alt = true;
+					
 				}
+			return alt;
 	}
 	
 	public Cliente buscarCliente(int codigo){
@@ -50,15 +54,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return null;
 	}
 	
-	public boolean removerCliente(int codigo){
-		boolean igual=false;
-			for(int i=0;i<listaClientes.size();i++){
-				if(listaClientes.get(i).getCodigo()==codigo){
-					listaClientes.remove(i);
-					igual = true;
-				}
+	public void removerCliente(Cliente cliente){
+			if(listaClientes.contains(cliente)){
+				listaClientes.remove(cliente);
 			}
-		return igual;
 	}
 	
 	public boolean ClienteExiste(int codigo) {
@@ -73,6 +72,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return x;
 	}
 
+	public List<Cliente> listar(){
+		return Collections.unmodifiableList(this.listaClientes);
+	}
+	
 	@Override
 	public String toString() {
 		return "RespositorioCliente [listaClientes=" + listaClientes + "]";

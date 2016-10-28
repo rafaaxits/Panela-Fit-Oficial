@@ -12,15 +12,15 @@ public class ControladorClientes {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Cliente c) throws ClienteJaExisteException {
+	public void cadastrar(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException {
 		if(c == null) {
-			throw new IllegalArgumentException("");
+			throw new ClienteNaoExisteException();
 		} else {
 			if(this.repositorio.ClienteExiste(c.getCodigo()) == true) {
 			this.repositorio.cadastrarCliente(c);	
 			} else if(this.repositorio.ClienteExiste(c.getCodigo()) == false) {
-				ClienteJaExisteException y = new ClienteJaExisteException(c.getCodigo());
-				throw y;
+				throw new ClienteJaExisteException(c.getCodigo());
+				
 			}
 			
 		}
@@ -30,7 +30,7 @@ public class ControladorClientes {
 		if(this.repositorio.ClienteExiste(codigo) == true) {
 			return this.repositorio.buscarCliente(codigo);
 		} else {
-			throw new ClienteNaoExisteException(codigo);
+			throw new ClienteNaoExisteException();
 		}
 	}
 	
