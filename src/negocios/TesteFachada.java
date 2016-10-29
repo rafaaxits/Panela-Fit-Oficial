@@ -18,23 +18,32 @@ public class TesteFachada {
 		System.out.println("" +panelafit.buscarCliente(5));
 		
 		Cliente c1 =  new Cliente (554, "Zé esquisito", "237273728", 23,"rua 55", "23767236273");
-		panelafit.cadastrarCliente(c1);
-		System.out.println("" +panelafit.alterarCliente(c1));
-		System.out.println("" +panelafit.buscarCliente(5));
-		try {
-			panelafit.removerCliente(5);
-		} catch (ClienteNaoExisteException e) {
-			// TODO Auto-generated catch block
+		System.out.println("" +panelafit.listarClientes());
+		panelafit.alterarCliente(c, c1);
+		System.out.println("" +panelafit.listarClientes());
+	
+		try{
+			panelafit.removerCliente(c1);
+		}catch(ClienteNaoExisteException e){
 			e.printStackTrace();
+			System.out.print("\n");
 		}
-		System.out.println("" +panelafit.buscarCliente(5));
-		try {
-			panelafit.removerCliente(554);
-		} catch (ClienteNaoExisteException e) {
-			// TODO Auto-generated catch block
+		System.out.println("" +panelafit.listarClientes());
+		
+		try{
+			System.out.println("" +panelafit.buscarCliente(5));
+			}catch (ClienteNaoExisteException e){
+				e.printStackTrace();
+				System.out.print("\n");
+			}
+		
+		try{
+			panelafit.removerCliente(c);
+		}catch(ClienteNaoExisteException e){
 			e.printStackTrace();
+			System.out.print("\n");
 		}
-		System.out.println("" +panelafit.buscarCliente(554));
-	}
+		
 
+	}
 }

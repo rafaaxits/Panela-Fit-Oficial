@@ -1,6 +1,7 @@
 package negocios;
 
 import beans.Cliente;
+import java.util.List;
 import dados.IRepositorioCliente;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
@@ -16,13 +17,11 @@ public class ControladorClientes {
 		if(c == null) {
 			throw new ClienteNaoExisteException();
 		} else {
-			if(this.repositorio.ClienteExiste(c.getCodigo()) == true) {
+			if(this.repositorio.ClienteExiste(c.getCodigo()) == false) {
 			this.repositorio.cadastrarCliente(c);	
-			} else if(this.repositorio.ClienteExiste(c.getCodigo()) == false) {
+			} else if(this.repositorio.ClienteExiste(c.getCodigo()) == true) {
 				throw new ClienteJaExisteException(c.getCodigo());
-				
 			}
-			
 		}
 	}
 	
@@ -34,29 +33,29 @@ public class ControladorClientes {
 		}
 	}
 	
-	public void remover(Cliente c) throws ClienteNaoExisteException {
-	if(c == null) {
-		throw new IllegalArgumentException("");
-	} else {
-		if(this.repositorio.ClienteExiste(c.getCodigo()) == true) {
-			this.repositorio.removerCliente(c.getCodigo());
-		} else if(this.repositorio.ClienteExiste(c.getCodigo()) == false) {
-			ClienteNaoExisteException x = new ClienteNaoExisteException(c.getCodigo());
-			throw x;
+	public void remover(Cliente cliente) throws ClienteNaoExisteException {
+	if(cliente == null || this.repositorio.ClienteExiste(cliente.getCodigo())==false){
+		throw new ClienteNaoExisteException();
+	}
+	else{
+		if(this.repositorio.ClienteExiste(cliente.getCodigo()) == true){
+			this.repositorio.removerCliente(cliente.getCodigo());
 		}
 	}
 }
 	
-	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException {
-		if(clienteAlterado != null && novoCliente != null) {
+	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException{
+		if(clienteAlterado == null && novoCliente == null) {
+			throw new ClienteNaoExisteException();
+		} else if(clienteAlterado !=null && novoCliente !=null) {
 			this.repositorio.alterarCliente(clienteAlterado, novoCliente);
-		} else {
-			if(clienteAlterado == null || novoCliente == null) {
-				IllegalArgumentException x = new IllegalArgumentException("");
-				throw x;
-			}
-	}
-
+		}
+		else if(clienteAlterado.equals(novoCliente)) {
+			throw new ClienteJaExisteException(clienteAlterado.getCodigo());
+		}
 }
+	public List<Cliente> listaClientes(){
+		return this.repositorio.listar();
+	}
 	
 }

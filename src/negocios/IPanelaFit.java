@@ -1,7 +1,7 @@
 package negocios;
  
 import java.time.LocalDate;
-
+import java.util.List;
 import beans.Cliente;
 import beans.Fornecedor;
 import beans.Funcionario;
@@ -21,7 +21,7 @@ import exceptions.FornecedorJaExisteException;
 
 public interface IPanelaFit {
 	//CADASTRAR
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException;
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException;
 	
 	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException;
 	
@@ -32,7 +32,7 @@ public interface IPanelaFit {
 	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException;
 	
 	//REMOVER
-	public void removerCliente(int codigo) throws ClienteNaoExisteException;
+	public void removerCliente(Cliente cliente) throws ClienteNaoExisteException;
 	
 	public void removerFornecedor(int codigo);
 	
@@ -54,7 +54,7 @@ public interface IPanelaFit {
 	public Produto buscarProduto(int codigo) throws ProdutoNaoExisteException;
 	
 	//ALTERAR
-	public boolean alterarCliente(Cliente novoCliente);
+	public abstract void alterarCliente(Cliente clienteAlterado, Cliente novoCliente)throws ClienteNaoExisteException, ClienteJaExisteException;
 	
 	public boolean alterarFornecedor(Fornecedor novoFornecedor);
 	
@@ -63,6 +63,10 @@ public interface IPanelaFit {
 	public boolean alterarMateriaPrima(MateriaPrima novaMateriaPrima);
 	
 	public boolean alterarProdutos(Produto novoProduto);
+
+	//listar
+	public abstract List<Cliente> listarClientes();
+	
 	//OUTROS METODOS
 	public String getTelefoneFornecedor(int codigo) throws FornecedorNaoExisteException;
 	

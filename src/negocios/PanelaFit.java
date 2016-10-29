@@ -1,6 +1,7 @@
 package negocios;
 
 import java.time.*;
+import java.util.List;
 import beans.Cliente;
 import beans.Fornecedor;
 import beans.Funcionario;
@@ -46,7 +47,9 @@ public class PanelaFit implements IPanelaFit{
 		return instance;
 	}
 	
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException {
+	//CLIENTES
+	
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException {
 		clientes.cadastrar(c);
 		
 	}
@@ -59,9 +62,15 @@ public class PanelaFit implements IPanelaFit{
 		return clientes.buscar(codigo);
 	}
 	
-	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException {
+	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException {
 		clientes.alterar(clienteAlterado, novoCliente);
 	}
+	
+	public List<Cliente> listarClientes(){
+		return this.clientes.listaClientes();
+	}
+	
+	//FORNECEDORES
 	
 	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException {
 		fornecedores.cadastrar(f);
@@ -147,16 +156,11 @@ public class PanelaFit implements IPanelaFit{
 		return produtos.getDataValidade(codigo);
 	}
 
-	@Override
-	public void removerCliente(int codigo) throws ClienteNaoExisteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public boolean alterarCliente(Cliente novoCliente) {
+	public void removerFornecedor(int codigo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
@@ -166,13 +170,13 @@ public class PanelaFit implements IPanelaFit{
 	}
 
 	@Override
-	public boolean alterarFuncionario(Funcionario novoFuncionario) {
+	public void removerMateriaPrima(int codigo) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	@Override
-	public void removerFornecedor(int codigo) {
+	public void removerProduto(int codigo) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -184,9 +188,9 @@ public class PanelaFit implements IPanelaFit{
 	}
 
 	@Override
-	public void removerMateriaPrima(int codigo) {
+	public boolean alterarFuncionario(Funcionario novoFuncionario) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
@@ -196,14 +200,9 @@ public class PanelaFit implements IPanelaFit{
 	}
 
 	@Override
-	public void removerProduto(int codigo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean alterarProdutos(Produto novoProduto) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }
