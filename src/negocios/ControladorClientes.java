@@ -50,7 +50,7 @@ public class ControladorClientes {
 		} else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==true) && novoCliente !=null) {
 			this.repositorio.alterarCliente(clienteAlterado, novoCliente);
 		}
-		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==false) && novoCliente !=null){
+		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==false)){
 			throw new ClienteNaoExisteException();
 		}
 		else if(clienteAlterado.equals(novoCliente)) {
