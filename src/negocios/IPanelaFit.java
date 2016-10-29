@@ -60,9 +60,9 @@ public interface IPanelaFit {
 	
 	public abstract void alterarFuncionario(Funcionario funcAlterado,Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException;
 	
-	public abstract void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException;
+	public abstract void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException;
 	
-	public abstract void alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException;
+	public abstract void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException;
 
 	//listar
 	public abstract List<Cliente> listarClientes();
@@ -71,6 +71,10 @@ public interface IPanelaFit {
 	
 	public abstract List<Funcionario> listarFuncionarios();
 	
+	public abstract List <MateriaPrima> listarMateriasPrimas();
+	
+	public abstract List<Produto> listarProdutos();
+	
 	//OUTROS METODOS
 	public String getTelefoneFornecedor(int codigo) throws FornecedorNaoExisteException;
 	
@@ -78,7 +82,7 @@ public interface IPanelaFit {
 	
 	public int getQuantidadeMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException;
 	
-	public LocalDate getDataFabricacao(int codigo);
+	public LocalDate getDataFabricacao(int codigo)  throws ProdutoNaoExisteException;
 	
-	public LocalDate getDataValidade(int codigo);
+	public LocalDate getDataValidade(int codigo)  throws ProdutoNaoExisteException;
 }

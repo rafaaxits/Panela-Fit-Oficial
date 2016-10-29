@@ -47,7 +47,7 @@ public class ControladorFornecedores {
 	}
 	
 	public void alterar(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
-		if(fornAlterado == null && novoFornecedor == null) {
+		if(fornAlterado == null || novoFornecedor == null) {
 			throw new FornecedorNaoExisteException();
 		} else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo())==true) && novoFornecedor != null) {
 			this.repositorio.alterarFornecedor(fornAlterado, novoFornecedor);

@@ -44,7 +44,7 @@ public class ControladorFuncionarios {
 	}
 	
 	public void alterar(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException{
-		if(funcAlterado == null && novoFuncionario == null) {
+		if(funcAlterado == null || novoFuncionario == null) {
 			throw new FuncionarioNaoExisteException();
 		} else if((funcAlterado != null && this.repositorio.funcionarioExiste(funcAlterado.getCodigo()) == true) && novoFuncionario != null) {
 			this.repositorio.alterarFuncionario(funcAlterado, novoFuncionario);

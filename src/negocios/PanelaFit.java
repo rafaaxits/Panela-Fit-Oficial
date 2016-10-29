@@ -121,54 +121,61 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.listarFuncionarios();
 	}
 	
-	//MateriaPrima
+	//MATERIAPRIMA
 	
-	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException{
-		materiaPrimas.cadastrar(m);
+	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException{
+		this.materiaPrimas.cadastrar(m);
 	}
 	
 	public void removerMateriaPrima(MateriaPrima m) throws MateriaPrimaNaoExisteException {
-		materiaPrimas.remover(m);
+		this.materiaPrimas.remover(m);
 	}
 	
 	public MateriaPrima buscarMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException {
-		return materiaPrimas.buscar(codigo);
+		return this.materiaPrimas.buscar(codigo);
 	}
 	
-	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException {
-		materiaPrimas.alterar(mpAlterada, novaMateriaPrima);
+	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException {
+		this.materiaPrimas.alterar(mpAlterada, novaMateriaPrima);
 	}
 	
 	public int getQuantidadeMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException {
 		return materiaPrimas.getQuantidade(codigo);
 	}
 	
-	//Produtos
+	public List<MateriaPrima> listarMateriasPrimas(){
+		return this.materiaPrimas.listaMateriaPrimas();
+	}
 	
-	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException{
-		produtos.cadastrar(p);
+	//PRODUTOS
+	
+	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException{
+		this.produtos.cadastrar(p);
 	}
 	
 	public void removerProduto(Produto p) throws ProdutoNaoExisteException {
-		produtos.remover(p);
+		this.produtos.remover(p);
 	}
 	
 	public Produto buscarProduto(int codigo) throws ProdutoNaoExisteException {
-		return produtos.buscar(codigo);
+		return this.produtos.buscar(codigo);
 	}
 	
-	public void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException {
-		produtos.alterar(produtoAlterado, novoProduto);
+	public void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException {
+		this.produtos.alterar(produtoAlterado, novoProduto);
 	}
 	
-	public LocalDate getDataFabricacao(int codigo){
-		return produtos.getDataValidade(codigo);
+	public LocalDate getDataFabricacao(int codigo)  throws ProdutoNaoExisteException{
+		return this.produtos.getDataValidade(codigo);
 	}
 	
-	public LocalDate getDataValidade(int codigo){
-		return produtos.getDataValidade(codigo);
+	public LocalDate getDataValidade(int codigo)  throws ProdutoNaoExisteException{
+		return this.produtos.getDataValidade(codigo);
 	}
-
+	
+	public List<Produto> listarProdutos(){
+		return this.produtos.listaProdutos();
+	}
 
 
 }

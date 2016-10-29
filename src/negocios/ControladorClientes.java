@@ -45,15 +45,15 @@ public class ControladorClientes {
 }
 	
 	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException{
-		if(clienteAlterado == null && novoCliente == null) {
+		if(clienteAlterado == null || novoCliente == null) {
 			throw new ClienteNaoExisteException();
-		} else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==true) && novoCliente !=null) {
+		} 
+		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==true) && novoCliente !=null) {
 			this.repositorio.alterarCliente(clienteAlterado, novoCliente);
 		}
 		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==false)){
 			throw new ClienteNaoExisteException();
 		}
-
 		else {
 			throw new ClienteJaExisteException(clienteAlterado.getCodigo());
 		}
