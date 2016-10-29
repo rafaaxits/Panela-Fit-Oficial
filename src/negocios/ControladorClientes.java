@@ -53,7 +53,11 @@ public class ControladorClientes {
 		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==false)){
 			throw new ClienteNaoExisteException();
 		}
+<<<<<<< Upstream, based on origin/master
 		else if(clienteAlterado.equals(novoCliente)) {
+=======
+		else {
+>>>>>>> 7662136 ahahha
 			throw new ClienteJaExisteException(clienteAlterado.getCodigo());
 		}
 }
