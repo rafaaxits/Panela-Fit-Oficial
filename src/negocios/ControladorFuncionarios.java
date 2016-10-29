@@ -1,12 +1,10 @@
 package negocios;
 
-import beans.Cliente;
 import beans.Funcionario;
 import dados.IRepositorioFuncionario;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.ClienteJaExisteException;
-import exceptions.ClienteNaoExisteException;
 import exceptions.FuncionarioJaExisteException;
+import java.util.List;
 
 public class ControladorFuncionarios {
 	 IRepositorioFuncionario repositorio;
@@ -54,7 +52,7 @@ public class ControladorFuncionarios {
 		else if((funcAlterado != null && this.repositorio.funcionarioExiste(funcAlterado.getCodigo()) == false)){
 			throw new FuncionarioNaoExisteException();
 		}
-		else if(funcAlterado.equals(novoFuncionario)) {
+		else  {
 			throw new FuncionarioJaExisteException(funcAlterado.getCodigo());
 		}
 }
@@ -65,6 +63,10 @@ public class ControladorFuncionarios {
 		} else {
 			throw new FuncionarioNaoExisteException();
 		}
+	}
+	
+	public List<Funcionario> listarFuncionarios(){
+		return this.repositorio.listar();
 	}
 	
 }

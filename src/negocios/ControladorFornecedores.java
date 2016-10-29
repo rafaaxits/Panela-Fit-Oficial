@@ -2,10 +2,9 @@ package negocios;
 
 import beans.Fornecedor;
 import dados.IRepositorioFornecedor;
-import exceptions.ClienteJaExisteException;
-import exceptions.ClienteNaoExisteException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
+import java.util.List;
 
 public class ControladorFornecedores {
 	IRepositorioFornecedor repositorio;
@@ -56,7 +55,7 @@ public class ControladorFornecedores {
 		else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo()) == false)){
 			throw new FornecedorNaoExisteException();
 		}
-		else if(fornAlterado.equals(novoFornecedor)) {
+		else {
 			throw new FornecedorJaExisteException(fornAlterado.getCodigo());
 		}
 	}
@@ -68,5 +67,9 @@ public class ControladorFornecedores {
 		} else {
 			throw new FornecedorNaoExisteException();
 		}	
+	}
+	
+	public List <Fornecedor> listaFornecedores(){
+		return this.repositorio.listar();
 	}
 }

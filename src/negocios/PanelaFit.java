@@ -73,44 +73,55 @@ public class PanelaFit implements IPanelaFit{
 	//FORNECEDORES
 	
 	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException {
-		fornecedores.cadastrar(f);
+		this.fornecedores.cadastrar(f);
 	}
 	
 	public void removerFornecedor(Fornecedor f) throws FornecedorNaoExisteException {
-		fornecedores.remover(f);
+		this.fornecedores.remover(f);
 	}
 	
 	public Fornecedor buscarFornecedor(int codigo) throws FornecedorNaoExisteException {
-		return fornecedores.buscar(codigo);
+		return this.fornecedores.buscar(codigo);
 	}
 	
 	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
-		fornecedores.alterar(fornAlterado, novoFornecedor);
+		this.fornecedores.alterar(fornAlterado, novoFornecedor);
 	}
 	
 	public String getTelefoneFornecedor(int codigo) throws FornecedorNaoExisteException {
 		return fornecedores.getTelefone(codigo);
 	}
 	
+	public List<Fornecedor> listarFornecedores(){
+		return this.fornecedores.listaFornecedores();
+	}
+	//FUNCIONARIO
+	
 	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
-		funcionarios.cadastrar(f);
+		this.funcionarios.cadastrar(f);
 	}
 	
 	public void removerFuncionario(Funcionario f) throws FuncionarioNaoExisteException {
-		funcionarios.remover(f);
+		this.funcionarios.remover(f);
 	}
 	
 	public Funcionario buscarFuncionario(int codigo) throws FuncionarioNaoExisteException {
-		return funcionarios.buscar(codigo);
+		return this.funcionarios.buscar(codigo);
 	}
 	
 	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
-		funcionarios.alterar(funcAlterado, novoFuncionario);
+		this.funcionarios.alterar(funcAlterado, novoFuncionario);
 	}
 	
 	public int getNivelFuncionario(int codigo) throws FuncionarioNaoExisteException {
-		return funcionarios.getNivel(codigo);
+		return this.funcionarios.getNivel(codigo);
 	}
+	
+	public List<Funcionario> listarFuncionarios(){
+		return this.funcionarios.listarFuncionarios();
+	}
+	
+	//MateriaPrima
 	
 	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException{
 		materiaPrimas.cadastrar(m);
@@ -131,6 +142,8 @@ public class PanelaFit implements IPanelaFit{
 	public int getQuantidadeMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException {
 		return materiaPrimas.getQuantidade(codigo);
 	}
+	
+	//Produtos
 	
 	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException{
 		produtos.cadastrar(p);
@@ -157,52 +170,5 @@ public class PanelaFit implements IPanelaFit{
 	}
 
 
-	@Override
-	public void removerFornecedor(int codigo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removerFuncionario(int codigo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removerMateriaPrima(int codigo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removerProduto(int codigo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean alterarFornecedor(Fornecedor novoFornecedor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean alterarFuncionario(Funcionario novoFuncionario) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean alterarMateriaPrima(MateriaPrima novaMateriaPrima) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean alterarProdutos(Produto novoProduto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }
