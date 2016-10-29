@@ -23,24 +23,24 @@ public interface IPanelaFit {
 	//CADASTRAR
 	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException;
 	
-	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException;
+	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException;
 	
-	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException;
+	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException;
 
-	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException;
+	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException;
 
-	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException;
+	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException;
 	
 	//REMOVER
 	public void removerCliente(Cliente cliente) throws ClienteNaoExisteException;
 	
-	public void removerFornecedor(int codigo);
+	public void removerFornecedor(int codigo) throws FornecedorNaoExisteException;
 	
-	public void removerFuncionario(int codigo);
+	public void removerFuncionario(int codigo) throws FuncionarioNaoExisteException;
 	
-	public void removerMateriaPrima(int codigo);
+	public void removerMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException;
 	
-	public void removerProduto(int codigo);
+	public void removerProduto(int codigo) throws ProdutoNaoExisteException;
 	
 	//BUSCAR
 	public Cliente buscarCliente(int codigo) throws ClienteNaoExisteException;
@@ -54,15 +54,15 @@ public interface IPanelaFit {
 	public Produto buscarProduto(int codigo) throws ProdutoNaoExisteException;
 	
 	//ALTERAR
-	public abstract void alterarCliente(Cliente clienteAlterado, Cliente novoCliente)throws ClienteNaoExisteException, ClienteJaExisteException;
+	public abstract void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException;
 	
-	public boolean alterarFornecedor(Fornecedor novoFornecedor);
+	public boolean alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException; 
 	
-	public boolean alterarFuncionario(Funcionario novoFuncionario);
+	public boolean alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException;
 	
-	public boolean alterarMateriaPrima(MateriaPrima novaMateriaPrima);
+	public boolean alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException;
 	
-	public boolean alterarProdutos(Produto novoProduto);
+	public boolean alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException;
 
 	//listar
 	public abstract List<Cliente> listarClientes();
