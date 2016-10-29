@@ -1,13 +1,17 @@
 package dados;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Collections;
 import beans.Produto;
 
 public class RepositorioProduto implements IRepositorioProduto{
-	private ArrayList<Produto> listaProdutos = new ArrayList<Produto>();
+	private ArrayList<Produto> listaProdutos;
 	private static RepositorioProduto instance;
 	
+	public RepositorioProduto(){
+		this.listaProdutos = new ArrayList<Produto>();
+	}
 	public static RepositorioProduto getInstance(){
 		if(instance==null){
 			instance = new RepositorioProduto();
@@ -26,19 +30,22 @@ public class RepositorioProduto implements IRepositorioProduto{
 	public boolean cadastrarProduto(Produto produto) {
 		try {
 			listaProdutos.add(produto);
-		} catch(Exception e) {
+		}catch (Exception e){
 			return false;
 		}
 		return true;
 	}
 	
-	public void alterarProduto(Produto produtoAlterado, Produto novoProduto) {
-		for(Produto p : listaProdutos) {
-			if(novoProduto.getCodigo() == produtoAlterado.getCodigo()) {
-				listaProdutos.remove(p);
-				listaProdutos.add(novoProduto);
+	public boolean alterarProduto(Produto produtoAlterado, Produto novoProduto) {
+		boolean alt = false;
+			for(Produto produto : listaProdutos){
+				if(produto.getCodigo() == produtoAlterado.getCodigo()){
+					listaProdutos.remove(produto);
+						listaProdutos.add(novoProduto);
+							alt = true;
 			}
 		}
+		return alt;
 	}
 	
 	public Produto buscarProduto(int codigo) {
@@ -50,15 +57,15 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return null;
 	}
 	
-	public boolean removerProduto(int codigo) {
+	public boolean removerProduto(int  codigo) {
 		boolean igual = false;
-			for(int i=0;i<listaProdutos.size();i++){
-				if(listaProdutos.get(i).getCodigo()==codigo){
-					listaProdutos.remove(i);
-						igual=true;
-				}
+		for(int i=0;i<listaProdutos.size();i++){
+			if(listaProdutos.get(i).getCodigo()==codigo){
+				listaProdutos.remove(i);
+					igual=true;
 			}
-		return igual;
+		}
+	return igual;
 	}
 	
 	public boolean produtoExiste(int codigo) {
@@ -71,6 +78,10 @@ public class RepositorioProduto implements IRepositorioProduto{
 			}
 		}
 		return x;
+	}
+	
+	public List<Produto> listar(){
+		return Collections.unmodifiableList(this.listaProdutos);
 	}
 		
 	@Override

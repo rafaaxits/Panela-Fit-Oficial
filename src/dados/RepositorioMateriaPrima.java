@@ -1,12 +1,17 @@
 package dados;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Collections;
 import beans.MateriaPrima;
 
 public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
-	private ArrayList<MateriaPrima> listaMateriasPrimas = new ArrayList<MateriaPrima>();
+	private ArrayList<MateriaPrima> listaMateriasPrimas;
 	private static RepositorioMateriaPrima instance;
+	
+	public RepositorioMateriaPrima(){
+		this.listaMateriasPrimas = new ArrayList<MateriaPrima>();
+	}
 	
 	public static RepositorioMateriaPrima getInstance(){
 		if(instance == null){
@@ -23,22 +28,25 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		this.listaMateriasPrimas = listaMateriasPrimas;
 	}
 
-	public boolean cadastrarMateriaPrima(MateriaPrima materiaprima) {
-		try {
-			listaMateriasPrimas.add(materiaprima);
-		} catch (Exception e) {
+	public boolean cadastrarMateriaPrima(MateriaPrima materiaPrima) {
+		try{
+			listaMateriasPrimas.add(materiaPrima);
+		}catch (Exception e){
 			return false;
 		}
 		return true;
 	}
 	
-	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) {
-		for(MateriaPrima m : listaMateriasPrimas) {
-			if(novaMateriaPrima.getCodigo() == novaMateriaPrima.getCodigo()) {
-					listaMateriasPrimas.remove(m);
-					listaMateriasPrimas.add(novaMateriaPrima);
+	public boolean alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) {
+		boolean alt = false;
+	for(MateriaPrima materiaPrima : listaMateriasPrimas){	
+		if(materiaPrima.getCodigo() == mpAlterada.getCodigo()){
+			listaMateriasPrimas.remove(materiaPrima);
+				listaMateriasPrimas.add(novaMateriaPrima);
+					alt = true;
 			}
 		}
+		return alt;
 	}
 	
 	public MateriaPrima buscarMateriaPrima(int codigo) {
@@ -52,16 +60,16 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 	
 	public boolean removerMateriaPrima(int codigo) {
 		boolean igual = false;
-			for(int i=0;i<listaMateriasPrimas.size();i++){
-				if(listaMateriasPrimas.get(i).getCodigo() == codigo){
-					listaMateriasPrimas.remove(i);
-						igual = true;
-			}
+		for(int i=0;i<listaMateriasPrimas.size();i++){
+			if(listaMateriasPrimas.get(i).getCodigo() == codigo){
+				listaMateriasPrimas.remove(i);
+					igual = true;
 		}
-		return igual;
+	}
+	return igual;
 	}
 	
-	public boolean mpExiste(int codigo) {
+	public boolean materiaPrimaExiste(int codigo) {
 		int m;
 		boolean x = false;
 		for(MateriaPrima mp : listaMateriasPrimas) {
@@ -71,6 +79,10 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 			}
 		}
 		return x;
+	}
+	
+	public List<MateriaPrima> listar(){
+		return Collections.unmodifiableList(this.listaMateriasPrimas);
 	}
 	
 	@Override

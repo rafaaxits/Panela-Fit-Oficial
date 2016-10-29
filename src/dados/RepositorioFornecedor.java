@@ -2,11 +2,16 @@ package dados;
 
 import java.util.ArrayList;
 import beans.Fornecedor;
+import java.util.List;
+import java.util.Collections;
 
 public class RepositorioFornecedor implements IRepositorioFornecedor {
-	private ArrayList<Fornecedor> listaFornecedores = new ArrayList<Fornecedor>();
+	private ArrayList<Fornecedor> listaFornecedores;
 	private static RepositorioFornecedor instance;
 	
+	public RepositorioFornecedor(){
+		this.listaFornecedores = new ArrayList<Fornecedor>();
+	}
 	public static RepositorioFornecedor getInstance(){
 		if(instance == null){
 			instance = new RepositorioFornecedor();
@@ -25,19 +30,23 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 	public boolean cadastrarFornecedor(Fornecedor fornecedor) {
 		try {
 			listaFornecedores.add(fornecedor);
-		} catch (Exception e) {
+		}
+		catch (Exception e){
 			return false;
 		}
 		return true;
 	}
 	
-	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) {
-		for(Fornecedor f : listaFornecedores) {
-				if(novoFornecedor.getCodigo() == fornAlterado.getCodigo()) {
-					listaFornecedores.remove(f);
-					listaFornecedores.add(novoFornecedor);
+	public boolean alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) {
+		boolean alt = false;
+	for(Fornecedor fornecedor : listaFornecedores){	
+		if(fornecedor.getCodigo() == fornAlterado.getCodigo()) {
+				listaFornecedores.remove(fornecedor);
+					listaFornecedores.add(novoFornecedor);				
+						alt = true;
 				}
 			}
+			return alt;
 }
 	
 	public Fornecedor buscarFornecedor(int codigo) {
@@ -51,13 +60,13 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 	
 	public boolean removerFornecedor(int codigo) {
 		boolean igual = false;
-			for(int i =0;i<listaFornecedores.size();i++){
-				if(listaFornecedores.get(i).getCodigo()==codigo){
-					listaFornecedores.remove(i);
-						igual=true;
-				}
+		for(int i =0;i<listaFornecedores.size();i++){
+			if(listaFornecedores.get(i).getCodigo()==codigo){
+				listaFornecedores.remove(i);
+					igual=true;
 			}
-		return igual;
+		}
+	return igual;
 	}
 	
 	public boolean fornecedorExiste(int codigo) {
@@ -70,6 +79,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 			}
 		}
 		return x;
+	}
+	
+	public List<Fornecedor> listar(){
+		return Collections.unmodifiableList(this.listaFornecedores);
 	}
 	
 	@Override

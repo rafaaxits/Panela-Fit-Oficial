@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface IRepositorioCliente {
 	
-	public void cadastrarCliente(Cliente cliente);
+	public boolean cadastrarCliente(Cliente cliente);
 	public boolean alterarCliente(Cliente clienteAlterado, Cliente novoCliente);
 	public Cliente buscarCliente(int codigo);
-	public void removerCliente(Cliente cliente);
+	public boolean removerCliente(int codigo);
 	public boolean ClienteExiste(int codigo);
 	public abstract List<Cliente> listar();
 	

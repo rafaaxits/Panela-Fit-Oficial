@@ -1,12 +1,17 @@
 package dados;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import java.util.Collections;
 import beans.Funcionario;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario {
-	private ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+	private ArrayList<Funcionario> listaFuncionarios;
 	private static RepositorioFuncionario instance;
+	
+	public RepositorioFuncionario(){
+		this.listaFuncionarios = new ArrayList<Funcionario>();
+	}
 	
 	public static RepositorioFuncionario getInstance(){
 		if(instance==null){
@@ -24,21 +29,24 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 	}
 	
 	public boolean cadastrarFuncionario(Funcionario funcionario) {
-		try {
+		try{
 			listaFuncionarios.add(funcionario);
-		} catch (Exception e) {
+		}catch(Exception e){
 			return false;
 		}
 		return true;
 	}
 	
-	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) {
-			for(Funcionario f : listaFuncionarios) {
-				if(novoFuncionario.getCodigo() == funcAlterado.getCodigo()) {
-					listaFuncionarios.remove(f);
+	public boolean alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) {
+		boolean alt=false;	
+		for(Funcionario funcionario : listaFuncionarios){
+			if(funcionario.getCodigo() == funcAlterado.getCodigo()){
+				listaFuncionarios.remove(funcionario);
 					listaFuncionarios.add(novoFuncionario);
+						alt = true;
 				}
 			}
+			return alt;
 	}
 	
 	public Funcionario buscarFuncionario(int codigo) {
@@ -52,13 +60,14 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 	
 	public boolean removerFuncionario(int codigo) {
 		boolean igual = false;
-			for(int i=0;i<listaFuncionarios.size();i++){
-				if(listaFuncionarios.get(i).getCodigo()==codigo){
-					listaFuncionarios.remove(i);
-						igual=true;
-				}
+		for(int i=0;i<listaFuncionarios.size();i++){
+			if(listaFuncionarios.get(i).getCodigo()==codigo){
+				listaFuncionarios.remove(i);
+					igual=true;
 			}
-		return igual;
+		}
+	return igual;
+
 	}
 	
 	public boolean funcionarioExiste(int codigo) {
@@ -71,6 +80,10 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 			}
 		}
 		return x;
+	}
+	
+	public List <Funcionario> listar(){
+		return Collections.unmodifiableList(this.listaFuncionarios);
 	}
 	
 	@Override

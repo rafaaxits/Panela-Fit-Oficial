@@ -7,8 +7,12 @@ import java.util.List;
 import beans.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente {
-	private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	private ArrayList<Cliente> listaClientes;
 	private static RepositorioCliente instance;
+	
+	public RepositorioCliente(){
+		this.listaClientes = new ArrayList<Cliente>();
+	}
 	
 	public static RepositorioCliente getInstance(){
 		if(instance==null){
@@ -26,21 +30,24 @@ public class RepositorioCliente implements IRepositorioCliente {
 		this.listaClientes = listaClientes;
 	}
 
-	public void cadastrarCliente(Cliente cliente){
-		if(cliente !=null){
-			if(listaClientes.contains(cliente) == false){
-				listaClientes.add(cliente);
-			}
+	public boolean cadastrarCliente(Cliente cliente){
+		try{
+			listaClientes.add(cliente);
 		}
+		catch (Exception e){
+			return false;
+		}
+		return true;
 		
 	}
 	public boolean alterarCliente(Cliente clienteAlterado, Cliente novoCliente) {
-			boolean alt = false;
-				if(listaClientes.contains(clienteAlterado)) {
-					listaClientes.remove(clienteAlterado);
+		boolean alt = false;
+			for(Cliente cliente : listaClientes){
+				if(cliente.getCodigo() == clienteAlterado.getCodigo()) {
+					listaClientes.remove(cliente);
 						listaClientes.add(novoCliente);
 							alt = true;
-					
+					}
 				}
 			return alt;
 	}
@@ -54,10 +61,15 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return null;
 	}
 	
-	public void removerCliente(Cliente cliente){
-			if(listaClientes.contains(cliente)){
-				listaClientes.remove(cliente);
+	public boolean removerCliente(int codigo){
+		boolean igual=false;
+		for(int i=0;i<listaClientes.size();i++){
+			if(listaClientes.get(i).getCodigo()==codigo){
+				listaClientes.remove(i);
+				igual = true;
 			}
+		}
+	return igual;
 	}
 	
 	public boolean ClienteExiste(int codigo) {
