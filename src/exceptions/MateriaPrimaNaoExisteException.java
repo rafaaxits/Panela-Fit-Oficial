@@ -1,14 +1,14 @@
 package exceptions;
 
 public class MateriaPrimaNaoExisteException extends Exception {
-	  private int codigo;
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 
-	  public MateriaPrimaNaoExisteException(int codigo) {
-	    super("Nao existe nenhuma materia prima com o codigo '" + codigo + "'.");
-	    this.codigo = codigo;
-	  }
-
-	  public int getCodigo() {
-	    return this.codigo;
+	  public MateriaPrimaNaoExisteException() {
+	    super("Nao existe nenhuma materia prima com o codigo");
+	 
 	  }
 }
