@@ -92,7 +92,7 @@ public class PanelaFit implements IPanelaFit{
 		return fornecedores.getTelefone(codigo);
 	}
 	
-	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException {
+	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
 		funcionarios.cadastrar(f);
 	}
 	
@@ -104,7 +104,7 @@ public class PanelaFit implements IPanelaFit{
 		return funcionarios.buscar(codigo);
 	}
 	
-	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioNaoExisteException {
+	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
 		funcionarios.alterar(funcAlterado, novoFuncionario);
 	}
 	
