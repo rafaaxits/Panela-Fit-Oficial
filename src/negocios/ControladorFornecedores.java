@@ -2,6 +2,8 @@ package negocios;
 
 import beans.Fornecedor;
 import dados.IRepositorioFornecedor;
+import exceptions.ClienteJaExisteException;
+import exceptions.ClienteNaoExisteException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
 
@@ -12,15 +14,14 @@ public class ControladorFornecedores {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Fornecedor f) throws FornecedorJaExisteException {
+	public void cadastrar(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException {
 		if(f == null) {
-			throw new IllegalArgumentException("");
+			throw new FornecedorNaoExisteException();
 		} else {
-			if(this.repositorio.fornecedorExiste(f.getCodigo()) == true) {
-				this.repositorio.cadastrarFornecedor(f);
-			} else if(this.repositorio.fornecedorExiste(f.getCodigo()) == false) {
-				FornecedorJaExisteException c = new FornecedorJaExisteException(f.getCodigo());
-				throw c;
+			if(this.repositorio.fornecedorExiste(f.getCodigo()) == false) {
+			this.repositorio.cadastrarFornecedor(f);	
+			} else if(this.repositorio.fornecedorExiste(f.getCodigo()) == true) {
+				throw new FornecedorJaExisteException(f.getCodigo());
 			}
 		}
 	}
@@ -30,32 +31,33 @@ public class ControladorFornecedores {
 		if(this.repositorio.fornecedorExiste(codigo) == true) {
 			return this.repositorio.buscarFornecedor(codigo);
 		} else {
-			throw new FornecedorNaoExisteException(codigo);
+			throw new FornecedorNaoExisteException();
 		}
 	}
 	
 	public void remover(Fornecedor f) throws FornecedorNaoExisteException {
-		if(f == null) {
-			throw new IllegalArgumentException("");
-		} else {
-			if(this.repositorio.fornecedorExiste(f.getCodigo()) == true) {
+		if(f == null || this.repositorio.fornecedorExiste(f.getCodigo()) == false){
+			throw new FornecedorNaoExisteException();
+		}
+		else{
+			if(this.repositorio.fornecedorExiste(f.getCodigo()) == true){
 				this.repositorio.removerFornecedor(f.getCodigo());
-			} else if(this.repositorio.fornecedorExiste(f.getCodigo()) == false) {
-				FornecedorNaoExisteException r = new FornecedorNaoExisteException(f.getCodigo());
-				throw r;
 			}
 		}
 		
 	}
 	
-	public void alterar(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException {
-		if(fornAlterado != null && novoFornecedor != null) {
+	public void alterar(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
+		if(fornAlterado == null && novoFornecedor == null) {
+			throw new FornecedorNaoExisteException();
+		} else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo())==true) && novoFornecedor != null) {
 			this.repositorio.alterarFornecedor(fornAlterado, novoFornecedor);
-		} else {
-			if(fornAlterado == null || novoFornecedor == null) {
-				IllegalArgumentException a = new IllegalArgumentException("");
-				throw a;
-			}
+		}
+		else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo()) == false)){
+			throw new FornecedorNaoExisteException();
+		}
+		else if(fornAlterado.equals(novoFornecedor)) {
+			throw new FornecedorJaExisteException(fornAlterado.getCodigo());
 		}
 	}
 	
@@ -64,7 +66,7 @@ public class ControladorFornecedores {
 		Fornecedor f = this.repositorio.buscarFornecedor(codigo);
 		return f.getTelefone();
 		} else {
-			throw new FornecedorNaoExisteException(codigo);
+			throw new FornecedorNaoExisteException();
 		}	
 	}
 }
