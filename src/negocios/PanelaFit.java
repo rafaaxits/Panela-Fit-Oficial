@@ -72,7 +72,7 @@ public class PanelaFit implements IPanelaFit{
 	
 	//FORNECEDORES
 	
-	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException {
+	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException {
 		fornecedores.cadastrar(f);
 	}
 	
@@ -84,7 +84,7 @@ public class PanelaFit implements IPanelaFit{
 		return fornecedores.buscar(codigo);
 	}
 	
-	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException {
+	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
 		fornecedores.alterar(fornAlterado, novoFornecedor);
 	}
 	
