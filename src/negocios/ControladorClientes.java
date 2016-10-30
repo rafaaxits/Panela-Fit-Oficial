@@ -1,10 +1,10 @@
 package negocios;
 
-import beans.Cliente;
 import java.util.List;
 import dados.IRepositorioCliente;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
+import exceptions.ClienteInvalidoException;
 
 public class ControladorClientes {
 	IRepositorioCliente repositorio;
@@ -13,45 +13,46 @@ public class ControladorClientes {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException {
+	public void cadastrar(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
 		if(c == null) {
-			throw new ClienteNaoExisteException();
+			throw new ClienteInvalidoException ();
 		} else {
-			if(this.repositorio.ClienteExiste(c.getCodigo()) == false) {
+			if(this.repositorio.clienteExiste(c.getCodigo()) == false) {
 			this.repositorio.cadastrarCliente(c);	
-			} else if(this.repositorio.ClienteExiste(c.getCodigo()) == true) {
+			} else if(this.repositorio.clienteExiste(c.getCodigo()) == true) {
 				throw new ClienteJaExisteException(c.getCodigo());
 			}
 		}
 	}
 	
 	public Cliente buscar(int codigo) throws ClienteNaoExisteException {
-		if(this.repositorio.ClienteExiste(codigo) == true) {
+		if(this.repositorio.clienteExiste(codigo) == true) {
 			return this.repositorio.buscarCliente(codigo);
 		} else {
 			throw new ClienteNaoExisteException();
 		}
 	}
 	
-	public void remover(Cliente cliente) throws ClienteNaoExisteException {
-	if(cliente == null || this.repositorio.ClienteExiste(cliente.getCodigo())==false){
-		throw new ClienteNaoExisteException();
+	public void remover(Cliente cliente) throws ClienteNaoExisteException, ClienteInvalidoException {
+	if(cliente == null){
+		throw new ClienteInvalidoException();
 	}
-	else{
-		if(this.repositorio.ClienteExiste(cliente.getCodigo()) == true){
-			this.repositorio.removerCliente(cliente.getCodigo());
-		}
+	else if(this.repositorio.clienteContem(cliente) == true){
+			this.repositorio.removerCliente(cliente.getCodigo());	
+	}
+	else if(this.repositorio.clienteContem(cliente)==false){
+		throw new ClienteNaoExisteException();
 	}
 }
 	
-	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException{
+	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException{
 		if(clienteAlterado == null || novoCliente == null) {
-			throw new ClienteNaoExisteException();
+			throw new ClienteInvalidoException();
 		} 
-		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==true) && novoCliente !=null) {
+		else if(this.repositorio.clienteContem(clienteAlterado)==true && (novoCliente != null && this.repositorio.clienteContem(novoCliente)==false)) {
 			this.repositorio.alterarCliente(clienteAlterado, novoCliente);
 		}
-		else if((clienteAlterado !=null && this.repositorio.ClienteExiste(clienteAlterado.getCodigo())==false)){
+		else if((clienteAlterado !=null && this.repositorio.clienteContem(clienteAlterado)==false)){
 			throw new ClienteNaoExisteException();
 		}
 		else {

@@ -1,15 +1,10 @@
 package negocios;
 import java.time.*;
 
-import beans.Produto;
 import dados.RepositorioProduto;
-import beans.Cliente;
 import dados.RepositorioCliente;
-import beans.Fornecedor;
 import dados.RepositorioFornecedor;
-import beans.Funcionario;
 import dados.RepositorioFuncionario;
-import beans.MateriaPrima;
 import dados.RepositorioMateriaPrima;
 public class TEST {
 

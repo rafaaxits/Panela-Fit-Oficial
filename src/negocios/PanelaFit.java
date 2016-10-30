@@ -2,11 +2,7 @@ package negocios;
 
 import java.time.*;
 import java.util.List;
-import beans.Cliente;
-import beans.Fornecedor;
-import beans.Funcionario;
-import beans.MateriaPrima;
-import beans.Produto;
+
 import dados.RepositorioCliente;
 import dados.RepositorioFornecedor;
 import dados.RepositorioFuncionario;
@@ -14,14 +10,19 @@ import dados.RepositorioMateriaPrima;
 import dados.RepositorioProduto;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
+import exceptions.ClienteInvalidoException;
+import exceptions.FornecedorJaExisteException;
+import exceptions.FornecedorNaoExisteException;
+import exceptions.FornecedorInvalidoException;
 import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.FornecedorNaoExisteException;
-import exceptions.FornecedorJaExisteException;
-import exceptions.MateriaPrimaNaoExisteException;
+import exceptions.FuncionarioInvalidoException;
 import exceptions.MateriaPrimaJaExisteException;
+import exceptions.MateriaPrimaNaoExisteException;
+import exceptions.MateriaPrimaInvalidaException;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
+import exceptions.ProdutoInvalidoException;
 
 public class PanelaFit implements IPanelaFit{
 	private ControladorClientes clientes;
@@ -49,12 +50,12 @@ public class PanelaFit implements IPanelaFit{
 	
 	//CLIENTES
 	
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException {
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
 		clientes.cadastrar(c);
 		
 	}
 	
-	public void removerCliente(Cliente c) throws ClienteNaoExisteException {
+	public void removerCliente(Cliente c) throws ClienteNaoExisteException, ClienteInvalidoException {
 		clientes.remover(c);
 	}
 	
@@ -62,7 +63,7 @@ public class PanelaFit implements IPanelaFit{
 		return clientes.buscar(codigo);
 	}
 	
-	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException {
+	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException {
 		clientes.alterar(clienteAlterado, novoCliente);
 	}
 	
@@ -72,11 +73,11 @@ public class PanelaFit implements IPanelaFit{
 	
 	//FORNECEDORES
 	
-	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException {
+	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
 		this.fornecedores.cadastrar(f);
 	}
 	
-	public void removerFornecedor(Fornecedor f) throws FornecedorNaoExisteException {
+	public void removerFornecedor(Fornecedor f) throws FornecedorNaoExisteException, FornecedorInvalidoException {
 		this.fornecedores.remover(f);
 	}
 	
@@ -84,7 +85,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.fornecedores.buscar(codigo);
 	}
 	
-	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
+	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
 		this.fornecedores.alterar(fornAlterado, novoFornecedor);
 	}
 	
@@ -97,11 +98,11 @@ public class PanelaFit implements IPanelaFit{
 	}
 	//FUNCIONARIO
 	
-	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
+	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
 		this.funcionarios.cadastrar(f);
 	}
 	
-	public void removerFuncionario(Funcionario f) throws FuncionarioNaoExisteException {
+	public void removerFuncionario(Funcionario f) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
 		this.funcionarios.remover(f);
 	}
 	
@@ -109,7 +110,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.buscar(codigo);
 	}
 	
-	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
+	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
 		this.funcionarios.alterar(funcAlterado, novoFuncionario);
 	}
 	
@@ -123,11 +124,11 @@ public class PanelaFit implements IPanelaFit{
 	
 	//MATERIAPRIMA
 	
-	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException{
+	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
 		this.materiaPrimas.cadastrar(m);
 	}
 	
-	public void removerMateriaPrima(MateriaPrima m) throws MateriaPrimaNaoExisteException {
+	public void removerMateriaPrima(MateriaPrima m) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
 		this.materiaPrimas.remover(m);
 	}
 	
@@ -135,7 +136,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.materiaPrimas.buscar(codigo);
 	}
 	
-	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException {
+	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException {
 		this.materiaPrimas.alterar(mpAlterada, novaMateriaPrima);
 	}
 	
@@ -149,11 +150,11 @@ public class PanelaFit implements IPanelaFit{
 	
 	//PRODUTOS
 	
-	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException{
+	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
 		this.produtos.cadastrar(p);
 	}
 	
-	public void removerProduto(Produto p) throws ProdutoNaoExisteException {
+	public void removerProduto(Produto p) throws ProdutoNaoExisteException, ProdutoInvalidoException {
 		this.produtos.remover(p);
 	}
 	
@@ -161,7 +162,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.produtos.buscar(codigo);
 	}
 	
-	public void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException {
+	public void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
 		this.produtos.alterar(produtoAlterado, novoProduto);
 	}
 	

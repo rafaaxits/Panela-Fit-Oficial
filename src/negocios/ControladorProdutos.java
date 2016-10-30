@@ -1,9 +1,9 @@
 package negocios;
 
-import beans.Produto;
 import dados.IRepositorioProduto;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
+import exceptions.ProdutoInvalidoException;
 import java.time.*;
 import java.util.List;
 
@@ -15,9 +15,9 @@ public class ControladorProdutos {
 	}
 
 
-	public void cadastrar(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException{
+	public void cadastrar(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
 		if(p == null) {
-			throw new ProdutoNaoExisteException();
+			throw new ProdutoInvalidoException();
 		} else {
 			if(this.repositorio.produtoExiste(p.getCodigo()) == false){
 				this.repositorio.cadastrarProduto(p);
@@ -36,24 +36,26 @@ public class ControladorProdutos {
 		}
 	}
 	
-	public void remover(Produto p) throws ProdutoNaoExisteException {
-		if(p== null || this.repositorio.produtoExiste(p.getCodigo())==false){
-			throw new ProdutoNaoExisteException();
-		}else{
-			if(this.repositorio.produtoExiste(p.getCodigo())==true){
+	public void remover(Produto p) throws ProdutoNaoExisteException, ProdutoInvalidoException {
+		if(p== null){
+			throw new ProdutoInvalidoException();
+		}
+		else if(this.repositorio.produtoContem(p)==true){
 				this.repositorio.removerProduto(p.getCodigo());
-			}
+		}
+		else if(this.repositorio.produtoContem(p)==false){
+			throw new ProdutoNaoExisteException();
 		}
 	}
 	
-	public void alterar(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException {
+	public void alterar(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
 		if(produtoAlterado == null || novoProduto == null) {
-			throw new ProdutoNaoExisteException();
+			throw new ProdutoInvalidoException();
 		} 
-		else if((produtoAlterado != null && this.repositorio.produtoExiste(produtoAlterado.getCodigo())==true) && novoProduto !=null){
+		else if(this.repositorio.produtoContem(produtoAlterado)==true && (novoProduto!=null && this.repositorio.produtoContem(produtoAlterado))== false){
 			this.repositorio.alterarProduto(produtoAlterado, novoProduto);
 		}
-		else if(produtoAlterado !=null && this.repositorio.produtoExiste(produtoAlterado.getCodigo())==false){
+		else if(produtoAlterado !=null && this.repositorio.produtoContem(produtoAlterado)==false){
 			throw new ProdutoNaoExisteException();
 		}
 		else{

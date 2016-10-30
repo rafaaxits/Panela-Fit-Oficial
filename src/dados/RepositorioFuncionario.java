@@ -2,8 +2,10 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import negocios.Funcionario;
+
 import java.util.Collections;
-import beans.Funcionario;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario {
 	private ArrayList<Funcionario> listaFuncionarios;
@@ -24,10 +26,6 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		return listaFuncionarios;
 	}
 	
-	public void setListaFuncionarios(ArrayList<Funcionario> listaFuncionarios) {
-		this.listaFuncionarios = listaFuncionarios;
-	}
-	
 	public boolean cadastrarFuncionario(Funcionario funcionario) {
 		try{
 			listaFuncionarios.add(funcionario);
@@ -41,7 +39,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		boolean alt=false;	
 		for(Funcionario funcionario : listaFuncionarios){
 			if(funcionario.getCodigo() == funcAlterado.getCodigo()){
-				listaFuncionarios.remove(funcionario);
+				listaFuncionarios.remove(funcAlterado);
 					listaFuncionarios.add(novoFuncionario);
 						alt = true;
 				}
@@ -68,6 +66,14 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		}
 	return igual;
 
+	}
+	
+	public boolean funcionarioContem(Funcionario funcionario){
+		boolean contem = false;
+			if(listaFuncionarios.contains(funcionario)){
+				contem = true;
+		}
+					return contem;
 	}
 	
 	public boolean funcionarioExiste(int codigo) {

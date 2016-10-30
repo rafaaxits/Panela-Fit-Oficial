@@ -1,4 +1,4 @@
-package beans;
+package negocios;
 
 public class MateriaPrima {
 	private String nome;

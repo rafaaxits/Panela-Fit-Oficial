@@ -1,8 +1,10 @@
 package dados;
 
 import java.util.ArrayList;
-import beans.Fornecedor;
 import java.util.List;
+
+import negocios.Fornecedor;
+
 import java.util.Collections;
 
 public class RepositorioFornecedor implements IRepositorioFornecedor {
@@ -21,10 +23,6 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 	
 	public ArrayList<Fornecedor> getListaFornecedores() {
 		return listaFornecedores;
-	}
-	
-	public void setListaFornecedores(ArrayList<Fornecedor> listaFornecedores) {
-		this.listaFornecedores = listaFornecedores;
 	}
 	
 	public boolean cadastrarFornecedor(Fornecedor fornecedor) {
@@ -67,6 +65,14 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 			}
 		}
 	return igual;
+	}
+	
+	public boolean fornecedorContem(Fornecedor fornecedor){
+		boolean contem = false;
+			if(listaFornecedores.contains(fornecedor)){
+				contem=true;
+			}
+			return contem;
 	}
 	
 	public boolean fornecedorExiste(int codigo) {

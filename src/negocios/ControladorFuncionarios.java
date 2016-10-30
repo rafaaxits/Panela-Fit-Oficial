@@ -1,9 +1,9 @@
 package negocios;
 
-import beans.Funcionario;
 import dados.IRepositorioFuncionario;
 import exceptions.FuncionarioNaoExisteException;
 import exceptions.FuncionarioJaExisteException;
+import exceptions.FuncionarioInvalidoException;
 import java.util.List;
 
 public class ControladorFuncionarios {
@@ -13,9 +13,9 @@ public class ControladorFuncionarios {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException {
+	public void cadastrar(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
 		if(f == null) {
-			throw new FuncionarioNaoExisteException();
+			throw new FuncionarioInvalidoException();
 		} else {
 			if(this.repositorio.funcionarioExiste(f.getCodigo()) == false) {
 				this.repositorio.cadastrarFuncionario(f);
@@ -33,23 +33,26 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public void remover(Funcionario f) throws FuncionarioNaoExisteException {
-		if(f == null || this.repositorio.funcionarioExiste(f.getCodigo()) == false) {
+	public void remover(Funcionario f) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
+		if(f == null) {
+			throw new FuncionarioInvalidoException();
+		} 
+		else if(this.repositorio.funcionarioContem(f) == true) {
+				this.repositorio.removerFuncionario(f.getCodigo());	
+		}
+		else if(this.repositorio.funcionarioContem(f)==false){
 			throw new FuncionarioNaoExisteException();
-		} else {
-			if(this.repositorio.funcionarioExiste(f.getCodigo()) == true) {
-				this.repositorio.removerFuncionario(f.getCodigo());
-			}
 		}
 	}
 	
-	public void alterar(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException{
+	public void alterar(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException{
 		if(funcAlterado == null || novoFuncionario == null) {
-			throw new FuncionarioNaoExisteException();
-		} else if((funcAlterado != null && this.repositorio.funcionarioExiste(funcAlterado.getCodigo()) == true) && novoFuncionario != null) {
+			throw new FuncionarioInvalidoException();
+		} 
+		else if(this.repositorio.funcionarioContem(funcAlterado) == true && (novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario)==false)) {
 			this.repositorio.alterarFuncionario(funcAlterado, novoFuncionario);
 		}
-		else if((funcAlterado != null && this.repositorio.funcionarioExiste(funcAlterado.getCodigo()) == false)){
+		else if((funcAlterado != null && this.repositorio.funcionarioContem(funcAlterado) == false)){
 			throw new FuncionarioNaoExisteException();
 		}
 		else  {

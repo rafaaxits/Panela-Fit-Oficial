@@ -1,4 +1,4 @@
-package beans;
+package negocios;
 
 public abstract class Pessoa {
 	private String nome;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import beans.Cliente;
+import negocios.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente {
 	private ArrayList<Cliente> listaClientes;
@@ -24,10 +24,6 @@ public class RepositorioCliente implements IRepositorioCliente {
 	
 	public ArrayList<Cliente> getListaClientes() {
 		return listaClientes;
-	}
-
-	public void setListaClientes(ArrayList<Cliente> listaClientes) {
-		this.listaClientes = listaClientes;
 	}
 
 	public boolean cadastrarCliente(Cliente cliente){
@@ -72,7 +68,15 @@ public class RepositorioCliente implements IRepositorioCliente {
 	return igual;
 	}
 	
-	public boolean ClienteExiste(int codigo) {
+	public boolean clienteContem(Cliente cliente){
+		boolean contem = false;
+		if(listaClientes.contains(cliente)){
+			contem = true;
+		}
+		return contem;
+	}
+	
+	public boolean clienteExiste(int codigo) {
 		int c;
 		boolean x = false;
 		for(Cliente cliente : listaClientes) {

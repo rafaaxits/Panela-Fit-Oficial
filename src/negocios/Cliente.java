@@ -1,4 +1,4 @@
-package beans;
+package negocios;
 
 public class Cliente extends Pessoa{
 	private int codigo;

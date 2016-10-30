@@ -1,9 +1,9 @@
 package negocios;
 
-import beans.Fornecedor;
 import dados.IRepositorioFornecedor;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
+import exceptions.FornecedorInvalidoException;
 import java.util.List;
 
 public class ControladorFornecedores {
@@ -13,9 +13,9 @@ public class ControladorFornecedores {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException {
+	public void cadastrar(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
 		if(f == null) {
-			throw new FornecedorNaoExisteException();
+			throw new FornecedorInvalidoException();
 		} else {
 			if(this.repositorio.fornecedorExiste(f.getCodigo()) == false) {
 			this.repositorio.cadastrarFornecedor(f);	
@@ -34,25 +34,27 @@ public class ControladorFornecedores {
 		}
 	}
 	
-	public void remover(Fornecedor f) throws FornecedorNaoExisteException {
-		if(f == null || this.repositorio.fornecedorExiste(f.getCodigo()) == false){
-			throw new FornecedorNaoExisteException();
+	public void remover(Fornecedor f) throws FornecedorNaoExisteException, FornecedorInvalidoException{
+		if(f == null){
+			throw new FornecedorInvalidoException();
 		}
-		else{
-			if(this.repositorio.fornecedorExiste(f.getCodigo()) == true){
+		else if(this.repositorio.fornecedorContem(f) == true){
 				this.repositorio.removerFornecedor(f.getCodigo());
-			}
+		}
+		else if(this.repositorio.fornecedorContem(f)==false){
+			throw new FornecedorNaoExisteException();
 		}
 		
 	}
 	
-	public void alterar(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException {
+	public void alterar(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
 		if(fornAlterado == null || novoFornecedor == null) {
-			throw new FornecedorNaoExisteException();
-		} else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo())==true) && novoFornecedor != null) {
+			throw new FornecedorInvalidoException();
+		} 
+		else if(this.repositorio.fornecedorContem(fornAlterado)==true && (novoFornecedor != null && this.repositorio.fornecedorContem(novoFornecedor))==false) {
 			this.repositorio.alterarFornecedor(fornAlterado, novoFornecedor);
 		}
-		else if((fornAlterado != null && this.repositorio.fornecedorExiste(fornAlterado.getCodigo()) == false)){
+		else if((fornAlterado != null && this.repositorio.fornecedorContem(fornAlterado) == false)){
 			throw new FornecedorNaoExisteException();
 		}
 		else {

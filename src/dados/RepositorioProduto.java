@@ -2,8 +2,10 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import negocios.Produto;
+
 import java.util.Collections;
-import beans.Produto;
 
 public class RepositorioProduto implements IRepositorioProduto{
 	private ArrayList<Produto> listaProdutos;
@@ -23,10 +25,6 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return listaProdutos;
 	}
 	
-	public void setListaProdutos(ArrayList<Produto> listaProdutos) {
-		this.listaProdutos = listaProdutos;
-	}
-	
 	public boolean cadastrarProduto(Produto produto) {
 		try {
 			listaProdutos.add(produto);
@@ -40,7 +38,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		boolean alt = false;
 			for(Produto produto : listaProdutos){
 				if(produto.getCodigo() == produtoAlterado.getCodigo()){
-					listaProdutos.remove(produto);
+					listaProdutos.remove(produtoAlterado);
 						listaProdutos.add(novoProduto);
 							alt = true;
 			}
@@ -66,6 +64,14 @@ public class RepositorioProduto implements IRepositorioProduto{
 			}
 		}
 	return igual;
+	}
+	
+	public boolean produtoContem(Produto produto){
+		boolean contem = false;
+		if(listaProdutos.contains(produto)){
+			contem=true;
+		}
+		return contem;
 	}
 	
 	public boolean produtoExiste(int codigo) {

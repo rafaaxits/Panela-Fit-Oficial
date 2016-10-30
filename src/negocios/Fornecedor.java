@@ -1,4 +1,4 @@
-package beans;
+package negocios;
 
 public class Fornecedor {
 	private String nomeFornecedor;

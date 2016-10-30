@@ -1,9 +1,9 @@
 package negocios;
 
-import beans.MateriaPrima;
 import dados.IRepositorioMateriaPrima;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
+import exceptions.MateriaPrimaInvalidaException;
 import java.util.List;
 
 public class ControladorMateriaPrimas {
@@ -13,9 +13,9 @@ public class ControladorMateriaPrimas {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar (MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException {
+	public void cadastrar (MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
 		if(m==null) {
-			throw new MateriaPrimaNaoExisteException();
+			throw new MateriaPrimaInvalidaException();
 		} else{
 			if(this.repositorio.materiaPrimaExiste(m.getCodigo()) == false){
 				this.repositorio.cadastrarMateriaPrima(m);
@@ -32,24 +32,26 @@ public class ControladorMateriaPrimas {
 		}
 	}
 	
-	public void remover(MateriaPrima m) throws MateriaPrimaNaoExisteException {
-	if(m==null || this.repositorio.materiaPrimaExiste(m.getCodigo())==false){
-		throw new MateriaPrimaNaoExisteException();
-		}else{
-			if(this.repositorio.materiaPrimaExiste(m.getCodigo())==true){
+	public void remover(MateriaPrima m) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException {
+	if(m==null){
+		throw new MateriaPrimaInvalidaException();
+		}
+		else if(this.repositorio.materiaPrimaContem(m)==true){
 				this.repositorio.removerMateriaPrima(m.getCodigo());
-			}
+		}
+		else if(this.repositorio.materiaPrimaContem(m)==false){
+			throw new MateriaPrimaNaoExisteException();
 		}
 	}
 	
-	public void alterar(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException{
+	public void alterar(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException,MateriaPrimaInvalidaException{
 		if(materiaPrimaAlterada == null || novaMateriaPrima == null){
-			throw new MateriaPrimaNaoExisteException();
+			throw new MateriaPrimaInvalidaException();
 		}
-		else if((materiaPrimaAlterada != null && this.repositorio.materiaPrimaExiste(materiaPrimaAlterada.getCodigo())==true) && novaMateriaPrima != null){
+		else if(this.repositorio.materiaPrimaContem(materiaPrimaAlterada)==true && (novaMateriaPrima!=null && this.repositorio.materiaPrimaContem(novaMateriaPrima))==false){
 			this.repositorio.alterarMateriaPrima(materiaPrimaAlterada, novaMateriaPrima);
 		}
-		else if(materiaPrimaAlterada != null && this.repositorio.materiaPrimaExiste(materiaPrimaAlterada.getCodigo())==false){
+		else if(materiaPrimaAlterada != null && this.repositorio.materiaPrimaContem(materiaPrimaAlterada)==false){
 			throw new MateriaPrimaNaoExisteException();
 		}
 		else{

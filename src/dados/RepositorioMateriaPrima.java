@@ -2,8 +2,10 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import negocios.MateriaPrima;
+
 import java.util.Collections;
-import beans.MateriaPrima;
 
 public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 	private ArrayList<MateriaPrima> listaMateriasPrimas;
@@ -22,10 +24,6 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 	
 	public ArrayList<MateriaPrima> getListaMateriasPrimas() {
 		return listaMateriasPrimas;
-	}
-
-	public void setListaMateriasPrimas(ArrayList<MateriaPrima> listaMateriasPrimas) {
-		this.listaMateriasPrimas = listaMateriasPrimas;
 	}
 
 	public boolean cadastrarMateriaPrima(MateriaPrima materiaPrima) {
@@ -67,6 +65,14 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		}
 	}
 	return igual;
+	}
+	
+	public boolean materiaPrimaContem(MateriaPrima materiaPrima){
+		boolean contem = false;
+		if(listaMateriasPrimas.contains(materiaPrima)){
+			contem=true;
+		}
+		return contem;
 	}
 	
 	public boolean materiaPrimaExiste(int codigo) {
