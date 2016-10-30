@@ -13,14 +13,14 @@ public class ControladorMateriaPrimas {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar (MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
-		if(m==null) {
+	public void cadastrar (MateriaPrima materiaPrima) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
+		if(materiaPrima == null) {
 			throw new MateriaPrimaInvalidaException();
-		} else{
-			if(this.repositorio.materiaPrimaExiste(m.getCodigo()) == false){
-				this.repositorio.cadastrarMateriaPrima(m);
-			} else if (this.repositorio.materiaPrimaExiste(m.getCodigo()) == true) {
-				throw new MateriaPrimaJaExisteException(m.getCodigo());
+		} else {
+			if(this.repositorio.materiaPrimaExiste(materiaPrima.getCodigo()) == false){
+				this.repositorio.cadastrarMateriaPrima(materiaPrima);
+			} else if (this.repositorio.materiaPrimaExiste(materiaPrima.getCodigo()) == true) {
+				throw new MateriaPrimaJaExisteException(materiaPrima.getCodigo());
 			}
 		}
 	}
@@ -32,14 +32,14 @@ public class ControladorMateriaPrimas {
 		}
 	}
 	
-	public void remover(MateriaPrima m) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException {
-	if(m==null){
+	public void remover(MateriaPrima materiaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException {
+	if(materiaPrima == null) {
 		throw new MateriaPrimaInvalidaException();
 		}
-		else if(this.repositorio.materiaPrimaContem(m)==true){
-				this.repositorio.removerMateriaPrima(m.getCodigo());
+		else if(this.repositorio.materiaPrimaContem(materiaPrima) == true) {
+				this.repositorio.removerMateriaPrima(materiaPrima.getCodigo());
 		}
-		else if(this.repositorio.materiaPrimaContem(m)==false){
+		else if(this.repositorio.materiaPrimaContem(materiaPrima)==false) {
 			throw new MateriaPrimaNaoExisteException();
 		}
 	}
@@ -61,8 +61,8 @@ public class ControladorMateriaPrimas {
 	
 	public int getQuantidade(int codigo) throws MateriaPrimaNaoExisteException {
 		if(this.repositorio.materiaPrimaExiste(codigo) == true) {
-		MateriaPrima m = this.repositorio.buscarMateriaPrima(codigo);
-		return m.getQuantidade();
+		MateriaPrima materiaPrima = this.repositorio.buscarMateriaPrima(codigo);
+		return materiaPrima.getQuantidade();
 		} else {
 			throw new MateriaPrimaNaoExisteException();
 		}

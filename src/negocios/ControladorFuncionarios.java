@@ -13,14 +13,14 @@ public class ControladorFuncionarios {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
-		if(f == null) {
+	public void cadastrar(Funcionario funcionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
+		if(funcionario == null) {
 			throw new FuncionarioInvalidoException();
 		} else {
-			if(this.repositorio.funcionarioExiste(f.getCodigo()) == false) {
-				this.repositorio.cadastrarFuncionario(f);
-			} else if(this.repositorio.funcionarioExiste(f.getCodigo()) == true) {
-				throw new FuncionarioJaExisteException(f.getCodigo());
+			if(this.repositorio.funcionarioExiste(funcionario.getCodigo()) == false) {
+				this.repositorio.cadastrarFuncionario(funcionario);
+			} else if(this.repositorio.funcionarioExiste(funcionario.getCodigo()) == true) {
+				throw new FuncionarioJaExisteException(funcionario.getCodigo());
 			}
 		}
 	}
@@ -33,14 +33,14 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public void remover(Funcionario f) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
-		if(f == null) {
+	public void remover(Funcionario funcionario) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
+		if(funcionario == null) {
 			throw new FuncionarioInvalidoException();
 		} 
-		else if(this.repositorio.funcionarioContem(f) == true) {
-				this.repositorio.removerFuncionario(f.getCodigo());	
+		else if(this.repositorio.funcionarioContem(funcionario) == true) {
+				this.repositorio.removerFuncionario(funcionario.getCodigo());	
 		}
-		else if(this.repositorio.funcionarioContem(f)==false){
+		else if(this.repositorio.funcionarioContem(funcionario) == false){
 			throw new FuncionarioNaoExisteException();
 		}
 	}
@@ -61,8 +61,8 @@ public class ControladorFuncionarios {
 }
 	public int getNivel(int codigo) throws FuncionarioNaoExisteException {
 		if(this.repositorio.funcionarioExiste(codigo) == true) {
-			Funcionario f = this.repositorio.buscarFuncionario(codigo);
-			return f.getNivel();
+			Funcionario funcionario = this.repositorio.buscarFuncionario(codigo);
+			return funcionario.getNivel();
 		} else {
 			throw new FuncionarioNaoExisteException();
 		}

@@ -35,11 +35,11 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		return true;
 	}
 	
-	public boolean alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) {
+	public boolean alterarFuncionario(Funcionario funcionarioAlterado, Funcionario novoFuncionario) {
 		boolean alt=false;	
 		for(Funcionario funcionario : listaFuncionarios){
-			if(funcionario.getCodigo() == funcAlterado.getCodigo()){
-				listaFuncionarios.remove(funcAlterado);
+			if(funcionario.getCodigo() == funcionarioAlterado.getCodigo()){
+				listaFuncionarios.remove(funcionarioAlterado);
 					listaFuncionarios.add(novoFuncionario);
 						alt = true;
 				}

@@ -15,14 +15,14 @@ public class ControladorProdutos {
 	}
 
 
-	public void cadastrar(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
-		if(p == null) {
+	public void cadastrar(Produto produto) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
+		if(produto == null) {
 			throw new ProdutoInvalidoException();
 		} else {
-			if(this.repositorio.produtoExiste(p.getCodigo()) == false){
-				this.repositorio.cadastrarProduto(p);
-			} else if(this.repositorio.produtoExiste(p.getCodigo()) == true) {
-				throw new ProdutoJaExisteException(p.getCodigo());
+			if(this.repositorio.produtoExiste(produto.getCodigo()) == false){
+				this.repositorio.cadastrarProduto(produto);
+			} else if(this.repositorio.produtoExiste(produto.getCodigo()) == true) {
+				throw new ProdutoJaExisteException(produto.getCodigo());
 				
 			}
 		}
@@ -36,14 +36,14 @@ public class ControladorProdutos {
 		}
 	}
 	
-	public void remover(Produto p) throws ProdutoNaoExisteException, ProdutoInvalidoException {
-		if(p== null){
+	public void remover(Produto produto) throws ProdutoNaoExisteException, ProdutoInvalidoException {
+		if(produto == null) {
 			throw new ProdutoInvalidoException();
 		}
-		else if(this.repositorio.produtoContem(p)==true){
-				this.repositorio.removerProduto(p.getCodigo());
+		else if(this.repositorio.produtoContem(produto) == true) {
+				this.repositorio.removerProduto(produto.getCodigo());
 		}
-		else if(this.repositorio.produtoContem(p)==false){
+		else if(this.repositorio.produtoContem(produto) == false) {
 			throw new ProdutoNaoExisteException();
 		}
 	}
@@ -65,8 +65,8 @@ public class ControladorProdutos {
 	
 	public LocalDate getDataFabricacao(int codigo) throws ProdutoNaoExisteException {
 		if(this.repositorio.produtoExiste(codigo) == true) {
-			Produto p = this.repositorio.buscarProduto(codigo);
-			return p.getDataFabricacao();
+			Produto produto = this.repositorio.buscarProduto(codigo);
+			return produto.getDataFabricacao();
 		} else {
 			throw new ProdutoNaoExisteException();
 		}
@@ -74,10 +74,10 @@ public class ControladorProdutos {
 	}
 	
 	public LocalDate getDataValidade(int codigo)  throws ProdutoNaoExisteException{
-		if(this.repositorio.produtoExiste(codigo) == true){
-		Produto p = this.repositorio.buscarProduto(codigo);
-		return p.getDataValidade();//retornando apenas a data de validade
-		}else{
+		if(this.repositorio.produtoExiste(codigo) == true) {
+		Produto produto = this.repositorio.buscarProduto(codigo);
+		return produto.getDataValidade();//retornando apenas a data de validade
+		}else {
 			throw new ProdutoNaoExisteException();
 		}
 	}

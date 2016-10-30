@@ -35,10 +35,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 		return true;
 	}
 	
-	public boolean alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) {
+	public boolean alterarFornecedor(Fornecedor fornecedorAlterado, Fornecedor novoFornecedor) {
 		boolean alt = false;
 	for(Fornecedor fornecedor : listaFornecedores){	
-		if(fornecedor.getCodigo() == fornAlterado.getCodigo()) {
+		if(fornecedor.getCodigo() == fornecedorAlterado.getCodigo()) {
 				listaFornecedores.remove(fornecedor);
 					listaFornecedores.add(novoFornecedor);				
 						alt = true;

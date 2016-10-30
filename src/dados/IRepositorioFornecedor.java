@@ -4,7 +4,7 @@ import java.util.List;
 import negocios.Fornecedor;
 public interface IRepositorioFornecedor {
 	public boolean cadastrarFornecedor(Fornecedor fornecedor);
-	public boolean alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor);
+	public boolean alterarFornecedor(Fornecedor fornecedorAlterado, Fornecedor novoFornecedor);
 	public Fornecedor buscarFornecedor(int codigo);
 	public boolean removerFornecedor(int codigo);
 	public boolean fornecedorContem(Fornecedor fornecedor);

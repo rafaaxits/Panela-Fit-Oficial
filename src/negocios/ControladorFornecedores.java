@@ -13,14 +13,14 @@ public class ControladorFornecedores {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
-		if(f == null) {
+	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
+		if(fornecedor == null) {
 			throw new FornecedorInvalidoException();
 		} else {
-			if(this.repositorio.fornecedorExiste(f.getCodigo()) == false) {
-			this.repositorio.cadastrarFornecedor(f);	
-			} else if(this.repositorio.fornecedorExiste(f.getCodigo()) == true) {
-				throw new FornecedorJaExisteException(f.getCodigo());
+			if(this.repositorio.fornecedorExiste(fornecedor.getCodigo()) == false) {
+			this.repositorio.cadastrarFornecedor(fornecedor);	
+			} else if(this.repositorio.fornecedorExiste(fornecedor.getCodigo()) == true) {
+				throw new FornecedorJaExisteException(fornecedor.getCodigo());
 			}
 		}
 	}
@@ -34,14 +34,14 @@ public class ControladorFornecedores {
 		}
 	}
 	
-	public void remover(Fornecedor f) throws FornecedorNaoExisteException, FornecedorInvalidoException{
-		if(f == null){
+	public void remover(Fornecedor fornecedor) throws FornecedorNaoExisteException, FornecedorInvalidoException{
+		if(fornecedor == null){
 			throw new FornecedorInvalidoException();
 		}
-		else if(this.repositorio.fornecedorContem(f) == true){
-				this.repositorio.removerFornecedor(f.getCodigo());
+		else if(this.repositorio.fornecedorContem(fornecedor) == true){
+				this.repositorio.removerFornecedor(fornecedor.getCodigo());
 		}
-		else if(this.repositorio.fornecedorContem(f)==false){
+		else if(this.repositorio.fornecedorContem(fornecedor)==false){
 			throw new FornecedorNaoExisteException();
 		}
 		
@@ -64,8 +64,8 @@ public class ControladorFornecedores {
 	
 	public String getTelefone(int codigo) throws FornecedorNaoExisteException {
 		if(this.repositorio.fornecedorExiste(codigo) == true) {
-		Fornecedor f = this.repositorio.buscarFornecedor(codigo);
-		return f.getTelefone();
+		Fornecedor fornecedor = this.repositorio.buscarFornecedor(codigo);
+		return fornecedor.getTelefone();
 		} else {
 			throw new FornecedorNaoExisteException();
 		}	

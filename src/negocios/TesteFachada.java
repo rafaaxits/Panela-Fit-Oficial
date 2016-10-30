@@ -6,55 +6,107 @@ public class TesteFachada {
 	public static void main(String[] args)  {
 		IPanelaFit panelaFit = PanelaFit.getInstance();
 		
-		//Testando Exceptions de clientes e tds funcionando
-		/*Cliente c =  new Cliente (5, "ZÃ© estranho", "1030358821", 19,"rua 23", "99782632632");
-		panelaFit.cadastrarCliente(c);
-		System.out.println("" +panelaFit.buscarCliente(5));
-	
-		Cliente c1 =  new Cliente (554, "ZÃ© esquisito", "237273728", 23,"rua 55", "23767236273");
-		System.out.println("" +panelaFit.listarClientes());
-		panelaFit.alterarCliente(c, c1);
-		System.out.println("" +panelaFit.listarClientes());
-
-		try{
+		//CLIENTES
+		
+		Cliente c1 = new Cliente(8, "fulano", "13243677", 23, "Rua Jose Bras", "997755432");
+		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
+		Cliente c3 = new Cliente(3, "julian", "88954677", 32, "Rua fabio rabello", "999920942");
+		Cliente c4 = new Cliente(7, "cicrano", "554433677", 19, "Rua Jose Bras", "34322111");
+		Cliente c5 = null;
+		
+		try {
+			panelaFit.cadastrarCliente(c5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		
+		try {
 			panelaFit.cadastrarCliente(c1);
-		}catch(Exception e){
+			panelaFit.cadastrarCliente(c2);
+		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
-
-		try{
-			panelaFit.removerCliente(c1);
-		}catch(ClienteNaoExisteException e){
+		
+		try {
+			panelaFit.cadastrarCliente(c1);
+		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
+		
 		System.out.println("" +panelaFit.listarClientes());
 		
-		try{
-			System.out.println("" +panelaFit.buscarCliente(5));
-			}catch (ClienteNaoExisteException e){
-				e.printStackTrace();
-				System.out.print("\n");
-			}
-		
-		try{
-			panelaFit.removerCliente(c);
-		}catch(ClienteNaoExisteException e){
+		try {
+			panelaFit.alterarCliente(c3, c4);
+		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 		
-		Cliente c2 = new Cliente(7, "zÃ© pilinta", "10455882923", 26, "Rua Ernesto Paula Santos", "987984573");
-		Cliente c3 = null;
-		try{
-			panelaFit.alterarCliente(c2, c3);
-		}catch(ClienteNaoExisteException e){
+		try {
+			panelaFit.alterarCliente(c2, c1);
+		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
-	
-			System.out.println(" "+panelaFit.listarClientes());*/
+		
+		try {
+			panelaFit.alterarCliente(c2, c5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		
+		System.out.println("" +panelaFit.listarClientes());
+		
+		try {
+			panelaFit.alterarCliente(c2, c4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		
+		System.out.println("" +panelaFit.listarClientes());
+		
+		try {
+			System.out.print("" +panelaFit.buscarCliente(3));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		System.out.println("\n");
+		
+		try {
+			System.out.println("" +panelaFit.buscarCliente(6));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try {
+			panelaFit.removerCliente(c2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try {
+			panelaFit.removerCliente(c5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try {
+			panelaFit.cadastrarCliente(c2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		//FUNCIONÁRIOS
 		
 		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
 		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
@@ -156,6 +208,210 @@ public class TesteFachada {
 		}
 		
 		System.out.println(""+panelaFit.listarFuncionarios());
+		
+	
+//FORNECEDORES
+
+		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "33445123", 123);
+		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "334256772", 123);
+		Fornecedor for3 = new Fornecedor("EspaçoSaldavel", "Av bernardo vieira", "33444123", 133);
+		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37765123", 122);
+		Fornecedor for5 = null;
+	
+		try {
+			panelaFit.cadastrarFornecedor(for5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarFornecedor(for1);
+			panelaFit.cadastrarFornecedor(for2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarFornecedor(for1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarFornecedores());
+	
+		try {
+			panelaFit.alterarFornecedor(for3, for4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarFornecedor(for2, for1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarFornecedor(for2, for5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarFornecedores());
+	
+		try {
+			panelaFit.alterarFornecedor(for2, for4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarFornecedores());
+	
+		try {
+		System.out.print("" +panelaFit.buscarFornecedor(133));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		System.out.println("\n");
+	
+		try {
+		System.out.println("" +panelaFit.buscarFornecedor(555));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerFornecedor(for2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerFornecedor(for5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarFornecedor(for2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		
+		//MATÉRIAS PRIMAS
+		
+		MateriaPrima mp1 = new MateriaPrima("MateriaPrima1", 4, 30, 100);
+		MateriaPrima mp2 = new MateriaPrima("MateriaPrima2", 4, 20, 200);
+		MateriaPrima mp3 = new MateriaPrima("MateriaPrima3", 3, 50, 100);
+		MateriaPrima mp4 = new MateriaPrima("MateriaPrima4", 5, 50, 400);
+		MateriaPrima mp5 = null;
+	
+		try {
+			panelaFit.cadastrarMateriaPrima(mp5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarMateriaPrima(mp1);
+			panelaFit.cadastrarMateriaPrima(mp2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarMateriaPrima(mp1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarMateriasPrimas());
+	
+		try {
+			panelaFit.alterarMateriaPrima(mp3, mp4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarMateriaPrima(mp2, mp1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarMateriaPrima(mp2, mp5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarMateriasPrimas());
+	
+		try {
+			panelaFit.alterarMateriaPrima(mp2, mp4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarMateriasPrimas());
+	
+		try {
+		System.out.print("" +panelaFit.buscarMateriaPrima(4));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		System.out.println("\n");
+	
+		try {
+		System.out.println("" +panelaFit.buscarMateriaPrima(87));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerMateriaPrima(mp2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerMateriaPrima(mp5);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarMateriaPrima(mp2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		//PRODUTOS
 		
 	}
 }

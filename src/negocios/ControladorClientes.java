@@ -13,14 +13,14 @@ public class ControladorClientes {
 		this.repositorio = instanciaInterface;
 	}
 	
-	public void cadastrar(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
-		if(c == null) {
+	public void cadastrar(Cliente cliente) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
+		if(cliente == null) {
 			throw new ClienteInvalidoException ();
 		} else {
-			if(this.repositorio.clienteExiste(c.getCodigo()) == false) {
-			this.repositorio.cadastrarCliente(c);	
-			} else if(this.repositorio.clienteExiste(c.getCodigo()) == true) {
-				throw new ClienteJaExisteException(c.getCodigo());
+			if(this.repositorio.clienteExiste(cliente.getCodigo()) == false) {
+			this.repositorio.cadastrarCliente(cliente);	
+			} else if(this.repositorio.clienteExiste(cliente.getCodigo()) == true) {
+				throw new ClienteJaExisteException(cliente.getCodigo());
 			}
 		}
 	}
