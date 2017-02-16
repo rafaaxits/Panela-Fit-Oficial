@@ -48,18 +48,18 @@ public class ControladorProdutos {
 		}
 	}
 	
-	public void alterar(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
-		if(produtoAlterado == null || novoProduto == null) {
+	public void alterar(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
+		if(novoProduto == null) {
 			throw new ProdutoInvalidoException();
 		} 
-		else if(this.repositorio.produtoContem(produtoAlterado)==true && (novoProduto!=null && this.repositorio.produtoContem(produtoAlterado))== false){
-			this.repositorio.alterar(produtoAlterado, novoProduto);
+		else if(novoProduto != null && this.repositorio.existe(novoProduto.getCodigo()) == true){
+			this.repositorio.alterar(novoProduto);
 		}
-		else if(produtoAlterado !=null && this.repositorio.produtoContem(produtoAlterado)==false){
+		else if(novoProduto != null && this.repositorio.produtoContem(novoProduto) == false){
 			throw new ProdutoNaoExisteException();
 		}
-		else{
-			throw new ProdutoJaExisteException(produtoAlterado.getCodigo());
+		else if(novoProduto != null & this.repositorio.produtoContem(novoProduto) == true){
+			throw new ProdutoJaExisteException(novoProduto.getCodigo());
 		}
 	}
 	

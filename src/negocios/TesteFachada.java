@@ -109,7 +109,6 @@ public class TesteFachada {
 		
 		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
 		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
-		Funcionario f3 = new Funcionario(6,4, "pedrinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
 		Funcionario f4 = null;
 		Funcionario f5 = new Funcionario(9,4,"testinho", "392392838932", 65, "Rua ali perto", "3278232");
 		
@@ -138,21 +137,21 @@ public class TesteFachada {
 		System.out.println(""+panelaFit.listarFuncionarios());
 		
 		try{
-			panelaFit.alterarFuncionario(f3, f5);//tentando alterar dois funcionarios que nao foram cadastrados e a exception apareceu 
+			panelaFit.alterarFuncionario(f5);//tentando alterar dois funcionarios que nao foram cadastrados e a exception apareceu 
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("\n");
 		}
 		
 		try{
-			panelaFit.alterarFuncionario(f2, f1);//Tentando alterar dois funcionarios cadastrados e a exception apareceu
+			panelaFit.alterarFuncionario(f1);//Tentando alterar dois funcionarios cadastrados e a exception apareceu
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("\n");
 		}
 		
 		try{
-			panelaFit.alterarFuncionario(f2, f4);//Tentando alterar um funcionario cadastrado por um nulo, Exception apareceu
+			panelaFit.alterarFuncionario(f4);//Tentando alterar um funcionario cadastrado por um nulo, Exception apareceu
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("\n");
@@ -163,7 +162,7 @@ public class TesteFachada {
 		System.out.println(""+panelaFit.listarFuncionarios());
 		
 		try{
-			panelaFit.alterarFuncionario(f2,f5);//Alteração ok, Alterando um func cadastrado por outro que ainda nao estava cadastrado, após A ALTERACAO O NOVO FUNC FOI CADASTRADO, TUDO OK
+			panelaFit.alterarFuncionario(f5);//Alteração ok, Alterando um func cadastrado por outro que ainda nao estava cadastrado, após A ALTERACAO O NOVO FUNC FOI CADASTRADO, TUDO OK
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("\n");
@@ -313,7 +312,6 @@ public class TesteFachada {
 		
 		MateriaPrima mp1 = new MateriaPrima("MateriaPrima1", 4, 30, 100);
 		MateriaPrima mp2 = new MateriaPrima("MateriaPrima2", 4, 20, 200);
-		MateriaPrima mp3 = new MateriaPrima("MateriaPrima3", 3, 50, 100);
 		MateriaPrima mp4 = new MateriaPrima("MateriaPrima4", 5, 50, 400);
 		MateriaPrima mp5 = null;
 	
@@ -342,21 +340,21 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarMateriasPrimas());
 	
 		try {
-			panelaFit.alterarMateriaPrima(mp3, mp4);
+			panelaFit.alterarMateriaPrima(mp4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarMateriaPrima(mp2, mp1);
+			panelaFit.alterarMateriaPrima(mp1);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarMateriaPrima(mp2, mp5);
+			panelaFit.alterarMateriaPrima(mp5);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -365,7 +363,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarMateriasPrimas());
 	
 		try {
-			panelaFit.alterarMateriaPrima(mp2, mp4);
+			panelaFit.alterarMateriaPrima(mp4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -410,6 +408,6 @@ public class TesteFachada {
 		}
 		
 		//PRODUTOS
-		
+				
 	}
 }

@@ -45,18 +45,18 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public void alterar(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException{
-		if(funcAlterado == null || novoFuncionario == null) {
+	public void alterar(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException{
+		if(novoFuncionario == null) {
 			throw new FuncionarioInvalidoException();
 		} 
-		else if(this.repositorio.funcionarioContem(funcAlterado) == true && (novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario)==false)) {
-			this.repositorio.alterar(funcAlterado, novoFuncionario);
+		else if((novoFuncionario != null && this.repositorio.existe(novoFuncionario.getCodigo()) == true)) {
+			this.repositorio.alterar(novoFuncionario);
 		}
-		else if((funcAlterado != null && this.repositorio.funcionarioContem(funcAlterado) == false)){
+		else if((novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario) == false)){
 			throw new FuncionarioNaoExisteException();
 		}
-		else  {
-			throw new FuncionarioJaExisteException(funcAlterado.getCodigo());
+		else if(novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario) == true) {
+			throw new FuncionarioJaExisteException(novoFuncionario.getCodigo());
 		}
 }
 	public int getNivel(int codigo) throws FuncionarioNaoExisteException {

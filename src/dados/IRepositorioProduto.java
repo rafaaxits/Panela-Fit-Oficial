@@ -5,7 +5,7 @@ import negocios.Produto;
 public interface IRepositorioProduto {
 	
 	public boolean inserir(Produto produto);
-	public boolean alterar(Produto produtoAlterado, Produto novoProduto);
+	public boolean alterar(Produto novoProduto);
 	public Produto buscar(int codigo);
 	public boolean remover(int codigo);
 	public boolean produtoContem(Produto produto);

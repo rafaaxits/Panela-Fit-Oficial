@@ -34,11 +34,11 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return true;
 	}
 	
-	public boolean alterar(Produto produtoAlterado, Produto novoProduto) {
+	public boolean alterar(Produto novoProduto) {
 		boolean alt = false;
 			for(Produto produto : listaProdutos){
-				if(produto.getCodigo() == produtoAlterado.getCodigo()){
-					listaProdutos.remove(produtoAlterado);
+				if(produto.getCodigo() == novoProduto.getCodigo()){
+					listaProdutos.remove(produto);
 						listaProdutos.add(novoProduto);
 							alt = true;
 			}

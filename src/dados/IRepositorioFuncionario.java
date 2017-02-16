@@ -4,7 +4,7 @@ import java.util.List;
 import negocios.Funcionario;
 public interface IRepositorioFuncionario {
 	public boolean inserir(Funcionario funcionario);
-	public boolean alterar(Funcionario funcionarioAlterado, Funcionario novoFuncionario);
+	public boolean alterar(Funcionario novoFuncionario);
 	public Funcionario buscar(int codigo);
 	public boolean remover(int codigo);
 	public boolean funcionarioContem(Funcionario funcionario);

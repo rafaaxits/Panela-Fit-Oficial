@@ -37,7 +37,7 @@ public class TEST {
 		
 		rep1.inserir(f2);
 		System.out.println(" "+rep1.listar());
-		System.out.println(""+rep1.alterar(f2, f3));
+		System.out.println(""+rep1.alterar(f3));
 		System.out.println(" "+rep1.buscar(4));
 		System.out.println(" "+rep1.listar());
 		System.out.println(" "+rep1.remover(4));
@@ -73,7 +73,7 @@ public class TEST {
 		MateriaPrima p3 = new MateriaPrima("Farinha de arroz",4,10,30);
 		rep3.inserir(p2);
 		System.out.println("" +rep3.listar());
-		rep3.alterar(p2, p3);
+		rep3.alterar(p3);
 		System.out.println("" +rep3.listar());
 		System.out.println("" +rep3.remover(4));
 		System.out.println("" +rep3.listar());
@@ -90,7 +90,7 @@ public class TEST {
 		Produto pro3 = new Produto("Parfait de maça", 500, 250, 6,50,10, d1,d1);
 		rep4.inserir(pro2);
 		System.out.println("" +rep4.listar());
-		rep4.alterar(pro2, pro3);
+		rep4.alterar(pro3);
 		System.out.println("" +rep4.listar());;
 		System.out.println("" +rep4.remover(5));
 		System.out.println("" +rep4.toString());

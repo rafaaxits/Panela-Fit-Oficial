@@ -44,18 +44,18 @@ public class ControladorMateriaPrimas {
 		}
 	}
 	
-	public void alterar(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException,MateriaPrimaInvalidaException{
-		if(materiaPrimaAlterada == null || novaMateriaPrima == null){
+	public void alterar(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException,MateriaPrimaInvalidaException{
+		if(novaMateriaPrima == null){
 			throw new MateriaPrimaInvalidaException();
 		}
-		else if(this.repositorio.materiaPrimaContem(materiaPrimaAlterada)==true && (novaMateriaPrima!=null && this.repositorio.materiaPrimaContem(novaMateriaPrima))==false){
-			this.repositorio.alterar(materiaPrimaAlterada, novaMateriaPrima);
+		else if((novaMateriaPrima != null && this.repositorio.existe(novaMateriaPrima.getCodigo()) == true)){
+			this.repositorio.alterar(novaMateriaPrima);
 		}
-		else if(materiaPrimaAlterada != null && this.repositorio.materiaPrimaContem(materiaPrimaAlterada)==false){
+		else if(novaMateriaPrima != null && this.repositorio.materiaPrimaContem(novaMateriaPrima) == false){
 			throw new MateriaPrimaNaoExisteException();
 		}
-		else{
-			throw new MateriaPrimaJaExisteException(materiaPrimaAlterada.getCodigo());
+		else if(novaMateriaPrima != null && this.repositorio.materiaPrimaContem(novaMateriaPrima) == true){
+			throw new MateriaPrimaJaExisteException(novaMateriaPrima.getCodigo());
 		}
 	}
 	

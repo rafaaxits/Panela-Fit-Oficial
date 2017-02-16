@@ -35,10 +35,10 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return true;
 	}
 	
-	public boolean alterar(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) {
+	public boolean alterar(MateriaPrima novaMateriaPrima) {
 		boolean alt = false;
 	for(MateriaPrima materiaPrima : listaMateriasPrimas){	
-		if(materiaPrima.getCodigo() == materiaPrimaAlterada.getCodigo()){
+		if(materiaPrima.getCodigo() == novaMateriaPrima.getCodigo()){
 			listaMateriasPrimas.remove(materiaPrima);
 				listaMateriasPrimas.add(novaMateriaPrima);
 					alt = true;

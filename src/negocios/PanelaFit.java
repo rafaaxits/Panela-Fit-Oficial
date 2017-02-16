@@ -110,8 +110,8 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.buscar(codigo);
 	}
 	
-	public void alterarFuncionario(Funcionario funcAlterado, Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
-		this.funcionarios.alterar(funcAlterado, novoFuncionario);
+	public void alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
+		this.funcionarios.alterar(novoFuncionario);
 	}
 	
 	public int getNivelFuncionario(int codigo) throws FuncionarioNaoExisteException {
@@ -136,8 +136,8 @@ public class PanelaFit implements IPanelaFit{
 		return this.materiaPrimas.buscar(codigo);
 	}
 	
-	public void alterarMateriaPrima(MateriaPrima mpAlterada, MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException {
-		this.materiaPrimas.alterar(mpAlterada, novaMateriaPrima);
+	public void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException {
+		this.materiaPrimas.alterar(novaMateriaPrima);
 	}
 	
 	public int getQuantidadeMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException {
@@ -162,8 +162,8 @@ public class PanelaFit implements IPanelaFit{
 		return this.produtos.buscar(codigo);
 	}
 	
-	public void alterarProdutos(Produto produtoAlterado, Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
-		this.produtos.alterar(produtoAlterado, novoProduto);
+	public void alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
+		this.produtos.alterar(novoProduto);
 	}
 	
 	public LocalDate getDataFabricacao(int codigo)  throws ProdutoNaoExisteException{
