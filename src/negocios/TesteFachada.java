@@ -1,5 +1,6 @@
 package negocios;
 
+import java.time.LocalDate;
 
 public class TesteFachada {
 
@@ -408,6 +409,111 @@ public class TesteFachada {
 		}
 		
 		//PRODUTOS
-				
+		
+		LocalDate val1 = LocalDate.of(2018, 9, 23);
+		LocalDate fab1 = LocalDate.of(2018, 10, 20);
+		LocalDate val2 = LocalDate.of(2017, 4, 12);
+		LocalDate fab2 = LocalDate.of(2017, 10, 3);
+		LocalDate val3 = LocalDate.of(2018, 2, 22);
+		LocalDate fab3 = LocalDate.of(2018, 4, 13);
+		
+		Produto p1 = new Produto("Produto1", 10, 5, 123, 50, 40, fab1, val1);
+		Produto p2 = new Produto("Produto2", 4, 2, 123, 40, 60, fab2, val2);
+		Produto p3 = new Produto("Produto4", 20, 77, 456, 30, 50, fab3, val3);
+		Produto p4 = null;
+		
+		
+	
+		try {
+			panelaFit.cadastrarProduto(p4);
+		} catch(Exception e) {
+			e.printStackTrace();
+		System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarProduto(p1);
+			panelaFit.cadastrarProduto(p2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarProduto(p1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarProdutos());
+	
+		try {
+			panelaFit.alterarProdutos(p3);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarProdutos(p1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		try {
+			panelaFit.alterarProdutos(p4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarProdutos());
+	
+		try {
+			panelaFit.alterarProdutos(p3);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+	
+		System.out.println("" +panelaFit.listarProdutos());
+	
+		try {
+		System.out.print("" +panelaFit.buscarProduto(123));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
+		}
+		System.out.println("\n");
+	
+		try {
+		System.out.println("" +panelaFit.buscarProduto(789));
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerProduto(p2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.removerProduto(p4);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+	
+		try {
+			panelaFit.cadastrarProduto(p2);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
 	}
 }
