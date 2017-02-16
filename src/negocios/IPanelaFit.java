@@ -54,9 +54,9 @@ public interface IPanelaFit {
 	public Produto buscarProduto(int codigo) throws ProdutoNaoExisteException;
 	
 	//ALTERAR
-	public abstract void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException;
+	public abstract void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException;
 	
-	public abstract void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException; 
+	public abstract void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException; 
 	
 	public abstract void alterarFuncionario(Funcionario funcAlterado,Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException;
 	

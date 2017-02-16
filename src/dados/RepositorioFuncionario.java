@@ -26,7 +26,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		return listaFuncionarios;
 	}
 	
-	public boolean cadastrarFuncionario(Funcionario funcionario) {
+	public boolean inserir(Funcionario funcionario) {
 		try{
 			listaFuncionarios.add(funcionario);
 		}catch(Exception e){
@@ -35,7 +35,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		return true;
 	}
 	
-	public boolean alterarFuncionario(Funcionario funcionarioAlterado, Funcionario novoFuncionario) {
+	public boolean alterar(Funcionario funcionarioAlterado, Funcionario novoFuncionario) {
 		boolean alt=false;	
 		for(Funcionario funcionario : listaFuncionarios){
 			if(funcionario.getCodigo() == funcionarioAlterado.getCodigo()){
@@ -47,7 +47,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 			return alt;
 	}
 	
-	public Funcionario buscarFuncionario(int codigo) {
+	public Funcionario buscar(int codigo) {
 		for(Funcionario funcionario : listaFuncionarios) {
 			if(funcionario.getCodigo() == codigo) {
 				return funcionario;
@@ -56,7 +56,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 		return null;
 	}
 	
-	public boolean removerFuncionario(int codigo) {
+	public boolean remover(int codigo) {
 		boolean igual = false;
 		for(int i=0;i<listaFuncionarios.size();i++){
 			if(listaFuncionarios.get(i).getCodigo()==codigo){
@@ -76,7 +76,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 					return contem;
 	}
 	
-	public boolean funcionarioExiste(int codigo) {
+	public boolean existe(int codigo) {
 		int f;
 		boolean x = false;
 		for(Funcionario funcionario : listaFuncionarios) {

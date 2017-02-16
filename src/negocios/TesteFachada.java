@@ -10,7 +10,6 @@ public class TesteFachada {
 		
 		Cliente c1 = new Cliente(8, "fulano", "13243677", 23, "Rua Jose Bras", "997755432");
 		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
-		Cliente c3 = new Cliente(3, "julian", "88954677", 32, "Rua fabio rabello", "999920942");
 		Cliente c4 = new Cliente(7, "cicrano", "554433677", 19, "Rua Jose Bras", "34322111");
 		Cliente c5 = null;
 		
@@ -39,21 +38,21 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarClientes());
 		
 		try {
-			panelaFit.alterarCliente(c3, c4);
+			panelaFit.alterarCliente(c4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 		
 		try {
-			panelaFit.alterarCliente(c2, c1);
+			panelaFit.alterarCliente(c1);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 		
 		try {
-			panelaFit.alterarCliente(c2, c5);
+			panelaFit.alterarCliente(c5);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -62,7 +61,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarClientes());
 		
 		try {
-			panelaFit.alterarCliente(c2, c4);
+			panelaFit.alterarCliente(c2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -106,7 +105,7 @@ public class TesteFachada {
 			System.out.println("\n");
 		}
 		
-		//FUNCIONÁRIOS
+		//FUNCIONï¿½RIOS
 		
 		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
 		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
@@ -214,7 +213,6 @@ public class TesteFachada {
 
 		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "33445123", 123);
 		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "334256772", 123);
-		Fornecedor for3 = new Fornecedor("EspaçoSaldavel", "Av bernardo vieira", "33444123", 133);
 		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37765123", 122);
 		Fornecedor for5 = null;
 	
@@ -243,21 +241,21 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarFornecedores());
 	
 		try {
-			panelaFit.alterarFornecedor(for3, for4);
+			panelaFit.alterarFornecedor(for4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarFornecedor(for2, for1);
+			panelaFit.alterarFornecedor(for1);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarFornecedor(for2, for5);
+			panelaFit.alterarFornecedor(for5);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -266,7 +264,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarFornecedores());
 	
 		try {
-			panelaFit.alterarFornecedor(for2, for4);
+			panelaFit.alterarFornecedor(for2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -311,7 +309,7 @@ public class TesteFachada {
 		}
 	
 		
-		//MATÉRIAS PRIMAS
+		//MATï¿½RIAS PRIMAS
 		
 		MateriaPrima mp1 = new MateriaPrima("MateriaPrima1", 4, 30, 100);
 		MateriaPrima mp2 = new MateriaPrima("MateriaPrima2", 4, 20, 200);
@@ -323,7 +321,7 @@ public class TesteFachada {
 			panelaFit.cadastrarMateriaPrima(mp5);
 		} catch(Exception e) {
 			e.printStackTrace();
-			System.out.print("\n");
+		System.out.print("\n");
 		}
 	
 		try {

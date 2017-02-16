@@ -63,8 +63,8 @@ public class PanelaFit implements IPanelaFit{
 		return clientes.buscar(codigo);
 	}
 	
-	public void alterarCliente(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException {
-		clientes.alterar(clienteAlterado, novoCliente);
+	public void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException {
+		clientes.alterar(novoCliente);
 	}
 	
 	public List<Cliente> listarClientes(){
@@ -85,8 +85,8 @@ public class PanelaFit implements IPanelaFit{
 		return this.fornecedores.buscar(codigo);
 	}
 	
-	public void alterarFornecedor(Fornecedor fornAlterado, Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
-		this.fornecedores.alterar(fornAlterado, novoFornecedor);
+	public void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
+		this.fornecedores.alterar(novoFornecedor);
 	}
 	
 	public String getTelefoneFornecedor(int codigo) throws FornecedorNaoExisteException {

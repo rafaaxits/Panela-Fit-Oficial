@@ -17,17 +17,17 @@ public class ControladorFuncionarios {
 		if(funcionario == null) {
 			throw new FuncionarioInvalidoException();
 		} else {
-			if(this.repositorio.funcionarioExiste(funcionario.getCodigo()) == false) {
-				this.repositorio.cadastrarFuncionario(funcionario);
-			} else if(this.repositorio.funcionarioExiste(funcionario.getCodigo()) == true) {
+			if(this.repositorio.existe(funcionario.getCodigo()) == false) {
+				this.repositorio.inserir(funcionario);
+			} else if(this.repositorio.existe(funcionario.getCodigo()) == true) {
 				throw new FuncionarioJaExisteException(funcionario.getCodigo());
 			}
 		}
 	}
 	
 	public Funcionario buscar(int codigo) throws FuncionarioNaoExisteException {
-		if(this.repositorio.funcionarioExiste(codigo) == true) {
-		return this.repositorio.buscarFuncionario(codigo);
+		if(this.repositorio.existe(codigo) == true) {
+		return this.repositorio.buscar(codigo);
 		} else {
 			throw new FuncionarioNaoExisteException();
 		}
@@ -38,7 +38,7 @@ public class ControladorFuncionarios {
 			throw new FuncionarioInvalidoException();
 		} 
 		else if(this.repositorio.funcionarioContem(funcionario) == true) {
-				this.repositorio.removerFuncionario(funcionario.getCodigo());	
+				this.repositorio.remover(funcionario.getCodigo());	
 		}
 		else if(this.repositorio.funcionarioContem(funcionario) == false){
 			throw new FuncionarioNaoExisteException();
@@ -50,7 +50,7 @@ public class ControladorFuncionarios {
 			throw new FuncionarioInvalidoException();
 		} 
 		else if(this.repositorio.funcionarioContem(funcAlterado) == true && (novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario)==false)) {
-			this.repositorio.alterarFuncionario(funcAlterado, novoFuncionario);
+			this.repositorio.alterar(funcAlterado, novoFuncionario);
 		}
 		else if((funcAlterado != null && this.repositorio.funcionarioContem(funcAlterado) == false)){
 			throw new FuncionarioNaoExisteException();
@@ -60,8 +60,8 @@ public class ControladorFuncionarios {
 		}
 }
 	public int getNivel(int codigo) throws FuncionarioNaoExisteException {
-		if(this.repositorio.funcionarioExiste(codigo) == true) {
-			Funcionario funcionario = this.repositorio.buscarFuncionario(codigo);
+		if(this.repositorio.existe(codigo) == true) {
+			Funcionario funcionario = this.repositorio.buscar(codigo);
 			return funcionario.getNivel();
 		} else {
 			throw new FuncionarioNaoExisteException();

@@ -17,17 +17,17 @@ public class ControladorClientes {
 		if(cliente == null) {
 			throw new ClienteInvalidoException ();
 		} else {
-			if(this.repositorio.clienteExiste(cliente.getCodigo()) == false) {
-			this.repositorio.cadastrarCliente(cliente);	
-			} else if(this.repositorio.clienteExiste(cliente.getCodigo()) == true) {
+			if(this.repositorio.existe(cliente.getCodigo()) == false) {
+			this.repositorio.inserir(cliente);	
+			} else if(this.repositorio.existe(cliente.getCodigo()) == true) {
 				throw new ClienteJaExisteException(cliente.getCodigo());
 			}
 		}
 	}
 	
 	public Cliente buscar(int codigo) throws ClienteNaoExisteException {
-		if(this.repositorio.clienteExiste(codigo) == true) {
-			return this.repositorio.buscarCliente(codigo);
+		if(this.repositorio.existe(codigo) == true) {
+			return this.repositorio.buscar(codigo);
 		} else {
 			throw new ClienteNaoExisteException();
 		}
@@ -38,25 +38,25 @@ public class ControladorClientes {
 		throw new ClienteInvalidoException();
 	}
 	else if(this.repositorio.clienteContem(cliente) == true){
-			this.repositorio.removerCliente(cliente.getCodigo());	
+			this.repositorio.remover(cliente.getCodigo());	
 	}
 	else if(this.repositorio.clienteContem(cliente)==false){
 		throw new ClienteNaoExisteException();
 	}
 }
 	
-	public void alterar(Cliente clienteAlterado, Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException{
-		if(clienteAlterado == null || novoCliente == null) {
+	public void alterar(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException{
+		if(novoCliente == null) {
 			throw new ClienteInvalidoException();
 		} 
-		else if(this.repositorio.clienteContem(clienteAlterado)==true && (novoCliente != null && this.repositorio.clienteContem(novoCliente)==false)) {
-			this.repositorio.alterarCliente(clienteAlterado, novoCliente);
+		else if((novoCliente != null && this.repositorio.existe(novoCliente.getCodigo())==true)) {
+			this.repositorio.alterar(novoCliente);
 		}
-		else if((clienteAlterado !=null && this.repositorio.clienteContem(clienteAlterado)==false)){
+		else if((novoCliente !=null && this.repositorio.clienteContem(novoCliente)==false)){
 			throw new ClienteNaoExisteException();
 		}
-		else {
-			throw new ClienteJaExisteException(clienteAlterado.getCodigo());
+		else if(novoCliente !=null && this.repositorio.clienteContem(novoCliente)==true) {
+			throw new ClienteJaExisteException(novoCliente.getCodigo());
 		}
 }
 	public List<Cliente> listaClientes(){

@@ -26,7 +26,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return listaMateriasPrimas;
 	}
 
-	public boolean cadastrarMateriaPrima(MateriaPrima materiaPrima) {
+	public boolean inserir(MateriaPrima materiaPrima) {
 		try{
 			listaMateriasPrimas.add(materiaPrima);
 		}catch (Exception e){
@@ -35,7 +35,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return true;
 	}
 	
-	public boolean alterarMateriaPrima(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) {
+	public boolean alterar(MateriaPrima materiaPrimaAlterada, MateriaPrima novaMateriaPrima) {
 		boolean alt = false;
 	for(MateriaPrima materiaPrima : listaMateriasPrimas){	
 		if(materiaPrima.getCodigo() == materiaPrimaAlterada.getCodigo()){
@@ -47,7 +47,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return alt;
 	}
 	
-	public MateriaPrima buscarMateriaPrima(int codigo) {
+	public MateriaPrima buscar(int codigo) {
 		for(MateriaPrima mp : listaMateriasPrimas) {
 			if(mp.getCodigo() == codigo) {
 				return mp;
@@ -56,7 +56,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return null;
 	}
 	
-	public boolean removerMateriaPrima(int codigo) {
+	public boolean remover(int codigo) {
 		boolean igual = false;
 		for(int i=0;i<listaMateriasPrimas.size();i++){
 			if(listaMateriasPrimas.get(i).getCodigo() == codigo){
@@ -75,7 +75,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima{
 		return contem;
 	}
 	
-	public boolean materiaPrimaExiste(int codigo) {
+	public boolean existe(int codigo) {
 		int m;
 		boolean x = false;
 		for(MateriaPrima mp : listaMateriasPrimas) {

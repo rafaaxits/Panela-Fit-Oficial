@@ -6,12 +6,12 @@ import negocios.Cliente;
 
 public interface IRepositorioCliente {
 	
-	public boolean cadastrarCliente(Cliente cliente);
-	public boolean alterarCliente(Cliente clienteAlterado, Cliente novoCliente);
-	public Cliente buscarCliente(int codigo);
-	public boolean removerCliente(int codigo);
+	public boolean inserir(Cliente cliente);
+	public boolean alterar(Cliente novoCliente);
+	public Cliente buscar(int codigo);
+	public boolean remover(int codigo);
 	public boolean clienteContem(Cliente cliente);
-	public boolean clienteExiste(int codigo);
+	public boolean existe(int codigo);
 	public abstract List<Cliente> listar();
 	
 }

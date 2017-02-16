@@ -25,7 +25,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return listaProdutos;
 	}
 	
-	public boolean cadastrarProduto(Produto produto) {
+	public boolean inserir(Produto produto) {
 		try {
 			listaProdutos.add(produto);
 		}catch (Exception e){
@@ -34,7 +34,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return true;
 	}
 	
-	public boolean alterarProduto(Produto produtoAlterado, Produto novoProduto) {
+	public boolean alterar(Produto produtoAlterado, Produto novoProduto) {
 		boolean alt = false;
 			for(Produto produto : listaProdutos){
 				if(produto.getCodigo() == produtoAlterado.getCodigo()){
@@ -46,7 +46,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return alt;
 	}
 	
-	public Produto buscarProduto(int codigo) {
+	public Produto buscar(int codigo) {
 		for(Produto produto : listaProdutos) {
 			if(produto.getCodigo() == codigo) {
 				return produto;
@@ -55,7 +55,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return null;
 	}
 	
-	public boolean removerProduto(int  codigo) {
+	public boolean remover(int  codigo) {
 		boolean igual = false;
 		for(int i=0;i<listaProdutos.size();i++){
 			if(listaProdutos.get(i).getCodigo()==codigo){
@@ -74,7 +74,7 @@ public class RepositorioProduto implements IRepositorioProduto{
 		return contem;
 	}
 	
-	public boolean produtoExiste(int codigo) {
+	public boolean existe(int codigo) {
 		int p;
 		boolean x = false;
 		for(Produto produto : listaProdutos) {

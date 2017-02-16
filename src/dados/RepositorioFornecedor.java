@@ -25,7 +25,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 		return listaFornecedores;
 	}
 	
-	public boolean cadastrarFornecedor(Fornecedor fornecedor) {
+	public boolean inserir(Fornecedor fornecedor) {
 		try {
 			listaFornecedores.add(fornecedor);
 		}
@@ -35,10 +35,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 		return true;
 	}
 	
-	public boolean alterarFornecedor(Fornecedor fornecedorAlterado, Fornecedor novoFornecedor) {
+	public boolean alterar(Fornecedor novoFornecedor) {
 		boolean alt = false;
 	for(Fornecedor fornecedor : listaFornecedores){	
-		if(fornecedor.getCodigo() == fornecedorAlterado.getCodigo()) {
+		if(fornecedor.getCodigo() == novoFornecedor.getCodigo()) {
 				listaFornecedores.remove(fornecedor);
 					listaFornecedores.add(novoFornecedor);				
 						alt = true;
@@ -47,7 +47,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 			return alt;
 }
 	
-	public Fornecedor buscarFornecedor(int codigo) {
+	public Fornecedor buscar(int codigo) {
 		for(Fornecedor fornecedor : listaFornecedores) {
 			if(fornecedor.getCodigo() == codigo) {
 				return fornecedor;
@@ -56,7 +56,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 		return null;
 	}
 	
-	public boolean removerFornecedor(int codigo) {
+	public boolean remover(int codigo) {
 		boolean igual = false;
 		for(int i =0;i<listaFornecedores.size();i++){
 			if(listaFornecedores.get(i).getCodigo()==codigo){
@@ -75,7 +75,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 			return contem;
 	}
 	
-	public boolean fornecedorExiste(int codigo) {
+	public boolean existe(int codigo) {
 		int f;
 		boolean x = false;
 		for(Fornecedor fornecedor : listaFornecedores) {

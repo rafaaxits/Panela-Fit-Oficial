@@ -26,7 +26,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return listaClientes;
 	}
 
-	public boolean cadastrarCliente(Cliente cliente){
+	public boolean inserir(Cliente cliente){
 		try{
 			listaClientes.add(cliente);
 		}
@@ -36,10 +36,10 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return true;
 		
 	}
-	public boolean alterarCliente(Cliente clienteAlterado, Cliente novoCliente) {
+	public boolean alterar(Cliente novoCliente) {
 		boolean alt = false;
 			for(Cliente cliente : listaClientes){
-				if(cliente.getCodigo() == clienteAlterado.getCodigo()) {
+				if(cliente.getCodigo() == novoCliente.getCodigo()) {
 					listaClientes.remove(cliente);
 						listaClientes.add(novoCliente);
 							alt = true;
@@ -48,7 +48,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 			return alt;
 	}
 	
-	public Cliente buscarCliente(int codigo){
+	public Cliente buscar(int codigo){
 		for (Cliente cliente : listaClientes) {
 			if(cliente.getCodigo() == codigo){
 				return cliente;
@@ -57,7 +57,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return null;
 	}
 	
-	public boolean removerCliente(int codigo){
+	public boolean remover(int codigo){
 		boolean igual=false;
 		for(int i=0;i<listaClientes.size();i++){
 			if(listaClientes.get(i).getCodigo()==codigo){
@@ -76,7 +76,7 @@ public class RepositorioCliente implements IRepositorioCliente {
 		return contem;
 	}
 	
-	public boolean clienteExiste(int codigo) {
+	public boolean existe(int codigo) {
 		int c;
 		boolean x = false;
 		for(Cliente cliente : listaClientes) {
