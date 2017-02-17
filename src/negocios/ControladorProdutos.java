@@ -52,15 +52,15 @@ public class ControladorProdutos {
 		if(novoProduto == null) {
 			throw new ProdutoInvalidoException();
 		} 
+		else if(this.repositorio.produtoContem(novoProduto) == true){
+			throw new ProdutoJaExisteException(novoProduto.getCodigo());
+		}
 		else if(novoProduto != null && this.repositorio.existe(novoProduto.getCodigo()) == true){
 			this.repositorio.alterar(novoProduto);
 		}
-		else if(novoProduto != null && this.repositorio.produtoContem(novoProduto) == false){
+		else if(this.repositorio.existe(novoProduto.getCodigo()) == false){
 			throw new ProdutoNaoExisteException();
-		}
-		else if(novoProduto != null & this.repositorio.produtoContem(novoProduto) == true){
-			throw new ProdutoJaExisteException(novoProduto.getCodigo());
-		}
+		}		
 	}
 	
 	public LocalDate getDataFabricacao(int codigo) throws ProdutoNaoExisteException {

@@ -49,15 +49,16 @@ public class ControladorClientes {
 		if(novoCliente == null) {
 			throw new ClienteInvalidoException();
 		} 
+		else if (this.repositorio.clienteContem(novoCliente)==true) {
+			throw new ClienteJaExisteException(novoCliente.getCodigo());
+		}
 		else if((novoCliente != null && this.repositorio.existe(novoCliente.getCodigo())==true)) {
 			this.repositorio.alterar(novoCliente);
 		}
-		else if((novoCliente !=null && this.repositorio.clienteContem(novoCliente)==false)){
+		else if((this.repositorio.existe(novoCliente.getCodigo())==false)){
 			throw new ClienteNaoExisteException();
 		}
-		else if(novoCliente !=null && this.repositorio.clienteContem(novoCliente)==true) {
-			throw new ClienteJaExisteException(novoCliente.getCodigo());
-		}
+		
 }
 	public List<Cliente> listaClientes(){
 		return this.repositorio.listar();

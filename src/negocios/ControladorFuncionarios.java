@@ -48,16 +48,17 @@ public class ControladorFuncionarios {
 	public void alterar(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException{
 		if(novoFuncionario == null) {
 			throw new FuncionarioInvalidoException();
-		} 
+		}
+		else if(this.repositorio.funcionarioContem(novoFuncionario) == true) {
+			throw new FuncionarioJaExisteException(novoFuncionario.getCodigo());
+		}
 		else if((novoFuncionario != null && this.repositorio.existe(novoFuncionario.getCodigo()) == true)) {
 			this.repositorio.alterar(novoFuncionario);
 		}
-		else if((novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario) == false)){
+		else if((this.repositorio.existe(novoFuncionario.getCodigo()) == false)){
 			throw new FuncionarioNaoExisteException();
 		}
-		else if(novoFuncionario != null && this.repositorio.funcionarioContem(novoFuncionario) == true) {
-			throw new FuncionarioJaExisteException(novoFuncionario.getCodigo());
-		}
+		
 }
 	public int getNivel(int codigo) throws FuncionarioNaoExisteException {
 		if(this.repositorio.existe(codigo) == true) {

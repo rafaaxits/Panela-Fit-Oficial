@@ -50,16 +50,17 @@ public class ControladorFornecedores {
 	public void alterar(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
 		if(novoFornecedor == null) {
 			throw new FornecedorInvalidoException();
-		} 
-		else if((novoFornecedor != null && this.repositorio.existe(novoFornecedor.getCodigo()))==true) {
-			this.repositorio.alterar(novoFornecedor);
-		}
-		else if((novoFornecedor != null && this.repositorio.fornecedorContem(novoFornecedor) == false)){
-			throw new FornecedorNaoExisteException();
 		}
 		else if(this.repositorio.fornecedorContem(novoFornecedor)==true){
 			throw new FornecedorJaExisteException(novoFornecedor.getCodigo());
 		}
+		else if((novoFornecedor != null && this.repositorio.existe(novoFornecedor.getCodigo()))==true) {
+			this.repositorio.alterar(novoFornecedor);
+		}
+		else if((this.repositorio.existe(novoFornecedor.getCodigo()) == false)){
+			throw new FornecedorNaoExisteException();
+		}
+		
 	}
 	
 	public String getTelefone(int codigo) throws FornecedorNaoExisteException {

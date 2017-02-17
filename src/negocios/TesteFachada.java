@@ -79,7 +79,7 @@ public class TesteFachada {
 		System.out.println("\n");
 		
 		try {
-			System.out.println("" +panelaFit.buscarCliente(6));
+			System.out.println("" +panelaFit.buscarCliente(8));
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("\n");
@@ -91,6 +91,8 @@ public class TesteFachada {
 			e.printStackTrace();
 			System.out.println("\n");
 		}
+		
+		System.out.println("" +panelaFit.listarClientes());
 		
 		try {
 			panelaFit.removerCliente(c5);
@@ -106,13 +108,15 @@ public class TesteFachada {
 			System.out.println("\n");
 		}
 		
+		System.out.println("" +panelaFit.listarClientes());
+		
 		//FUNCION�RIOS
 		
 		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
 		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
 		Funcionario f4 = null;
 		Funcionario f5 = new Funcionario(9,4,"testinho", "392392838932", 65, "Rua ali perto", "3278232");
-		
+		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "73643647");
 		try{
 			panelaFit.cadastrarFuncionario(f4); //tentando cadastrar um funcionario nulo e a exception apareceu
 		}catch(Exception e){
@@ -208,6 +212,12 @@ public class TesteFachada {
 		
 		System.out.println(""+panelaFit.listarFuncionarios());
 		
+		try{
+			panelaFit.alterarFuncionario(f6);//tentando alterar dois funcionarios que nao foram cadastrados e a exception apareceu 
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
 	
 //FORNECEDORES
 
@@ -294,6 +304,9 @@ public class TesteFachada {
 			System.out.println("\n");
 		}
 	
+		System.out.println("" +panelaFit.listarFornecedores());
+
+		
 		try {
 			panelaFit.removerFornecedor(for5);
 		} catch(Exception e) {
@@ -308,6 +321,8 @@ public class TesteFachada {
 			System.out.println("\n");
 		}
 	
+		System.out.println("" +panelaFit.listarFornecedores());
+
 		
 		//MAT�RIAS PRIMAS
 		
@@ -364,7 +379,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarMateriasPrimas());
 	
 		try {
-			panelaFit.alterarMateriaPrima(mp4);
+			panelaFit.alterarMateriaPrima(mp2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -388,7 +403,7 @@ public class TesteFachada {
 		}
 	
 		try {
-			panelaFit.removerMateriaPrima(mp2);
+			panelaFit.removerMateriaPrima(mp4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("\n");
@@ -472,7 +487,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarProdutos());
 	
 		try {
-			panelaFit.alterarProdutos(p3);
+			panelaFit.alterarProdutos(p2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -501,7 +516,9 @@ public class TesteFachada {
 			e.printStackTrace();
 			System.out.println("\n");
 		}
-	
+		
+		System.out.println("" +panelaFit.listarProdutos());
+		
 		try {
 			panelaFit.removerProduto(p4);
 		} catch(Exception e) {
@@ -515,5 +532,6 @@ public class TesteFachada {
 			e.printStackTrace();
 			System.out.println("\n");
 		}
+		System.out.println("" +panelaFit.listarProdutos());
 	}
 }

@@ -48,15 +48,16 @@ public class ControladorMateriaPrimas {
 		if(novaMateriaPrima == null){
 			throw new MateriaPrimaInvalidaException();
 		}
+		else if(this.repositorio.materiaPrimaContem(novaMateriaPrima) == true){
+			throw new MateriaPrimaJaExisteException(novaMateriaPrima.getCodigo());
+		}
 		else if((novaMateriaPrima != null && this.repositorio.existe(novaMateriaPrima.getCodigo()) == true)){
 			this.repositorio.alterar(novaMateriaPrima);
 		}
-		else if(novaMateriaPrima != null && this.repositorio.materiaPrimaContem(novaMateriaPrima) == false){
+		else if((this.repositorio.existe(novaMateriaPrima.getCodigo()) == false)){
 			throw new MateriaPrimaNaoExisteException();
 		}
-		else if(novaMateriaPrima != null && this.repositorio.materiaPrimaContem(novaMateriaPrima) == true){
-			throw new MateriaPrimaJaExisteException(novaMateriaPrima.getCodigo());
-		}
+		
 	}
 	
 	public int getQuantidade(int codigo) throws MateriaPrimaNaoExisteException {
