@@ -1,14 +1,18 @@
 package negocios;
-
+import java.util.ArrayList;
 public class Venda {
 	private int codigo;
 	Cliente cliente;
 	Funcionario funcionario;
-	
-	public Venda(int codigo, Cliente cliente, Funcionario funcionario){
+	private ArrayList<ItemVenda> listaItensDeVenda;
+
+
+	public Venda(int codigo, Cliente cliente, Funcionario funcionario, ArrayList<ItemVenda> listaItensDeVenda) {
+		super();
+		this.codigo = codigo;
 		this.cliente = cliente;
 		this.funcionario = funcionario;
-		this.codigo = codigo;
+		this.setListaItensDeVenda(new ArrayList<ItemVenda>());
 	}
 
 	public int getCodigo() {
@@ -34,6 +38,14 @@ public class Venda {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+
+	public ArrayList<ItemVenda> getListaItensDeVenda() {
+		return listaItensDeVenda;
+	}
+
+	public void setListaItensDeVenda(ArrayList<ItemVenda> listaItensDeVenda) {
+		this.listaItensDeVenda = listaItensDeVenda;
+	}
 	
-	
+	// n implementa serializable
 }
