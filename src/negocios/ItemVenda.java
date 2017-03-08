@@ -1,10 +1,8 @@
 package negocios;
 
 public class ItemVenda {
-	/*
-	Produto produto;
-	private double quantidade;
-	// criar um array list de itens de venda na classe venda
-	*/
+	private Produto produto;
+	
+
 }
 //n implemente serializable 

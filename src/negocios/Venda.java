@@ -5,6 +5,7 @@ public class Venda {
 	Cliente cliente;
 	Funcionario funcionario;
 	private ArrayList<ItemVenda> listaItensDeVenda;
+	private int quantidade;
 
 
 	public Venda(int codigo, Cliente cliente, Funcionario funcionario, ArrayList<ItemVenda> listaItensDeVenda) {
