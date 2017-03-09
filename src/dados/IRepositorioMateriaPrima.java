@@ -11,4 +11,5 @@ public interface IRepositorioMateriaPrima {
 	public boolean materiaPrimaContem(MateriaPrima materiaPrima);
 	public boolean existe(int codigo);
 	public abstract List <MateriaPrima> listar();
+	void salvarArquivo();
 }

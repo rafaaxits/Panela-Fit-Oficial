@@ -24,9 +24,56 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 	public static RepositorioFornecedor getInstance(){
 		if(instance == null){
 			instance = new RepositorioFornecedor();
+			instance = lerDoArquivo();
 		}
 		return instance;
 	}
+	
+	 private static RepositorioFornecedor lerDoArquivo() {
+	        RepositorioFornecedor instanciaLocal = null;
+	        
+	        File in = new File("fornecedores.dat");
+	        FileInputStream fis = null;
+	        ObjectInputStream ois = null;
+	        try {
+	            fis = new FileInputStream(in);
+	            ois = new ObjectInputStream(fis);
+	            Object o = ois.readObject();
+	            instanciaLocal = (RepositorioFornecedor) o;
+	        } catch (Exception e) {
+	            instanciaLocal = new RepositorioFornecedor();
+	        } finally {
+	            if (ois != null) {
+	                try {
+	                    ois.close();
+	                } catch (IOException e) {
+	                }
+	            }
+	        }
+
+	        return instanciaLocal;
+	    }
+
+	    public void salvarArquivo() {
+	        if (instance == null) {
+	            return;
+	        }
+	        File out = new File("fornecedores.dat");
+	        FileOutputStream fos = null;
+	        ObjectOutputStream oos = null;
+	        
+	        try {
+	            fos = new FileOutputStream(out);
+	            oos = new ObjectOutputStream(fos);
+	            oos.writeObject(instance);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (oos != null) {
+	                try { oos.close(); } catch (IOException e) {}
+	            }
+	        }
+	    }
 	
 	public ArrayList<Fornecedor> getListaFornecedores() {
 		return listaFornecedores;

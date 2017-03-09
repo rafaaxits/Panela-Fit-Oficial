@@ -10,4 +10,5 @@ public interface IRepositorioFuncionario {
 	public boolean funcionarioContem(Funcionario funcionario);
 	public boolean existe(int codigo);
 	public abstract List<Funcionario> listar();
+	void salvarArquivo();
 }

@@ -25,6 +25,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	public static RepositorioMateriaPrima getInstance(){
 		if(instance == null){
 			instance = new RepositorioMateriaPrima();
+			instance = lerDoArquivo();
 		}
 		return instance;
 	}
@@ -32,6 +33,53 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	public ArrayList<MateriaPrima> getListaMateriasPrimas() {
 		return listaMateriasPrimas;
 	}
+	
+	 private static RepositorioMateriaPrima lerDoArquivo() {
+	        RepositorioMateriaPrima instanciaLocal = null;
+	        
+	        File in = new File("materiasprimas.dat");
+	        FileInputStream fis = null;
+	        ObjectInputStream ois = null;
+	        try {
+	            fis = new FileInputStream(in);
+	            ois = new ObjectInputStream(fis);
+	            Object o = ois.readObject();
+	            instanciaLocal = (RepositorioMateriaPrima) o;
+	        } catch (Exception e) {
+	            instanciaLocal = new RepositorioMateriaPrima();
+	        } finally {
+	            if (ois != null) {
+	                try {
+	                    ois.close();
+	                } catch (IOException e) {
+	                }
+	            }
+	        }
+
+	        return instanciaLocal;
+	    }
+
+	    public void salvarArquivo() {
+	        if (instance == null) {
+	            return;
+	        }
+	        File out = new File("materiasprimas.dat");
+	        FileOutputStream fos = null;
+	        ObjectOutputStream oos = null;
+	        
+	        try {
+	            fos = new FileOutputStream(out);
+	            oos = new ObjectOutputStream(fos);
+	            oos.writeObject(instance);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (oos != null) {
+	                try { oos.close(); } catch (IOException e) {}
+	            }
+	        }
+	    }
+
 
 	public boolean inserir(MateriaPrima materiaPrima) {
 		try{

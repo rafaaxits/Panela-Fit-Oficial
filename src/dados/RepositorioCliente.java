@@ -24,6 +24,7 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	public static RepositorioCliente getInstance(){
 		if(instance==null){
 			instance = new RepositorioCliente();
+			instance = lerDoArquivo();
 		}
 		return instance;
 	}
@@ -32,6 +33,52 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	public ArrayList<Cliente> getListaClientes() {
 		return listaClientes;
 	}
+	
+	 private static RepositorioCliente lerDoArquivo() {
+	        RepositorioCliente instanciaLocal = null;
+	        
+	        File in = new File("clientes.dat");
+	        FileInputStream fis = null;
+	        ObjectInputStream ois = null;
+	        try {
+	            fis = new FileInputStream(in);
+	            ois = new ObjectInputStream(fis);
+	            Object o = ois.readObject();
+	            instanciaLocal = (RepositorioCliente) o;
+	        } catch (Exception e) {
+	            instanciaLocal = new RepositorioCliente();
+	        } finally {
+	            if (ois != null) {
+	                try {
+	                    ois.close();
+	                } catch (IOException e) {
+	                }
+	            }
+	        }
+
+	        return instanciaLocal;
+	    }
+
+	    public void salvarArquivo() {
+	        if (instance == null) {
+	            return;
+	        }
+	        File out = new File("clientes.dat");
+	        FileOutputStream fos = null;
+	        ObjectOutputStream oos = null;
+	        
+	        try {
+	            fos = new FileOutputStream(out);
+	            oos = new ObjectOutputStream(fos);
+	            oos.writeObject(instance);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (oos != null) {
+	                try { oos.close(); } catch (IOException e) {}
+	            }
+	        }
+	    }
 
 	public boolean inserir(Cliente cliente){
 		try{

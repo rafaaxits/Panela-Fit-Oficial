@@ -13,5 +13,6 @@ public interface IRepositorioCliente {
 	public boolean clienteContem(Cliente cliente);
 	public boolean existe(int codigo);
 	public abstract List<Cliente> listar();
+	void salvarArquivo();
 	
 }

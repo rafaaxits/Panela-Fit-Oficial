@@ -10,4 +10,5 @@ public interface IRepositorioFornecedor {
 	public boolean fornecedorContem(Fornecedor fornecedor);
 	public boolean existe(int codigo);
 	public abstract List<Fornecedor> listar();
+	void salvarArquivo();
 }
