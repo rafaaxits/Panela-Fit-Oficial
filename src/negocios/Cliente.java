@@ -35,12 +35,6 @@ public class Cliente extends Pessoa{
 		return "Cliente [codigo=" + codigo + ", nome=" +this.getNome()+ ", cpf=" +this.getCpf()+ ", idade=" +this.getIdade()+ ", endereco=" +this.getEndereco()+ ", telefone=" +this.getTelefone()+ "]";
 	}
 	
-	
 
-
-	
-
-
-	
 	
 }
