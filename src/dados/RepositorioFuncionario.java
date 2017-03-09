@@ -2,12 +2,19 @@ package dados;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import negocios.Funcionario;
 
 import java.util.Collections;
 
-public class RepositorioFuncionario implements IRepositorioFuncionario {
+public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable {
 	private ArrayList<Funcionario> listaFuncionarios;
 	private static RepositorioFuncionario instance;
 	
