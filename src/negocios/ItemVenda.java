@@ -42,6 +42,6 @@ public class ItemVenda {
 		total = produto.getPreco() * quantidade;
 		return total;
 	}
-	
+	// comitando essa merda
 }
 //n implemente serializable 
