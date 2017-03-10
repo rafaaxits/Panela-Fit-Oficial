@@ -35,7 +35,6 @@ public class PanelaFit implements IPanelaFit{
 	private ControladorMateriaPrimas materiaPrimas;
 	private ControladorProdutos produtos;
 	private ControladorVendas vendas;
-	
 	private static PanelaFit instance;
 	
 	private PanelaFit(){

@@ -222,6 +222,8 @@ public class TesteFachada {
 		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37765123", 122);
 		Fornecedor for5 = null;
 	
+		System.out.println("" +panelaFit.listarFornecedores());
+
 		try {
 			panelaFit.cadastrarFornecedor(for5);
 		} catch(Exception e) {
@@ -327,6 +329,8 @@ public class TesteFachada {
 		MateriaPrima mp4 = new MateriaPrima("MateriaPrima4", 5, 50, 400);
 		MateriaPrima mp5 = null;
 	
+		System.out.println("" +panelaFit.listarMateriasPrimas());
+		
 		try {
 			panelaFit.cadastrarMateriaPrima(mp5);
 		} catch(Exception e) {
@@ -433,7 +437,8 @@ public class TesteFachada {
 		Produto p3 = new Produto("Produto4", 20, 77, 456, 30, 50, fab3, val3);
 		Produto p4 = null;
 		
-		
+		System.out.println("" +panelaFit.listarProdutos());
+
 	
 		try {
 			panelaFit.cadastrarProduto(p4);
@@ -557,20 +562,113 @@ public class TesteFachada {
 		listaItemVenda2.add(item6);
 		
 		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
-		Venda venda2 = new Venda(456,c2,f2,listaItemVenda2,val1);
+		Venda venda2 = new Venda(123,c2,f2,listaItemVenda2,val1);
 		Venda venda3 = new Venda(776,c4,f6, listaItemVenda2, fab2);
-	
+		Venda venda4 = null;
 		
-		try {
-			panelaFit.cadastrarVenda(venda3);
-		}catch(Exception e) {
+		System.out.println(""+panelaFit.listarVendas());
+
+		
+		try{
+			panelaFit.cadastrarVenda(venda4);
+		} catch (Exception e){
 			e.printStackTrace();
 			System.out.println("\n");
 		}
 		
-		System.out.println("" +panelaFit.listarVendas());
+		try{
+			panelaFit.cadastrarVenda(venda1);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
 		
+		System.out.println(""+panelaFit.listarVendas());
 		
+		try{
+			panelaFit.cadastrarVenda(venda2);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.alterarVenda(venda3);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.alterarVenda(venda2);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.alterarVenda(venda4);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		System.out.println(""+panelaFit.listarVendas());
+
+		try{
+			panelaFit.alterarVenda(venda2);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		System.out.println(""+panelaFit.listarVendas());
+
+		try{
+			panelaFit.buscarVenda(123);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.buscarVenda(776);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.removerVenda(venda4);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.removerVenda(venda3);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		try{
+			panelaFit.removerVenda(venda2);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		System.out.println(""+panelaFit.listarVendas());
+		
+		try{
+			panelaFit.cadastrarVenda(venda2);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+
+		System.out.println(""+panelaFit.listarVendas());
 		
 		
 	}

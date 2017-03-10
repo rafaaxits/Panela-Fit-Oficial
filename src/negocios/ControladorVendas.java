@@ -45,7 +45,7 @@ public class ControladorVendas {
 		if(venda == null){
 			throw new VendaInvalidaException();
 		}
-		else if(this.repositorio.existe(venda.getCodigo())==true){
+		else if(this.repositorio.vendaContem(venda)==true){
 			this.repositorio.remover(venda.getCodigo());
 			this.repositorio.salvarArquivo();
 		}
