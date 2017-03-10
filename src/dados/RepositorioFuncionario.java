@@ -15,6 +15,10 @@ import negocios.Funcionario;
 import java.util.Collections;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1035831990401858694L;
 	private ArrayList<Funcionario> listaFuncionarios;
 	private static RepositorioFuncionario instance;
 	
@@ -52,6 +56,8 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	                try {
 	                    ois.close();
 	                } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
 	                }
 	            }
 	        }
@@ -75,7 +81,10 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	            e.printStackTrace();
 	        } finally {
 	            if (oos != null) {
-	                try { oos.close(); } catch (IOException e) {}
+	                try { oos.close(); } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
+	                }
 	            }
 	        }
 	    }

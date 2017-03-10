@@ -10,7 +10,14 @@ public class ControladorFornecedores {
 	IRepositorioFornecedor repositorio;
 	
 	public ControladorFornecedores(IRepositorioFornecedor instanciaInterface) {
+		if(instanciaInterface !=null){
 		this.repositorio = instanciaInterface;
+		} else {
+		      // argumento invalido
+		      IllegalArgumentException x = new IllegalArgumentException(
+		          "Reposit�rio inv�lido.");
+		      throw x;
+		    }
 	}
 	
 	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
@@ -19,6 +26,7 @@ public class ControladorFornecedores {
 		} else {
 			if(this.repositorio.existe(fornecedor.getCodigo()) == false) {
 			this.repositorio.inserir(fornecedor);	
+			this.repositorio.salvarArquivo();
 			} else if(this.repositorio.existe(fornecedor.getCodigo()) == true) {
 				throw new FornecedorJaExisteException(fornecedor.getCodigo());
 			}
@@ -40,6 +48,7 @@ public class ControladorFornecedores {
 		}
 		else if(this.repositorio.fornecedorContem(fornecedor) == true){
 				this.repositorio.remover(fornecedor.getCodigo());
+				this.repositorio.salvarArquivo();
 		}
 		else if(this.repositorio.fornecedorContem(fornecedor)==false){
 			throw new FornecedorNaoExisteException();
@@ -56,6 +65,7 @@ public class ControladorFornecedores {
 		}
 		else if((novoFornecedor != null && this.repositorio.existe(novoFornecedor.getCodigo()))==true) {
 			this.repositorio.alterar(novoFornecedor);
+			this.repositorio.salvarArquivo();
 		}
 		else if((this.repositorio.existe(novoFornecedor.getCodigo()) == false)){
 			throw new FornecedorNaoExisteException();

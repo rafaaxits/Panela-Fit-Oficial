@@ -15,6 +15,10 @@ import negocios.MateriaPrima;
 import java.util.Collections;
 
 public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3344583844646641935L;
 	private ArrayList<MateriaPrima> listaMateriasPrimas;
 	private static RepositorioMateriaPrima instance;
 	
@@ -52,6 +56,8 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	                try {
 	                    ois.close();
 	                } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
 	                }
 	            }
 	        }
@@ -75,7 +81,10 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	            e.printStackTrace();
 	        } finally {
 	            if (oos != null) {
-	                try { oos.close(); } catch (IOException e) {}
+	                try { oos.close(); } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
+	                }
 	            }
 	        }
 	    }

@@ -1,8 +1,13 @@
 package negocios;
 
+import java.io.Serializable;
 import java.time.*;
 
-public class Produto {
+public class Produto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2336117108494125603L;
 	private String nome;
 	private int peso;
 	private int calorias;

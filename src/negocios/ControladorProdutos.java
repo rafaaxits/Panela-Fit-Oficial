@@ -11,7 +11,14 @@ public class ControladorProdutos {
 	 IRepositorioProduto repositorio;
 	
 	public ControladorProdutos(IRepositorioProduto instanciaInterface){
+		if(instanciaInterface !=null){
 		this.repositorio = instanciaInterface;
+		} else {
+		      // argumento invalido
+		      IllegalArgumentException x = new IllegalArgumentException(
+		          "Reposit�rio inv�lido.");
+		      throw x;
+		    }
 	}
 
 
@@ -21,6 +28,7 @@ public class ControladorProdutos {
 		} else {
 			if(this.repositorio.existe(produto.getCodigo()) == false){
 				this.repositorio.inserir(produto);
+				this.repositorio.salvarArquivo();
 			} else if(this.repositorio.existe(produto.getCodigo()) == true) {
 				throw new ProdutoJaExisteException(produto.getCodigo());
 				
@@ -42,6 +50,7 @@ public class ControladorProdutos {
 		}
 		else if(this.repositorio.produtoContem(produto) == true) {
 				this.repositorio.remover(produto.getCodigo());
+				this.repositorio.salvarArquivo();
 		}
 		else if(this.repositorio.produtoContem(produto) == false) {
 			throw new ProdutoNaoExisteException();
@@ -57,6 +66,7 @@ public class ControladorProdutos {
 		}
 		else if(novoProduto != null && this.repositorio.existe(novoProduto.getCodigo()) == true){
 			this.repositorio.alterar(novoProduto);
+			this.repositorio.salvarArquivo();
 		}
 		else if(this.repositorio.existe(novoProduto.getCodigo()) == false){
 			throw new ProdutoNaoExisteException();

@@ -1,6 +1,10 @@
 package negocios;
 
 public class Funcionario extends Pessoa {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7648660323426506303L;
 	private int nivel;
 	private int codigo;
 

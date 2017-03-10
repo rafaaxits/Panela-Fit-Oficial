@@ -10,7 +10,14 @@ public class ControladorFuncionarios {
 	 IRepositorioFuncionario repositorio;
 	
 	public ControladorFuncionarios(IRepositorioFuncionario instanciaInterface) {
+		if(instanciaInterface !=null){
 		this.repositorio = instanciaInterface;
+		}else {
+		      // argumento invalido
+		      IllegalArgumentException x = new IllegalArgumentException(
+		          "Reposit�rio inv�lido.");
+		      throw x;
+		    }
 	}
 	
 	public void cadastrar(Funcionario funcionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
@@ -19,6 +26,7 @@ public class ControladorFuncionarios {
 		} else {
 			if(this.repositorio.existe(funcionario.getCodigo()) == false) {
 				this.repositorio.inserir(funcionario);
+				this.repositorio.salvarArquivo();
 			} else if(this.repositorio.existe(funcionario.getCodigo()) == true) {
 				throw new FuncionarioJaExisteException(funcionario.getCodigo());
 			}
@@ -39,6 +47,7 @@ public class ControladorFuncionarios {
 		} 
 		else if(this.repositorio.funcionarioContem(funcionario) == true) {
 				this.repositorio.remover(funcionario.getCodigo());	
+				this.repositorio.salvarArquivo();
 		}
 		else if(this.repositorio.funcionarioContem(funcionario) == false){
 			throw new FuncionarioNaoExisteException();
@@ -54,6 +63,7 @@ public class ControladorFuncionarios {
 		}
 		else if((novoFuncionario != null && this.repositorio.existe(novoFuncionario.getCodigo()) == true)) {
 			this.repositorio.alterar(novoFuncionario);
+			this.repositorio.salvarArquivo();
 		}
 		else if((this.repositorio.existe(novoFuncionario.getCodigo()) == false)){
 			throw new FuncionarioNaoExisteException();

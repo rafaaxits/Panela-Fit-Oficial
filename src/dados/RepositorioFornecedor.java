@@ -15,6 +15,10 @@ import negocios.Fornecedor;
 import java.util.Collections;
 
 public class RepositorioFornecedor implements IRepositorioFornecedor, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6580378322401899254L;
 	private ArrayList<Fornecedor> listaFornecedores;
 	private static RepositorioFornecedor instance;
 	
@@ -27,6 +31,10 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 			instance = lerDoArquivo();
 		}
 		return instance;
+	}
+	
+	public ArrayList<Fornecedor> getListaFornecedores() {
+		return listaFornecedores;
 	}
 	
 	 private static RepositorioFornecedor lerDoArquivo() {
@@ -47,6 +55,8 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 	                try {
 	                    ois.close();
 	                } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
 	                }
 	            }
 	        }
@@ -70,14 +80,13 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 	            e.printStackTrace();
 	        } finally {
 	            if (oos != null) {
-	                try { oos.close(); } catch (IOException e) {}
+	                try { oos.close(); } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
+	                }
 	            }
 	        }
 	    }
-	
-	public ArrayList<Fornecedor> getListaFornecedores() {
-		return listaFornecedores;
-	}
 	
 	public boolean inserir(Fornecedor fornecedor) {
 		try {

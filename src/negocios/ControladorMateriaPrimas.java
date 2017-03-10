@@ -10,7 +10,14 @@ public class ControladorMateriaPrimas {
 	 IRepositorioMateriaPrima repositorio;
 	
 	public ControladorMateriaPrimas(IRepositorioMateriaPrima instanciaInterface){
+		if(instanciaInterface !=null){
 		this.repositorio = instanciaInterface;
+		}else {
+		      // argumento invalido
+		      IllegalArgumentException x = new IllegalArgumentException(
+		          "Reposit�rio inv�lido.");
+		      throw x;
+		    }
 	}
 	
 	public void cadastrar (MateriaPrima materiaPrima) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
@@ -19,6 +26,7 @@ public class ControladorMateriaPrimas {
 		} else {
 			if(this.repositorio.existe(materiaPrima.getCodigo()) == false){
 				this.repositorio.inserir(materiaPrima);
+				this.repositorio.salvarArquivo();
 			} else if (this.repositorio.existe(materiaPrima.getCodigo()) == true) {
 				throw new MateriaPrimaJaExisteException(materiaPrima.getCodigo());
 			}
@@ -38,6 +46,7 @@ public class ControladorMateriaPrimas {
 		}
 		else if(this.repositorio.materiaPrimaContem(materiaPrima) == true) {
 				this.repositorio.remover(materiaPrima.getCodigo());
+				this.repositorio.salvarArquivo();
 		}
 		else if(this.repositorio.materiaPrimaContem(materiaPrima)==false) {
 			throw new MateriaPrimaNaoExisteException();
@@ -53,6 +62,7 @@ public class ControladorMateriaPrimas {
 		}
 		else if((novaMateriaPrima != null && this.repositorio.existe(novaMateriaPrima.getCodigo()) == true)){
 			this.repositorio.alterar(novaMateriaPrima);
+			this.repositorio.salvarArquivo();
 		}
 		else if((this.repositorio.existe(novaMateriaPrima.getCodigo()) == false)){
 			throw new MateriaPrimaNaoExisteException();

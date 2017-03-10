@@ -1,6 +1,12 @@
 package negocios;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2717095300537543643L;
 	private String nome;
 	private String cpf;
 	private int idade;

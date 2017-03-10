@@ -1,6 +1,13 @@
 package negocios;
 
 public class Cliente extends Pessoa{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7178299401781083944L;
+	/**
+	 * 
+	 */
 	private int codigo;
 	
 	public Cliente(int codigo, String nome, String cpf, int idade, String endereco, String telefone){

@@ -1,6 +1,12 @@
 package negocios;
 
-public class MateriaPrima {
+import java.io.Serializable;
+
+public class MateriaPrima implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8964722476015528996L;
 	private String nome;
 	private int codigo;
 	private int quantidade;

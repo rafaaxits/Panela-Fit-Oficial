@@ -15,6 +15,10 @@ import negocios.Produto;
 import java.util.Collections;
 
 public class RepositorioProduto implements IRepositorioProduto, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4891963491984056414L;
 	private ArrayList<Produto> listaProdutos;
 	private static RepositorioProduto instance;
 	
@@ -51,6 +55,8 @@ public class RepositorioProduto implements IRepositorioProduto, Serializable{
 	                try {
 	                    ois.close();
 	                } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
 	                }
 	            }
 	        }
@@ -74,7 +80,10 @@ public class RepositorioProduto implements IRepositorioProduto, Serializable{
 	            e.printStackTrace();
 	        } finally {
 	            if (oos != null) {
-	                try { oos.close(); } catch (IOException e) {}
+	                try { oos.close(); } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
+	                }
 	            }
 	        }
 	    }

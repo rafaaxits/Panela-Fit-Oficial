@@ -13,7 +13,8 @@ public class TesteFachada {
 		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
 		Cliente c4 = new Cliente(7, "cicrano", "554433677", 19, "Rua Jose Bras", "34322111");
 		Cliente c5 = null;
-		
+		System.out.println("" +panelaFit.listarClientes());
+
 		try {
 			panelaFit.cadastrarCliente(c5);
 		} catch(Exception e) {
@@ -23,7 +24,6 @@ public class TesteFachada {
 		
 		try {
 			panelaFit.cadastrarCliente(c1);
-			panelaFit.cadastrarCliente(c2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -45,12 +45,6 @@ public class TesteFachada {
 			System.out.print("\n");
 		}
 		
-		try {
-			panelaFit.alterarCliente(c1);
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.print("\n");
-		}
 		
 		try {
 			panelaFit.alterarCliente(c5);
@@ -61,14 +55,8 @@ public class TesteFachada {
 		
 		System.out.println("" +panelaFit.listarClientes());
 		
-		try {
-			panelaFit.alterarCliente(c2);
-		} catch(Exception e) {
-			e.printStackTrace();
-			System.out.print("\n");
-		}
 		
-		System.out.println("" +panelaFit.listarClientes());
+	//	System.out.println("" +panelaFit.listarClientes());
 		
 		try {
 			System.out.print("" +panelaFit.buscarCliente(3));
@@ -106,6 +94,13 @@ public class TesteFachada {
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("\n");
+		}
+		
+		try {
+			panelaFit.alterarCliente(c1);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.print("\n");
 		}
 		
 		System.out.println("" +panelaFit.listarClientes());

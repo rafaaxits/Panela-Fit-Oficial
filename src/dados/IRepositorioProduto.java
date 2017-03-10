@@ -11,5 +11,6 @@ public interface IRepositorioProduto {
 	public boolean produtoContem(Produto produto);
 	public boolean existe(int codigo);
 	public abstract List<Produto> listar();
+	void salvarArquivo();
 	
 }

@@ -1,6 +1,12 @@
 package negocios;
 
-public class Fornecedor {
+import java.io.Serializable;
+
+public class Fornecedor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6954277165774573425L;
 	private String nomeFornecedor;
 	private String enderecoFornecedor;
 	private String telefone;

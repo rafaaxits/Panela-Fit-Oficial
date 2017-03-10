@@ -14,6 +14,10 @@ import java.io.Serializable;
 import negocios.Cliente;
 
 public class RepositorioCliente implements IRepositorioCliente, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6779595176412411491L;
 	private ArrayList<Cliente> listaClientes;
 	private static RepositorioCliente instance;
 	
@@ -23,7 +27,7 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	
 	public static RepositorioCliente getInstance(){
 		if(instance==null){
-			instance = new RepositorioCliente();
+			instance =  new RepositorioCliente();
 			instance = lerDoArquivo();
 		}
 		return instance;
@@ -52,6 +56,8 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	                try {
 	                    ois.close();
 	                } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
 	                }
 	            }
 	        }
@@ -75,7 +81,10 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 	            e.printStackTrace();
 	        } finally {
 	            if (oos != null) {
-	                try { oos.close(); } catch (IOException e) {}
+	                try { oos.close(); } catch (IOException e) {
+	                	System.out.println("Não foi possível fechar o arquivo!");
+	                    e.printStackTrace();
+	                }
 	            }
 	        }
 	    }
