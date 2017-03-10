@@ -3,21 +3,24 @@ package negocios;
 import java.time.LocalDate;
 import java.util.List;
 
+import exceptions.ClienteInvalidoException;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
-import exceptions.ClienteInvalidoException;
+import exceptions.FornecedorInvalidoException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
-import exceptions.FornecedorInvalidoException;
+import exceptions.FuncionarioInvalidoException;
 import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.FuncionarioInvalidoException;
+import exceptions.MateriaPrimaInvalidaException;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
-import exceptions.MateriaPrimaInvalidaException;
+import exceptions.ProdutoInvalidoException;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
-import exceptions.ProdutoInvalidoException;
+import exceptions.VendaInvalidaException;
+import exceptions.VendaJaExisteException;
+import exceptions.VendaNaoExisteException;
 
 public interface IPanelaFit {
 	//CADASTRAR
@@ -31,6 +34,8 @@ public interface IPanelaFit {
 
 	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException;
 	
+	public void cadastrarVenda(Venda venda) throws VendaJaExisteException, VendaNaoExisteException, VendaInvalidaException;
+	
 	//REMOVER
 	public void removerCliente(Cliente cliente) throws ClienteNaoExisteException, ClienteInvalidoException;
 	
@@ -41,6 +46,8 @@ public interface IPanelaFit {
 	public void removerMateriaPrima(MateriaPrima materiaprima) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException;
 	
 	public void removerProduto(Produto produto) throws ProdutoNaoExisteException, ProdutoInvalidoException;
+	
+	public void removerVenda(Venda venda) throws VendaNaoExisteException, VendaInvalidaException;
 	
 	//BUSCAR
 	public Cliente buscarCliente(int codigo) throws ClienteNaoExisteException;
@@ -53,6 +60,8 @@ public interface IPanelaFit {
 	
 	public Produto buscarProduto(int codigo) throws ProdutoNaoExisteException;
 	
+	public Venda buscarVenda(int codigo) throws VendaNaoExisteException;
+	
 	//ALTERAR
 	public abstract void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException;
 	
@@ -64,6 +73,8 @@ public interface IPanelaFit {
 	
 	public abstract void alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException;
 
+	public void alterarVenda(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, VendaInvalidaException;
+	
 	//listar
 	public abstract List<Cliente> listarClientes();
 	
@@ -75,6 +86,8 @@ public interface IPanelaFit {
 	
 	public abstract List<Produto> listarProdutos();
 	
+	public List<Venda> listarVendas();
+	
 	//OUTROS METODOS
 	public String getTelefoneFornecedor(int codigo) throws FornecedorNaoExisteException;
 	
@@ -85,4 +98,6 @@ public interface IPanelaFit {
 	public LocalDate getDataFabricacao(int codigo)  throws ProdutoNaoExisteException;
 	
 	public LocalDate getDataValidade(int codigo)  throws ProdutoNaoExisteException;
+	
+	public void excluirVendas();
 }

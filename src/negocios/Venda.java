@@ -1,8 +1,13 @@
 package negocios;
 import java.util.ArrayList;
+import java.io.Serializable;
 import java.time.*;
-public class Venda {
+public class Venda implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1931621942968592228L;
 	private int codigo;
 	Cliente cliente;
 	Funcionario funcionario;
@@ -19,8 +24,12 @@ public class Venda {
 		this.codigo = codigo;
 		this.cliente = cliente;
 		this.funcionario = funcionario;
-		this.listaItensDeVenda = new ArrayList <ItemVenda>();
+		this.listaItensDeVenda = listaItensDeVenda;
 		this.dataDaVenda = dataDaVenda;
+	}
+	
+	public Venda(){
+		
 	}
 
 	public LocalDate getDataDaVenda() {
@@ -79,9 +88,9 @@ public class Venda {
 				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda + "]";
 	}
 	
-	public double TotalVenda(ArrayList<ItemVenda> listaItensDeVenda){
+	public double TotalVenda(){
 		double total = 0;
-		if(listaItensDeVenda!=null){
+		if(this.listaItensDeVenda!=null){
 			for(ItemVenda item : listaItensDeVenda){
 				total = total + item.getTotal();
 		}

@@ -8,6 +8,7 @@ import dados.RepositorioFornecedor;
 import dados.RepositorioFuncionario;
 import dados.RepositorioMateriaPrima;
 import dados.RepositorioProduto;
+import dados.RepositorioVenda;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
 import exceptions.ClienteInvalidoException;
@@ -23,6 +24,9 @@ import exceptions.MateriaPrimaInvalidaException;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
 import exceptions.ProdutoInvalidoException;
+import exceptions.VendaInvalidaException;
+import exceptions.VendaJaExisteException;
+import exceptions.VendaNaoExisteException;
 
 public class PanelaFit implements IPanelaFit{
 	private ControladorClientes clientes;
@@ -30,6 +34,7 @@ public class PanelaFit implements IPanelaFit{
 	private ControladorFuncionarios funcionarios;
 	private ControladorMateriaPrimas materiaPrimas;
 	private ControladorProdutos produtos;
+	private ControladorVendas vendas;
 	
 	private static PanelaFit instance;
 	
@@ -39,6 +44,7 @@ public class PanelaFit implements IPanelaFit{
 	this.funcionarios = new ControladorFuncionarios(RepositorioFuncionario.getInstance());
 	this.materiaPrimas = new ControladorMateriaPrimas(RepositorioMateriaPrima.getInstance());
 	this.produtos = new ControladorProdutos(RepositorioProduto.getInstance());
+	this.vendas = new ControladorVendas(RepositorioVenda.getInstance());
 	}
 	
 	public static PanelaFit getInstance(){
@@ -51,12 +57,12 @@ public class PanelaFit implements IPanelaFit{
 	//CLIENTES
 	
 	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
-		clientes.cadastrar(c);
+		this.clientes.cadastrar(c);
 		
 	}
 	
 	public void removerCliente(Cliente c) throws ClienteNaoExisteException, ClienteInvalidoException {
-		clientes.remover(c);
+		this.clientes.remover(c);
 	}
 	
 	public Cliente buscarCliente(int codigo) throws ClienteNaoExisteException {
@@ -64,7 +70,7 @@ public class PanelaFit implements IPanelaFit{
 	}
 	
 	public void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException {
-		clientes.alterar(novoCliente);
+		this.clientes.alterar(novoCliente);
 	}
 	
 	public List<Cliente> listarClientes(){
@@ -177,6 +183,31 @@ public class PanelaFit implements IPanelaFit{
 	public List<Produto> listarProdutos(){
 		return this.produtos.listaProdutos();
 	}
-
+	
+	//VENDAS
+	
+	public void cadastrarVenda(Venda v) throws VendaJaExisteException, VendaNaoExisteException, VendaInvalidaException{
+		this.vendas.cadastrar(v);
+	}
+	
+	public void removerVenda(Venda v) throws VendaNaoExisteException, VendaInvalidaException{
+		this.vendas.remover(v);
+	}
+	
+	public Venda buscarVenda(int codigo) throws VendaNaoExisteException{
+		return this.vendas.buscar(codigo);
+	}
+	
+	public void alterarVenda(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, VendaInvalidaException{
+		this.vendas.alterar(novaVenda);
+	}
+	
+	public void excluirVendas(){
+		this.vendas.excluirVendas();
+	}
+	
+	public List<Venda> listarVendas(){
+		return this.vendas.listarVendas();
+	}
 
 }

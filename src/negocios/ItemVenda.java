@@ -1,6 +1,12 @@
 package negocios;
 
-public class ItemVenda {
+import java.io.Serializable;
+
+public class ItemVenda implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4609870611476212654L;
 	private Produto produto;
 	int quantidade;
 	/*

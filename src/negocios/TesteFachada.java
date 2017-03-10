@@ -1,6 +1,7 @@
 package negocios;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TesteFachada {
 
@@ -528,5 +529,49 @@ public class TesteFachada {
 			System.out.println("\n");
 		}
 		System.out.println("" +panelaFit.listarProdutos());
+		
+		//VENDAS
+		
+		LocalDate d1 = LocalDate.of(2016, 9, 23);
+		
+		Produto pro1 = new Produto("Pao fit", 200, 159, 5,10,3, d1,d1);
+		Produto pro2 = new Produto("Parfait de banana", 300, 250, 6,50,10, d1,d1);
+		Produto pro3 = new Produto("Parfait de maça", 500, 250, 6,50,10, d1,d1);
+	
+		ItemVenda item1 = new ItemVenda(pro1,3);
+		ItemVenda item2 = new ItemVenda(pro2,5);
+		ItemVenda item3 = new ItemVenda(pro3,2);
+		ItemVenda item4 = new ItemVenda(p1,3);
+		ItemVenda item5 = new ItemVenda(p2,5);
+		ItemVenda item6 = new ItemVenda(p3,2);
+		
+		ArrayList<ItemVenda> listaItemVenda1 = new ArrayList<ItemVenda>();
+		ArrayList<ItemVenda> listaItemVenda2 = new ArrayList<ItemVenda>();
+		
+		listaItemVenda1.add(item1);
+		listaItemVenda1.add(item2);
+		listaItemVenda1.add(item3);
+		
+		listaItemVenda2.add(item4);
+		listaItemVenda2.add(item5);
+		listaItemVenda2.add(item6);
+		
+		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
+		Venda venda2 = new Venda(456,c2,f2,listaItemVenda2,val1);
+		Venda venda3 = new Venda(776,c4,f6, listaItemVenda2, fab2);
+	
+		
+		try {
+			panelaFit.cadastrarVenda(venda3);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("\n");
+		}
+		
+		System.out.println("" +panelaFit.listarVendas());
+		
+		
+		
+		
 	}
 }
