@@ -33,14 +33,6 @@ public class TesteVenda {
 		ArrayList<ItemVenda> listaItemVenda1 = new ArrayList<ItemVenda>();
 		ArrayList<ItemVenda> listaItemVenda2 = new ArrayList<ItemVenda>();
 		
-		listaItemVenda1.add(item1);
-		listaItemVenda1.add(item2);
-		listaItemVenda1.add(item3);
-		
-		listaItemVenda2.add(item4);
-		listaItemVenda2.add(item5);
-		listaItemVenda2.add(item6);
-		
 		System.out.println("item1 total:" +item1.getTotal());
 		System.out.println("item2 total:" +item2.getTotal());
 		System.out.println("item3 total:" +item3.getTotal());
@@ -57,7 +49,14 @@ public class TesteVenda {
 
 		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
 		Venda venda2 = new Venda(456,c2,f2,listaItemVenda2,val1);
-		Venda venda3 = null;
+		
+		venda1.InserirItem(item1);
+		venda1.InserirItem(item2);
+		venda1.InserirItem(item3);
+		venda2.InserirItem(item4);
+		//venda2.InserirItem(item5);
+		//venda2.InserirItem(item6);
+		
 		RepositorioVenda rep = new RepositorioVenda();
 		
 		System.out.println("Valor venda1: R$ " +venda1.TotalVenda());

@@ -98,5 +98,14 @@ public class Venda implements Serializable {
 	}	
 		return total;
   }
+	
+	public boolean InserirItem(ItemVenda itemVenda){
+		boolean alt = false;
+			if(itemVenda!=null){
+				this.listaItensDeVenda.add(itemVenda);
+					alt=true;
+			}
+			return alt;
+	}
 //comitando essa merda 
 }
