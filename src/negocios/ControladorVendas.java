@@ -21,7 +21,7 @@ public class ControladorVendas {
 	}
 	
 	public void cadastrar(Venda venda) throws VendaJaExisteException, VendaNaoExisteException, VendaInvalidaException{
-		if(venda == null || venda.TotalVenda()<=0){
+		if(venda == null || venda.calcularVenda()<=0){
 			throw new VendaInvalidaException();
 		}else{
 			if(this.repositorio.existe(venda.getCodigo()) == false){
@@ -55,7 +55,7 @@ public class ControladorVendas {
 	}
 	
 	public void alterar(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, VendaInvalidaException{
-		if(novaVenda==null || novaVenda.TotalVenda()<=0){
+		if(novaVenda==null || novaVenda.calcularVenda()<=0){
 			throw new VendaInvalidaException();
 		}
 		else if(this.repositorio.vendaContem(novaVenda)==true){

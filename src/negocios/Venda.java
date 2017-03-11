@@ -88,7 +88,7 @@ public class Venda implements Serializable {
 				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda + "]";
 	}
 	
-	public double TotalVenda(){
+	public double calcularVenda(){
 		double total = 0;
 		if(this.listaItensDeVenda!=null){
 			for(ItemVenda item : listaItensDeVenda){
@@ -99,7 +99,7 @@ public class Venda implements Serializable {
 		return total;
   }
 	
-	public boolean InserirItem(ItemVenda itemVenda){
+	public boolean inserirItem(ItemVenda itemVenda){
 		boolean alt = false;
 			if(itemVenda!=null){
 				this.listaItensDeVenda.add(itemVenda);

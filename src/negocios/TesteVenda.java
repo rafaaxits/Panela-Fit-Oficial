@@ -50,17 +50,17 @@ public class TesteVenda {
 		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
 		Venda venda2 = new Venda(456,c2,f2,listaItemVenda2,val1);
 		
-		venda1.InserirItem(item1);
-		venda1.InserirItem(item2);
-		venda1.InserirItem(item3);
-		venda2.InserirItem(item4);
+		venda1.inserirItem(item1);
+		venda1.inserirItem(item2);
+		venda1.inserirItem(item3);
+		venda2.inserirItem(item4);
 		//venda2.InserirItem(item5);
 		//venda2.InserirItem(item6);
 		
 		RepositorioVenda rep = new RepositorioVenda();
 		
-		System.out.println("Valor venda1: R$ " +venda1.TotalVenda());
-		System.out.println("Valor venda2: R$ " +venda2.TotalVenda());
+		System.out.println("Valor venda1: R$ " +venda1.calcularVenda());
+		System.out.println("Valor venda2: R$ " +venda2.calcularVenda());
 		System.out.println("" +rep.inserir(venda1));
 		System.out.println(""+rep.listar());
 		System.out.println("" +rep.inserir(venda2));
