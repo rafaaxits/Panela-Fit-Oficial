@@ -55,7 +55,7 @@ public class PanelaFit implements IPanelaFit{
 	
 	//CLIENTES
 	
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteInvalidoException {
 		this.clientes.cadastrar(c);
 		
 	}

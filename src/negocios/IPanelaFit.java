@@ -24,7 +24,7 @@ import exceptions.VendaNaoExisteException;
 
 public interface IPanelaFit {
 	//CADASTRAR
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException;
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteInvalidoException;
 	
 	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException;
 	

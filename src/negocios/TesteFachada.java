@@ -3,9 +3,12 @@ package negocios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import exceptions.ClienteInvalidoException;
+import exceptions.ClienteNaoExisteException;
+
 public class TesteFachada {
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws ClienteInvalidoException  {
 		IPanelaFit panelaFit = PanelaFit.getInstance();
 		
 		//CLIENTES
@@ -13,9 +16,15 @@ public class TesteFachada {
 		Cliente c1 = new Cliente(8, "fulano", "13243677", 23, "Rua Jose Bras", "997755432");
 		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
 		Cliente c4 = new Cliente(7, "cicrano", "554433677", 19, "Rua Jose Bras", "34322111");
-		Cliente c5 = null;
+		Cliente c5 = new Cliente(0, "0", "0" ,0, "0", "0");
 		System.out.println("" +panelaFit.listarClientes());
 
+		try {
+			System.out.print("" +panelaFit.buscarCliente(778));
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.print("\n");
+		}
 		try {
 			panelaFit.cadastrarCliente(c5);
 		} catch(Exception e) {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="504.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanelaFitPaneController">
+   <bottom>
+      <AnchorPane prefHeight="515.0" prefWidth="556.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="271.0" fitWidth="264.0" layoutX="125.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/panela%20fit.jpg" />
+               </image></ImageView>
+            <Label layoutX="139.0" layoutY="-12.0" text="Bem Vindo">
+               <font>
+                  <Font name="Bangla MN Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="357.0" layoutY="420.0" mnemonicParsing="false" text="Vendas" />
+            <Button fx:id="butCliente" layoutX="96.0" layoutY="379.0" mnemonicParsing="false" onAction="#Cliente" text="Clientes" />
+            <Button layoutX="214.0" layoutY="379.0" mnemonicParsing="false" text="Forncedores" />
+            <Button layoutX="96.0" layoutY="420.0" mnemonicParsing="false" text="Funcionarios" />
+            <Button layoutX="214.0" layoutY="420.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="113.0" text="Matéria-primas" />
+            <Button layoutX="356.0" layoutY="379.0" mnemonicParsing="false" text="Produtos" />
+            <Label layoutX="141.0" layoutY="339.0" prefHeight="28.0" prefWidth="233.0" text="Selecione um menu ">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="butX" layoutX="500.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#ee0606" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

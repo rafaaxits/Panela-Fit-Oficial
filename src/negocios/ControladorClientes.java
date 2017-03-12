@@ -20,7 +20,7 @@ public class ControladorClientes {
 		    }
 	}
 	
-	public void cadastrar(Cliente cliente) throws ClienteJaExisteException, ClienteNaoExisteException, ClienteInvalidoException {
+	public void cadastrar(Cliente cliente) throws ClienteJaExisteException, ClienteInvalidoException {
 		if(cliente == null) {
 			throw new ClienteInvalidoException ();
 		} else {

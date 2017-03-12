@@ -8,7 +8,7 @@ public class ClienteJaExisteException extends Exception{
 	private int codigo;
 
 	  public ClienteJaExisteException(int codigo) {
-	    super("J� existe um cliente cadastrado com o codigo '" + codigo + "'.");
+	    super("Já existe um cliente cadastrado com o codigo '" + codigo + "'.");
 	    this.codigo = codigo;
 	  }
 
