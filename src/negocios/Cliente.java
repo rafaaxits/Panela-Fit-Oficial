@@ -1,5 +1,7 @@
 package negocios;
 
+import exceptions.ClienteInvalidoException;
+
 public class Cliente extends Pessoa{
 	/**
 	 * 
@@ -10,7 +12,7 @@ public class Cliente extends Pessoa{
 	 */
 	private int codigo;
 	
-	public Cliente(int codigo, String nome, String cpf, int idade, String endereco, String telefone){
+	public Cliente(int codigo, String nome, String cpf, int idade, String endereco, String telefone) throws ClienteInvalidoException{
 		super(nome, cpf, idade, endereco, telefone);
 		this.codigo = codigo;
 	}

@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,28 +24,42 @@ import negocios.PanelaFit;
 
 
 public class PanelaFitPaneController {
-		
+	private PanelaFitApp panelaFitApp;
 	@FXML Button butCliente;
 	@FXML Button butX;
-	public void Cliente(ActionEvent event){
-		((Node) event.getSource()).getScene().getWindow().hide();
-		Parent parent;
+	
+	@FXML
+	public void initialize()throws Exception{
+		this.panelaFitApp = PanelaFitApp.getInstance();
+	}
+	
+		public void telaCliente(ActionEvent event){
+		Parent root;
+		Stage stage;
 			try{
-				parent = FXMLLoader.load(getClass()
-				          .getResource("ClienteTela.fxml"));
-				Stage stage3 = new Stage();
-			      Scene cena = new Scene(parent);
-			      stage3.setScene(cena);
-			      stage3.show();
+				if(event.getSource()==butCliente){
+					stage = (Stage) butCliente.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/GUI/ClienteTela.fxml"));
+				}else {
+					stage = (Stage) butCliente.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/GUI/PanelaFit.fxml"));
+				}
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-	}
-	
+		}	
+
 	public void sair(ActionEvent event){
 		((Node) event.getSource()).getScene().getWindow().hide();
 
 	}
 	
+	public void setApp(PanelaFitApp panelaFitApp){
+		this.panelaFitApp=panelaFitApp;
+	}
 	
 }

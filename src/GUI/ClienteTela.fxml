@@ -20,7 +20,7 @@
             <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" text="Remover" />
             <Button layoutX="204.0" layoutY="49.0" mnemonicParsing="false" text="Alterar" />
             <Button layoutX="281.0" layoutY="49.0" mnemonicParsing="false" text="Buscar" />
-            <Button layoutX="351.0" layoutY="49.0" mnemonicParsing="false" text="Listar" />
+            <Button layoutX="351.0" layoutY="49.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
             <TableView fx:id="tabelaClientes" layoutX="3.0" layoutY="289.0" onSort="#initialize" prefHeight="200.0" prefWidth="453.0">
               <columns>
                 <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />

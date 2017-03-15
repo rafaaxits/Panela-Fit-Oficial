@@ -2,6 +2,8 @@ package negocios;
 
 import java.io.Serializable;
 
+import exceptions.ClienteInvalidoException;
+
 public abstract class Pessoa implements Serializable {
 	/**
 	 * 
@@ -13,11 +15,11 @@ public abstract class Pessoa implements Serializable {
 	private String endereco;
 	private String telefone;
 	
-	public Pessoa(String nome, String cpf, int idade, String endereco, String telefone){
+	public Pessoa(String nome, String cpf, int idade, String endereco, String telefone) throws ClienteInvalidoException{
 		super();
-		this.nome = nome;
-		this.cpf = cpf;
-		this.idade = idade;
+		this.setNome(nome);;
+		this.setCpf(cpf);
+		this.setIdade(idade);
 		this.endereco = endereco;
 		this.telefone = telefone;
 	}
@@ -38,8 +40,12 @@ public abstract class Pessoa implements Serializable {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(String cpf) throws ClienteInvalidoException {
+		if(cpf.length() == 11){
 		this.cpf = cpf;
+		}else {
+			throw new ClienteInvalidoException ();
+		}
 	}
 
 	public int getIdade() {
@@ -62,8 +68,12 @@ public abstract class Pessoa implements Serializable {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
+	public void setTelefone(String telefone) throws ClienteInvalidoException {
+		if(telefone.length() >= 10 && telefone.length() <= 11){
 		this.telefone = telefone;
+		}else{
+			throw new ClienteInvalidoException();
+		}
 	}
 	
 	public boolean equals(Pessoa pessoa){

@@ -2,13 +2,14 @@ package negocios;
 import java.time.*;
 
 import dados.RepositorioProduto;
+import exceptions.ClienteInvalidoException;
 import dados.RepositorioCliente;
 import dados.RepositorioFornecedor;
 import dados.RepositorioFuncionario;
 import dados.RepositorioMateriaPrima;
 public class TEST {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClienteInvalidoException {
 		RepositorioCliente rep = new RepositorioCliente();
 		Cliente c1 = new Cliente(3,"Rafael", "10303577495", 19, "rua pedro antonio da silva", "997457748");
 		rep.inserir(c1);

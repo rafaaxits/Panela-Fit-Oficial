@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="208.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PopUpController">
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="140.0" layoutY="162.0" mnemonicParsing="false" onAction="#sair" text="Ok" />
+            <Button layoutX="312.0" layoutY="1.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#e40404" />
+            <Label fx:id="lblMensagem" layoutX="88.0" layoutY="69.0" prefHeight="62.0" prefWidth="163.0" text="Formatação Inválida" />
+            <ImageView fitHeight="65.0" fitWidth="65.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
