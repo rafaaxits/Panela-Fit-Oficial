@@ -26,7 +26,7 @@
                 <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="colunaCpf" prefWidth="75.0" text="CPF" />
                   <TableColumn fx:id="colunaIdade" prefWidth="75.0" text="Idade" />
-                  <TableColumn fx:id="colunaEndereço" prefWidth="75.0" text="Endereço" />
+                  <TableColumn fx:id="colunaEndereco" prefWidth="75.0" text="Endereço" />
                   <TableColumn fx:id="colunaTelefone" prefWidth="75.0" text="Telefone" />
                   <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="Código" />
                   <TableColumn fx:id="colunaNivel" prefWidth="75.0" text="Nível" />
@@ -45,7 +45,7 @@
             <Label layoutX="9.0" layoutY="266.0" text="Código:" />
             <TextField fx:id="txtNomeFuncionario" layoutX="77.0" layoutY="79.0" prefHeight="27.0" prefWidth="297.0" />
             <TextField fx:id="txtCpfFuncionario" layoutX="77.0" layoutY="111.0" prefHeight="27.0" prefWidth="297.0" />
-            <TextField fx:id="txtEndereçoFuncionario" layoutX="76.0" layoutY="185.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtEnderecoFuncionario" layoutX="76.0" layoutY="185.0" prefHeight="27.0" prefWidth="297.0" />
             <TextField fx:id="txtTelefoneFuncionario" layoutX="76.0" layoutY="224.0" prefHeight="27.0" prefWidth="297.0" />
             <TextField fx:id="txtCodigoFuncionario" layoutX="76.0" layoutY="261.0" prefHeight="27.0" prefWidth="297.0" />
             <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />

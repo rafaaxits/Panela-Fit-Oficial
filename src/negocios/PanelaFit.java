@@ -134,6 +134,14 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.listarFuncionarios();
 	}
 	
+	public boolean existeFuncionario(int codigo){
+		boolean alt = false;
+		if(this.funcionarios.existe(codigo)==true){
+			alt = true;
+		}
+		return alt;
+	}
+	
 	//MATERIAPRIMA
 	
 	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{

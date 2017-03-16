@@ -126,7 +126,8 @@ public class FuncionarioPaneController {
 		
 		validateFields();
 		
-		if(!nome.equals("") && !cpf.equals("") && !idade.equals("") && !endereco.equals("") && !telefone.equals("") && !nivel.equals("") && !codigo.equals("")) {
+		if(!nome.equals("") && !cpf.equals("") && !idade.equals("")
+				&& !endereco.equals("") && !telefone.equals("") && !nivel.equals("") && !codigo.equals("")) {
 			try {
 				Funcionario aux = new Funcionario(nivel, codigo, nome, cpf, idade,  endereco, telefone);
 				validateAttributes(aux);
@@ -153,10 +154,20 @@ public class FuncionarioPaneController {
 				tabelaFuncionarios.getItems().remove(tabelaFuncionarios.getSelectionModel().getSelectedIndex());
 				limparForm();
 				refreshTable();
-			}else {
+			} else if(funcionarioSelecionado == null && !txtCodigoFuncionario.getText().isEmpty()){
+				Integer code = new Integer (txtCodigoFuncionario.getText());
+				if(panelaFit.existeFuncionario(code)==true){
+					Funcionario aux = panelaFit.buscarFuncionario(code);
+					panelaFit.removerFuncionario(aux);
+					refreshTable();
+					lblMensagem.setText("Funcionario Removido");
+				}
+				
+			}
+			else {
 				 Alert alert = new Alert(AlertType.WARNING);
 		            alert.initOwner(panelaFitApp.getPrimaryStage());
-		            alert.setTitle("Sem seleção");
+		            alert.setTitle("Sem seleï¿½ï¿½o");
 		            alert.setHeaderText("Nenhuma conta selecionada");
 		            alert.setContentText("Por favor, selecione uma conta na tabela.");
 
@@ -182,7 +193,7 @@ public class FuncionarioPaneController {
 			try{
 				Funcionario aux = new Funcionario(nivel, codigo, nome, cpf, idade, endereco, telefone);
 				validateAttributes(aux);
-				panelaFit.alterarFuncionario(aux);;
+				panelaFit.alterarFuncionario(aux);
 				refreshTable();
 				limparForm();
 				lblMensagem.setText("Funcionario aletrado");
@@ -197,7 +208,7 @@ public class FuncionarioPaneController {
 		
 	}
 	
-	public void setDadis(ObservableList<Funcionario> dadosFuncionario){
+	public void setDados(ObservableList<Funcionario> dadosFuncionario){
 		tabelaFuncionarios.setItems(dadosFuncionario);
 	}
 	
@@ -207,7 +218,7 @@ public class FuncionarioPaneController {
 		colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaCpf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
 		colunaIdade.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("idade"));
-		colunaEndereco.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndereco()));
+		colunaEndereco.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
 		colunaTelefone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefone()));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("codigo"));
 		colunaNivel.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nivel"));		
@@ -225,7 +236,7 @@ public class FuncionarioPaneController {
 		txtTelefoneFuncionario.clear();
 		txtCodigoFuncionario.clear();
 		txtNivelFuncionario.clear();
-		
+		txtCodigoFuncionario.editableProperty().set(true);
 	}
 	
 	private void validateAttributes(Funcionario funcionario) throws ValidationException {
@@ -303,6 +314,7 @@ public class FuncionarioPaneController {
         txtCodigoFuncionario.setText(codigo.toString());
         txtNivelFuncionario.setText(nivel.toString());
         txtIdadeFuncionario.setText(idade.toString());
+        txtCodigoFuncionario.editableProperty().set(false);
 	}
 	
 	@FXML 

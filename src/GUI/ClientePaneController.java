@@ -47,7 +47,7 @@ public class ClientePaneController {
 	private TextField txtIdadeCliente;
 	
 	@FXML
-	private TextField txtEndereçoCliente;
+	private TextField txtEnderecoCliente;
 	
 	@FXML
 	private TextField txtTelefoneCliente;
@@ -69,7 +69,7 @@ public class ClientePaneController {
 	TableColumn<Cliente,String> colunaIdade;
 	
 	@FXML
-	TableColumn<Cliente,String> colunaEndereço;
+	TableColumn<Cliente,String> colunaEndereco;
 	
 	@FXML
 	TableColumn<Cliente,String> colunaTelefone;
@@ -104,7 +104,7 @@ public class ClientePaneController {
 				Integer idade = new Integer (txtIdadeCliente.getText());
 				nome=txtNomeCliente.getText();
 				cpf=txtCpfCliente.getText();
-				end=txtEndereçoCliente.getText();
+				end=txtEnderecoCliente.getText();
 				telefone=txtTelefoneCliente.getText();
 				
 				validateFields();
@@ -166,7 +166,7 @@ public class ClientePaneController {
 		Integer idade = new Integer (txtIdadeCliente.getText());
 		nome=txtNomeCliente.getText();
 		cpf=txtCpfCliente.getText();
-		end=txtEndereçoCliente.getText();
+		end=txtEnderecoCliente.getText();
 		telefone=txtTelefoneCliente.getText();
 		if(!nome.equals("") && !cpf.equals("") && !idade.equals("") && 
 				!end.equals("") && !telefone.equals("") && !codigo.equals("")){
@@ -198,7 +198,7 @@ public class ClientePaneController {
 		colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaCpf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
 		colunaIdade.setCellValueFactory(new PropertyValueFactory<Cliente,String>("idade"));
-		colunaEndereço.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndereco()));
+		colunaEndereco.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndereco()));
 		colunaTelefone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefone()));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Cliente,String>("codigo"));
 		
@@ -212,7 +212,7 @@ public class ClientePaneController {
 		txtNomeCliente.clear();
 		txtCpfCliente.clear();
 		txtIdadeCliente.clear();
-		txtEndereçoCliente.clear();
+		txtEnderecoCliente.clear();
 		txtTelefoneCliente.clear();
 		txtCodigoCliente.clear();
         txtCodigoCliente.editableProperty().set(true);
@@ -255,7 +255,7 @@ public class ClientePaneController {
 			Integer idade = new Integer (txtIdadeCliente.getText());
 			nome=txtNomeCliente.getText();
 			cpf=txtCpfCliente.getText();
-			end=txtEndereçoCliente.getText();
+			end=txtEnderecoCliente.getText();
 			telefone=txtTelefoneCliente.getText();
 		} catch(NumberFormatException e){
 			e.getMessage();
@@ -279,7 +279,7 @@ public class ClientePaneController {
 			Integer idade = c.getIdade(); 
 			txtNomeCliente.setText(c.getNome());
 	        txtCpfCliente.setText(c.getCpf());
-	        txtEndereçoCliente.setText(c.getEndereco());
+	        txtEnderecoCliente.setText(c.getEndereco());
 	        txtTelefoneCliente.setText(c.getTelefone());
 	        txtCodigoCliente.setText(codigo.toString());
 	        txtIdadeCliente.setText(idade.toString());
@@ -298,7 +298,7 @@ public class ClientePaneController {
 					Integer idade = c.getIdade(); 
 					txtNomeCliente.setText(c.getNome());
 			        txtCpfCliente.setText(c.getCpf());
-			        txtEndereçoCliente.setText(c.getEndereco());
+			        txtEnderecoCliente.setText(c.getEndereco());
 			        txtTelefoneCliente.setText(c.getTelefone());
 			        txtCodigoCliente.setText(codigo.toString());
 			        txtIdadeCliente.setText(idade.toString());

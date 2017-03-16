@@ -79,6 +79,14 @@ public class ControladorFuncionarios {
 		}
 	}
 	
+	public boolean existe(int codigo){
+		boolean alt = false;
+			if(repositorio.existe(codigo)==true){
+				alt=true;
+			}
+		return alt;
+	}
+	
 	public List<Funcionario> listarFuncionarios(){
 		return this.repositorio.listar();
 	}

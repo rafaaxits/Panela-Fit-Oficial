@@ -102,4 +102,6 @@ public interface IPanelaFit {
 	
 	//EXISTIR
 	public boolean existeCliente(int codigo);
+	
+	public boolean existeFuncionario(int codigo);
 }

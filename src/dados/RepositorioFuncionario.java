@@ -100,14 +100,16 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	
 	public boolean alterar(Funcionario novoFuncionario) {
 		boolean alt=false;	
+		ArrayList<Funcionario> listaRemovidos = new ArrayList<Funcionario>();
 		for(Funcionario funcionario : listaFuncionarios){
 			if(funcionario.getCodigo() == novoFuncionario.getCodigo()){
-				listaFuncionarios.remove(funcionario);
-					listaFuncionarios.add(novoFuncionario);
+				listaRemovidos.add(funcionario);
 						alt = true;
 				}
 			}
-			return alt;
+			listaFuncionarios.removeAll(listaRemovidos);
+				listaFuncionarios.add(novoFuncionario);
+		return alt;
 	}
 	
 	public Funcionario buscar(int codigo) {
