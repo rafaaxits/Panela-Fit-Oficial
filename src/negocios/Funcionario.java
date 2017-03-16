@@ -1,6 +1,6 @@
 package negocios;
 
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 
 public class Funcionario extends Pessoa {
 	/**
@@ -11,7 +11,7 @@ public class Funcionario extends Pessoa {
 	private int codigo;
 
 	
-	public Funcionario(int nivel, int codigo, String nome, String cpf, int idade, String endereco, String telefone) throws ClienteInvalidoException{
+	public Funcionario(int nivel, int codigo, String nome, String cpf, int idade, String endereco, String telefone) throws FormatacaoInvalidaException{
 		super(nome, cpf, idade, endereco, telefone);
 		this.nivel = nivel;
 		this.codigo = codigo;

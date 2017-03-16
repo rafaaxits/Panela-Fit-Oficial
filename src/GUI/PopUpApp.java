@@ -43,7 +43,7 @@ public class PopUpApp  extends Application{
 			
 			this.rootScene.setCenter(pane);
 			PopUpController popUpController = loader.getController();
-			popUpController.setApp(this);
+			popUpController.setPopUp(this);
 		}catch(IOException e){
 			e.printStackTrace();
 		}

@@ -3,20 +3,20 @@ package negocios;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import exceptions.ClienteNaoExisteException;
 
 public class TesteFachada {
 
-	public static void main(String[] args) throws ClienteInvalidoException  {
+	public static void main(String[] args) throws FormatacaoInvalidaException  {
 		IPanelaFit panelaFit = PanelaFit.getInstance();
 		
 		//CLIENTES
 		
-		Cliente c1 = new Cliente(8, "fulano", "13243677", 23, "Rua Jose Bras", "997755432");
-		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
-		Cliente c4 = new Cliente(7, "cicrano", "554433677", 19, "Rua Jose Bras", "34322111");
-		Cliente c5 = new Cliente(0, "0", "0" ,0, "0", "0");
+		Cliente c1 = new Cliente(8, "fulano", "11132436717", 23, "Rua Jose Bras", "81997755432");
+		Cliente c2 = new Cliente(8, "jailton", "55976332677", 54, "Av bernardo vieira", "8795300999");
+		Cliente c4 = new Cliente(7, "cicrano", "55443367677", 19, "Rua Jose Bras", "349221119");
+		Cliente c5 = null;
 		System.out.println("" +panelaFit.listarClientes());
 
 		try {
@@ -117,11 +117,11 @@ public class TesteFachada {
 		
 		//FUNCION�RIOS
 		
-		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
-		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
+		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "9873743821");
+		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "9834726731");
 		Funcionario f4 = null;
-		Funcionario f5 = new Funcionario(9,4,"testinho", "392392838932", 65, "Rua ali perto", "3278232");
-		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "73643647");
+		Funcionario f5 = new Funcionario(9,4,"testinho", "39239283892", 65, "Rua ali perto", "3777278232");
+		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "7364364227");
 		try{
 			panelaFit.cadastrarFuncionario(f4); //tentando cadastrar um funcionario nulo e a exception apareceu
 		}catch(Exception e){

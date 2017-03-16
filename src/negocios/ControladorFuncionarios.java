@@ -3,7 +3,7 @@ package negocios;
 import dados.IRepositorioFuncionario;
 import exceptions.FuncionarioNaoExisteException;
 import exceptions.FuncionarioJaExisteException;
-import exceptions.FuncionarioInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import java.util.List;
 
 public class ControladorFuncionarios {
@@ -20,9 +20,9 @@ public class ControladorFuncionarios {
 		    }
 	}
 	
-	public void cadastrar(Funcionario funcionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
+	public void cadastrar(Funcionario funcionario) throws FuncionarioJaExisteException, FormatacaoInvalidaException{
 		if(funcionario == null) {
-			throw new FuncionarioInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} else {
 			if(this.repositorio.existe(funcionario.getCodigo()) == false) {
 				this.repositorio.inserir(funcionario);
@@ -41,9 +41,9 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public void remover(Funcionario funcionario) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
+	public void remover(Funcionario funcionario) throws FuncionarioNaoExisteException, FormatacaoInvalidaException{
 		if(funcionario == null) {
-			throw new FuncionarioInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} 
 		else if(this.repositorio.funcionarioContem(funcionario) == true) {
 				this.repositorio.remover(funcionario.getCodigo());	
@@ -54,9 +54,9 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public void alterar(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FuncionarioInvalidoException{
+	public void alterar(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FormatacaoInvalidaException{
 		if(novoFuncionario == null) {
-			throw new FuncionarioInvalidoException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.funcionarioContem(novoFuncionario) == true) {
 			throw new FuncionarioJaExisteException(novoFuncionario.getCodigo());

@@ -11,13 +11,12 @@ import dados.RepositorioProduto;
 import dados.RepositorioVenda;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
 import exceptions.FornecedorInvalidoException;
 import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.FuncionarioInvalidoException;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
 import exceptions.MateriaPrimaInvalidaException;
@@ -55,12 +54,12 @@ public class PanelaFit implements IPanelaFit{
 	
 	//CLIENTES
 	
-	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, ClienteInvalidoException {
+	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, FormatacaoInvalidaException {
 		this.clientes.cadastrar(c);
 		
 	}
 	
-	public void removerCliente(Cliente c) throws ClienteNaoExisteException, ClienteInvalidoException {
+	public void removerCliente(Cliente c) throws ClienteNaoExisteException, FormatacaoInvalidaException {
 		this.clientes.remover(c);
 	}
 	
@@ -68,7 +67,7 @@ public class PanelaFit implements IPanelaFit{
 		return clientes.buscar(codigo);
 	}
 	
-	public void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException {
+	public void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException {
 		this.clientes.alterar(novoCliente);
 	}
 	
@@ -103,11 +102,11 @@ public class PanelaFit implements IPanelaFit{
 	}
 	//FUNCIONARIO
 	
-	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
+	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FormatacaoInvalidaException {
 		this.funcionarios.cadastrar(f);
 	}
 	
-	public void removerFuncionario(Funcionario f) throws FuncionarioNaoExisteException, FuncionarioInvalidoException{
+	public void removerFuncionario(Funcionario f) throws FuncionarioNaoExisteException, FormatacaoInvalidaException{
 		this.funcionarios.remover(f);
 	}
 	
@@ -115,7 +114,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.buscar(codigo);
 	}
 	
-	public void alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FuncionarioInvalidoException {
+	public void alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FormatacaoInvalidaException{
 		this.funcionarios.alterar(novoFuncionario);
 	}
 	

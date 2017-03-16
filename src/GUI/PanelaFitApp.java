@@ -53,6 +53,10 @@ public class PanelaFitApp extends Application {
 		}
 	}
 	
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+	
 	public void changeStage(Stage stage){
 		this.primaryStage = stage;
 	}

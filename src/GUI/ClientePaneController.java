@@ -9,8 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,15 +20,19 @@ import javafx.stage.Stage;
 import negocios.Cliente;
 import negocios.PanelaFit;
 import java.io.IOException;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javax.xml.bind.ValidationException;
-
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import exceptions.ClienteNaoExisteException;
 import exceptions.ClienteJaExisteException;
-public class ClienteTelaController {
+public class ClientePaneController {
 		
 	private PanelaFit panelaFit;
+	
+	private PanelaFitApp panelaFitApp;
+	@FXML 
+	Button butCadastrar;
 	
 	@FXML
 	private Label lblMensagem;
@@ -91,10 +96,9 @@ public class ClienteTelaController {
 			      stage3.show();
 			}catch(IOException e){
 				lblMensagem.setText(e.getMessage());
-			}
-			
-}	
-		public void cadastrarCliente() throws ValidationException, IOException {
+			}			
+	}	
+	public void cadastrarCliente() throws ValidationException, IOException {
 				String nome, cpf, end, telefone;
 				Integer codigo = new Integer (txtCodigoCliente.getText());
 				Integer idade = new Integer (txtIdadeCliente.getText());
@@ -114,7 +118,7 @@ public class ClienteTelaController {
 						refreshTable();
 						limparForm();
 						lblMensagem.setText("Cliente cadastrado");
-					}catch(ClienteInvalidoException e){//Esta excecao nao esta funcionando
+					}catch(FormatacaoInvalidaException e){//funcionando
 						lblMensagem.setText(e.getMessage());
 					}catch(ClienteJaExisteException e){
 						lblMensagem.setText(e.getMessage());
@@ -122,7 +126,56 @@ public class ClienteTelaController {
 					}
 			}	
 	}
-			
+	public void removerCliente() throws FormatacaoInvalidaException{
+			try{
+				Cliente clienteSelecionado = tabelaClientes.getSelectionModel().getSelectedItem();
+				if(clienteSelecionado != null){
+					panelaFit.removerCliente(clienteSelecionado);
+					lblMensagem.setText("Cliente Removido");
+					tabelaClientes.getItems().remove(tabelaClientes.getSelectionModel().getSelectedIndex());
+					limparForm();
+					refreshTable();
+				}else {
+					 Alert alert = new Alert(AlertType.WARNING);
+			            alert.initOwner(panelaFitApp.getPrimaryStage());
+			            alert.setTitle("Sem seleção");
+			            alert.setHeaderText("Nenhuma conta selecionada");
+			            alert.setContentText("Por favor, selecione uma conta na tabela.");
+
+			            alert.showAndWait();
+				}
+			}catch(ClienteNaoExisteException e){
+				lblMensagem.setText(e.getMessage());
+			}
+		}
+		
+	public void alterarCliente() throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException, ValidationException{
+		String nome, cpf, end, telefone;
+		Integer codigo = new Integer (txtCodigoCliente.getText());
+		Integer idade = new Integer (txtIdadeCliente.getText());
+		nome=txtNomeCliente.getText();
+		cpf=txtCpfCliente.getText();
+		end=txtEndereçoCliente.getText();
+		telefone=txtTelefoneCliente.getText();
+		
+		if(!nome.equals("") && !cpf.equals("") && !idade.equals("") && 
+				!end.equals("") && !telefone.equals("") && !codigo.equals("")){
+			try{
+				Cliente aux = new Cliente(codigo, nome, cpf, idade, end, telefone);
+				validateAttributes(aux);
+				panelaFit.alterarCliente(aux);;
+				refreshTable();
+				limparForm();
+				lblMensagem.setText("Cliente aletrado");
+			}catch(FormatacaoInvalidaException e){//funcionando
+				lblMensagem.setText(e.getMessage());
+			}catch(ClienteJaExisteException e){
+				lblMensagem.setText(e.getMessage());
+			}catch(ClienteNaoExisteException e){
+				lblMensagem.setText(e.getMessage());
+			}
+		}
+	}
 	public void setDados(ObservableList<Cliente> dadosCliente){
 				tabelaClientes.setItems(dadosCliente);
 	}
@@ -183,26 +236,62 @@ public class ClienteTelaController {
 	
 	private void validateFields() throws IOException{
 		Parent root;
-		Stage stage = null;
+		Stage stage;
 		try{
-		String nome, cpf, end, telefone;
-		Integer codigo = new Integer (txtCodigoCliente.getText());
-		Integer idade = new Integer (txtIdadeCliente.getText());
-		nome=txtNomeCliente.getText();
-		cpf=txtCpfCliente.getText();
-		end=txtEndereçoCliente.getText();
-		telefone=txtTelefoneCliente.getText();
+			String nome, cpf, end, telefone;
+			Integer	codigo = new Integer (txtCodigoCliente.getText());
+			Integer idade = new Integer (txtIdadeCliente.getText());
+			nome=txtNomeCliente.getText();
+			cpf=txtCpfCliente.getText();
+			end=txtEndereçoCliente.getText();
+			telefone=txtTelefoneCliente.getText();
 		} catch(NumberFormatException e){
-			 e.getMessage();
-			 root = FXMLLoader.load(getClass().getResource("/GUI/PopUpTela.fxml"));
+			e.getMessage();
+			stage = (Stage) butCadastrar.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("/GUI/PopUpTela.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 		}
 		
 	}
+	@FXML
 	private void refreshTable(){
 		data = FXCollections.observableArrayList();
 		data.addAll(panelaFit.listarClientes());
 		tabelaClientes.setItems(data);
+	}
+	@FXML
+	public void selecionarCliente(MouseEvent arg0) {
+	        Cliente c = tabelaClientes.getSelectionModel().getSelectedItem();
+	        Integer codigo = c.getCodigo();
+			Integer idade = c.getIdade(); 
+			txtNomeCliente.setText(c.getNome());
+	        txtCpfCliente.setText(c.getCpf());
+	        txtEndereçoCliente.setText(c.getEndereco());
+	        txtTelefoneCliente.setText(c.getTelefone());
+	        txtCodigoCliente.setText(codigo.toString());
+	        txtIdadeCliente.setText(idade.toString());
+	       
+	    }
+	
+	@FXML
+	public void buscarCliente() throws ClienteNaoExisteException{
+		Cliente c;
+		Integer code = new Integer(txtCodigoCliente.getText());
+			if(!code.toString().trim().isEmpty()){
+				try{
+					c = panelaFit.buscarCliente(code);
+					Integer codigo = c.getCodigo();
+					Integer idade = c.getIdade(); 
+					txtNomeCliente.setText(c.getNome());
+			        txtCpfCliente.setText(c.getCpf());
+			        txtEndereçoCliente.setText(c.getEndereco());
+			        txtTelefoneCliente.setText(c.getTelefone());
+			        txtCodigoCliente.setText(codigo.toString());
+			        txtIdadeCliente.setText(idade.toString());
+				}catch(ClienteNaoExisteException e){
+					lblMensagem.setText(e.getMessage());
+				}
+			}
 	}
 }

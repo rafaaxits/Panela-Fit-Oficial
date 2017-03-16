@@ -4,7 +4,7 @@ import java.util.List;
 import dados.IRepositorioCliente;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 
 public class ControladorClientes {
 	IRepositorioCliente repositorio;
@@ -20,9 +20,9 @@ public class ControladorClientes {
 		    }
 	}
 	
-	public void cadastrar(Cliente cliente) throws ClienteJaExisteException, ClienteInvalidoException {
+	public void cadastrar(Cliente cliente) throws ClienteJaExisteException, FormatacaoInvalidaException {
 		if(cliente == null) {
-			throw new ClienteInvalidoException ();
+			throw new FormatacaoInvalidaException ();
 		} else {
 			if(this.repositorio.existe(cliente.getCodigo()) == false) {
 			this.repositorio.inserir(cliente);	
@@ -41,9 +41,9 @@ public class ControladorClientes {
 		}
 	}
 	
-	public void remover(Cliente cliente) throws ClienteNaoExisteException, ClienteInvalidoException {
+	public void remover(Cliente cliente) throws ClienteNaoExisteException, FormatacaoInvalidaException {
 	if(cliente == null){
-		throw new ClienteInvalidoException();
+		throw new FormatacaoInvalidaException();
 	}
 	else if(this.repositorio.clienteContem(cliente) == true){
 			this.repositorio.remover(cliente.getCodigo());	
@@ -54,9 +54,9 @@ public class ControladorClientes {
 	}
 }
 	
-	public void alterar(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, ClienteInvalidoException{
+	public void alterar(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException{
 		if(novoCliente == null) {
-			throw new ClienteInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} 
 		else if (this.repositorio.clienteContem(novoCliente)==true) {
 			throw new ClienteJaExisteException(novoCliente.getCodigo());

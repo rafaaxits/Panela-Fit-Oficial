@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import dados.RepositorioVenda;
-import exceptions.ClienteInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 
 public class TesteVenda {
 
-	public static void main(String[] args) throws ClienteInvalidoException {
+	public static void main(String[] args) throws FormatacaoInvalidaException {
 		LocalDate d1 = LocalDate.of(2016, 9, 23);
 		LocalDate val1 = LocalDate.of(2018, 9, 23);
 		LocalDate fab1 = LocalDate.of(2018, 10, 20);

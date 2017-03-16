@@ -24,7 +24,7 @@
             <Button layoutX="357.0" layoutY="420.0" mnemonicParsing="false" text="Vendas" />
             <Button fx:id="butCliente" layoutX="96.0" layoutY="379.0" mnemonicParsing="false" onAction="#telaCliente" text="Clientes" />
             <Button layoutX="214.0" layoutY="379.0" mnemonicParsing="false" text="Fornecedores" />
-            <Button layoutX="96.0" layoutY="420.0" mnemonicParsing="false" text="Funcionários" />
+            <Button fx:id="butFuncionario" layoutX="96.0" layoutY="420.0" mnemonicParsing="false" onAction="#telaFuncionario" text="Funcionários" />
             <Button layoutX="214.0" layoutY="420.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="113.0" text="Matéria-primas" />
             <Button layoutX="356.0" layoutY="379.0" mnemonicParsing="false" text="Produtos" />
             <Label layoutX="141.0" layoutY="339.0" prefHeight="28.0" prefWidth="233.0" text="Selecione um menu ">

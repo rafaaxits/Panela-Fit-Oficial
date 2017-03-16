@@ -12,7 +12,7 @@ public class PopUpController {
 	
 	private PopUpApp popUpApp;
 	
-	public void setApp(PopUpApp popUpApp){
+	public void setPopUp(PopUpApp popUpApp){
 		this.popUpApp=popUpApp;
 	}
 	public void sair(ActionEvent event){
