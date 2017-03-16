@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FornecedorPaneController">
+   <center>
+      <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="107.0" layoutX="441.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="28.0" layoutY="49.0" mnemonicParsing="false" text="Cadastrar" />
+            <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" text="Remover" />
+            <Button layoutX="204.0" layoutY="49.0" mnemonicParsing="false" text="Alterar" />
+            <Button layoutX="281.0" layoutY="49.0" mnemonicParsing="false" text="Buscar" />
+            <Button layoutX="351.0" layoutY="49.0" mnemonicParsing="false" text="Limpar" />
+            <TableView layoutX="3.0" layoutY="289.0" prefHeight="200.0" prefWidth="453.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Nome" />
+                  <TableColumn prefWidth="75.0" text="Endereço" />
+                  <TableColumn prefWidth="75.0" text="Telefone" />
+                  <TableColumn prefWidth="75.0" text="Código" />
+              </columns>
+            </TableView>
+            <Label layoutX="163.0" layoutY="24.0" text="Forncededores">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="93.0" text="Nome:" />
+            <Label layoutX="9.0" layoutY="140.0" text="Endereço:" />
+            <Label layoutX="11.0" layoutY="201.0" text="Telefone:" />
+            <Label layoutX="9.0" layoutY="258.0" text="Código:" />
+            <TextField layoutX="77.0" layoutY="88.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField layoutX="77.0" layoutY="135.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField layoutX="76.0" layoutY="196.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField layoutX="77.0" layoutY="253.0" prefHeight="27.0" prefWidth="297.0" />
+            <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
+            <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
+            <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
