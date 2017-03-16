@@ -135,7 +135,26 @@ public class ClientePaneController {
 					tabelaClientes.getItems().remove(tabelaClientes.getSelectionModel().getSelectedIndex());
 					limparForm();
 					refreshTable();
-				}else {
+				}else if(clienteSelecionado == null && !txtCodigoCliente.getText().isEmpty()){
+					Integer code = new Integer (txtCodigoCliente.getText());
+					if(panelaFit.existeCliente(code)==true){
+						
+					String nome, cpf, end, telefone;
+					Integer codigo = new Integer (txtCodigoCliente.getText());
+					Integer idade = new Integer (txtIdadeCliente.getText());
+					nome=txtNomeCliente.getText();
+					cpf=txtCpfCliente.getText();
+					end=txtEndereçoCliente.getText();
+					telefone=txtTelefoneCliente.getText();
+					Cliente aux = new Cliente(codigo,nome,cpf,idade, end, telefone);
+					panelaFit.removerCliente(aux);
+					lblMensagem.setText("Cliente Removido");
+					tabelaClientes.getItems().remove(tabelaClientes.getSelectionModel().getSelectedIndex());
+					limparForm();
+					refreshTable();
+					}
+				}
+				else {
 					 Alert alert = new Alert(AlertType.WARNING);
 			            alert.initOwner(panelaFitApp.getPrimaryStage());
 			            alert.setTitle("Sem seleção");
@@ -157,7 +176,6 @@ public class ClientePaneController {
 		cpf=txtCpfCliente.getText();
 		end=txtEndereçoCliente.getText();
 		telefone=txtTelefoneCliente.getText();
-		
 		if(!nome.equals("") && !cpf.equals("") && !idade.equals("") && 
 				!end.equals("") && !telefone.equals("") && !codigo.equals("")){
 			try{
@@ -205,6 +223,8 @@ public class ClientePaneController {
 		txtEndereçoCliente.clear();
 		txtTelefoneCliente.clear();
 		txtCodigoCliente.clear();
+        txtCodigoCliente.editableProperty().set(true);
+
     }
 	
 	private void validateAttributes(Cliente cliente) throws ValidationException{
@@ -271,6 +291,7 @@ public class ClientePaneController {
 	        txtTelefoneCliente.setText(c.getTelefone());
 	        txtCodigoCliente.setText(codigo.toString());
 	        txtIdadeCliente.setText(idade.toString());
+	        txtCodigoCliente.editableProperty().set(false);
 	       
 	    }
 	

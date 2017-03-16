@@ -100,14 +100,16 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 		
 	}
 	public boolean alterar(Cliente novoCliente) {
+		ArrayList<Cliente> listaRemovidos = new ArrayList<Cliente>();
 		boolean alt = false;
 			for(Cliente cliente : listaClientes){
 				if(cliente.getCodigo() == novoCliente.getCodigo()) {
-					listaClientes.remove(cliente);
-						listaClientes.add(novoCliente);
+					listaRemovidos.add(cliente);
 							alt = true;
 					}
 				}
+			listaClientes.removeAll(listaRemovidos);
+				listaClientes.add(novoCliente);
 			return alt;
 	}
 	

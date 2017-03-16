@@ -75,6 +75,14 @@ public class PanelaFit implements IPanelaFit{
 		return this.clientes.listaClientes();
 	}
 	
+	public boolean existeCliente(int codigo){
+		boolean alt=false;
+		if(this.clientes.existe(codigo)==true){
+			alt=true;
+		}
+		return alt;
+	}
+	
 	//FORNECEDORES
 	
 	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{

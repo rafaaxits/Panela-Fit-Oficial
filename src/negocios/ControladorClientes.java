@@ -70,6 +70,15 @@ public class ControladorClientes {
 		}
 		
 }
+	public boolean existe(int codigo){
+		boolean alt=false;
+			if(repositorio.existe(codigo)==true){
+				alt=true;
+			}
+		return alt;
+		
+	}
+	
 	public List<Cliente> listaClientes(){
 		return this.repositorio.listar();
 	}

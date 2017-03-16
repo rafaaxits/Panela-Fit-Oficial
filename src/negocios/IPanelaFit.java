@@ -99,4 +99,7 @@ public interface IPanelaFit {
 	public LocalDate getDataValidade(int codigo)  throws ProdutoNaoExisteException;
 	
 	public void excluirVendas();
+	
+	//EXISTIR
+	public boolean existeCliente(int codigo);
 }
