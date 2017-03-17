@@ -16,24 +16,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import negocios.Cliente;
+import javafx.stage.StageStyle;
 import negocios.Funcionario;
 import negocios.PanelaFit;
-import java.io.IOException;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.event.ActionEvent;
 import javax.xml.bind.ValidationException;
 import javafx.scene.input.MouseEvent;
-
 import exceptions.FuncionarioJaExisteException;
-import exceptions.ClienteJaExisteException;
-import exceptions.ClienteNaoExisteException;
 import exceptions.FormatacaoInvalidaException;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.FuncionarioJaExisteException;
 
 public class FuncionarioPaneController {
 	
@@ -41,9 +34,7 @@ public class FuncionarioPaneController {
 	private Label lblMensagem;
 	
 	private PanelaFit panelaFit;
-	
-	private PanelaFitApp panelaFitApp;
-	
+		
 	@FXML 
 	Button butCadastrar;
 
@@ -115,20 +106,29 @@ public class FuncionarioPaneController {
 	}	
 	
 	public void cadastrarFuncionario() throws ValidationException, IOException, FuncionarioNaoExisteException {
-		String nome, cpf, endereco, telefone;
-		Integer idade = new Integer(txtIdadeFuncionario.getText());
-		Integer codigo = new Integer(txtCodigoFuncionario.getText());
-		Integer nivel = new Integer(txtNivelFuncionario.getText());
-		nome = txtNomeFuncionario.getText();
-		cpf = txtCpfFuncionario.getText();
-		endereco = txtEnderecoFuncionario.getText();
-		telefone = txtTelefoneFuncionario.getText();
 		
-		validateFields();
-		
-		if(!nome.equals("") && !cpf.equals("") && !idade.equals("")
-				&& !endereco.equals("") && !telefone.equals("") && !nivel.equals("") && !codigo.equals("")) {
+		if(validateFields()) {
 			try {
+				String nome, cpf, endereco, telefone;
+				Integer idade = new Integer(txtIdadeFuncionario.getText());
+				Integer codigo = new Integer(txtCodigoFuncionario.getText());
+				Integer nivel = new Integer(txtNivelFuncionario.getText());
+				nome = txtNomeFuncionario.getText();
+				cpf = txtCpfFuncionario.getText();
+				endereco = txtEnderecoFuncionario.getText();
+				telefone = txtTelefoneFuncionario.getText();
+				System.out.println(cpf);
+				cpf = cpf.replace(".", "");
+				System.out.println(cpf);
+				cpf = cpf.replace("-", "");
+				System.out.println(cpf);
+				System.out.println(telefone);
+				telefone = telefone.replace("(", "");
+				System.out.println(telefone);
+				telefone = telefone.replace(")", "");
+				System.out.println(telefone);
+				telefone = telefone.replace("-", "");
+				System.out.println(telefone);
 				Funcionario aux = new Funcionario(nivel, codigo, nome, cpf, idade,  endereco, telefone);
 				validateAttributes(aux);
 				panelaFit.cadastrarFuncionario(aux);
@@ -145,38 +145,52 @@ public class FuncionarioPaneController {
 		
 	}
 	
-	public void removerFuncionario() throws FormatacaoInvalidaException{
+	public void removerFuncionario() throws FormatacaoInvalidaException, IOException{
+		Funcionario funcionarioSelecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
+		if(funcionarioSelecionado != null){
 		try{
-			Funcionario funcionarioSelecionado = tabelaFuncionarios.getSelectionModel().getSelectedItem();
-			if(funcionarioSelecionado != null){
 				panelaFit.removerFuncionario(funcionarioSelecionado);
 				lblMensagem.setText("funcionario Removido");
 				tabelaFuncionarios.getItems().remove(tabelaFuncionarios.getSelectionModel().getSelectedIndex());
 				limparForm();
 				refreshTable();
-			} else if(funcionarioSelecionado == null && !txtCodigoFuncionario.getText().isEmpty()){
-				Integer code = new Integer (txtCodigoFuncionario.getText());
-				if(panelaFit.existeFuncionario(code)==true){
-					Funcionario aux = panelaFit.buscarFuncionario(code);
-					panelaFit.removerFuncionario(aux);
-					refreshTable();
-					lblMensagem.setText("Funcionario Removido");
-				}
-				
-			}
-			else {
-				 Alert alert = new Alert(AlertType.WARNING);
-		            alert.initOwner(panelaFitApp.getPrimaryStage());
-		            alert.setTitle("Sem sele��o");
-		            alert.setHeaderText("Nenhuma conta selecionada");
-		            alert.setContentText("Por favor, selecione uma conta na tabela.");
-
-		            alert.showAndWait();
+			 
+	}catch(FuncionarioNaoExisteException e){
+		lblMensagem.setText(e.getMessage());
+	}
+		}else {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Panela Fit");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+		}
+		if(funcionarioSelecionado == null && !txtCodigoFuncionario.getText().isEmpty()){
+			try{
+			Integer code = new Integer (txtCodigoFuncionario.getText());
+			if(panelaFit.existeFuncionario(code)==true){
+				Funcionario aux = panelaFit.buscarFuncionario(code);
+				panelaFit.removerFuncionario(aux);
+				refreshTable();
+				lblMensagem.setText("Funcionario Removido");
 			}
 		}catch(FuncionarioNaoExisteException e){
 			lblMensagem.setText(e.getMessage());
 		}
+	}	else{
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Panela Fit");
+        stage.setScene(new Scene(root1));  
+        stage.show();
 	}
+}
 	
 	public void alterarFuncionario() throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FormatacaoInvalidaException, ValidationException{
 		String nome, cpf, endereco, telefone;
@@ -237,6 +251,7 @@ public class FuncionarioPaneController {
 		txtCodigoFuncionario.clear();
 		txtNivelFuncionario.clear();
 		txtCodigoFuncionario.editableProperty().set(true);
+        txtCodigoFuncionario.setStyle(null);
 	}
 	
 	private void validateAttributes(Funcionario funcionario) throws ValidationException {
@@ -271,27 +286,29 @@ public class FuncionarioPaneController {
 		
 	}
 	
-	private void validateFields() throws IOException {
-		Parent root;
-		Stage stage;
+	private boolean validateFields() throws IOException {
+		boolean validate = false;
 		try{
-			String nome, cpf, endereco, telefone;
-			Integer idade = new Integer(txtIdadeFuncionario.getText());
-			Integer codigo = new Integer(txtCodigoFuncionario.getText());
-			Integer nivel = new Integer(txtNivelFuncionario.getText());
-			nome = txtNomeFuncionario.getText();
-			cpf = txtCpfFuncionario.getText();
-			endereco = txtEnderecoFuncionario.getText();
-			telefone = txtTelefoneFuncionario.getText();
+			if(txtNomeFuncionario.getText().isEmpty() || (txtCpfFuncionario.getText().isEmpty() || !txtCpfFuncionario.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) ||
+				txtTelefoneFuncionario.getText().isEmpty() /*txtTelefoneFuncionario.getText().matches("([0-9][0-9])[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")*/ || txtIdadeFuncionario.getText().isEmpty() || 
+				txtEnderecoFuncionario.getText().isEmpty() || txtCodigoFuncionario.getText().isEmpty() || txtNivelFuncionario.getText().isEmpty()){
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+	            Parent root1 = (Parent) fxmlLoader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.initStyle(StageStyle.UNDECORATED);
+	            stage.setTitle("Panela Fit");
+	            stage.setScene(new Scene(root1));  
+	            stage.show();
+			}else{
+				lblMensagem.setText("DEU");
+				validate = true;
+			}
 			
 		} catch(NumberFormatException e){
 			e.getMessage();
-			stage = (Stage) butCadastrar.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("/GUI/PopUpTela.fxml"));
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
 		}
-		
+		return validate;
 	}
 	
 	@FXML 
@@ -315,14 +332,16 @@ public class FuncionarioPaneController {
         txtNivelFuncionario.setText(nivel.toString());
         txtIdadeFuncionario.setText(idade.toString());
         txtCodigoFuncionario.editableProperty().set(false);
+        txtCodigoFuncionario.setStyle("-fx-background-color: grey;");
+
 	}
 	
 	@FXML 
-	public void buscarFuncionario() throws FuncionarioNaoExisteException {
+	public void buscarFuncionario() throws FuncionarioNaoExisteException, IOException {
 		Funcionario f;
-		Integer code = new Integer(txtCodigoFuncionario.getText());
-			if(!code.toString().trim().isEmpty()){
+			if(!txtCodigoFuncionario.getText().isEmpty()){
 				try{
+					Integer code = new Integer(txtCodigoFuncionario.getText());
 					f = panelaFit.buscarFuncionario(code);
 					Integer codigo = f.getCodigo();
 					Integer nivel = f.getNivel();
@@ -335,9 +354,20 @@ public class FuncionarioPaneController {
 			        txtCodigoFuncionario.setText(codigo.toString());
 			        txtNivelFuncionario.setText(nivel.toString());
 			        txtIdadeFuncionario.setText(idade.toString());
+			        txtCodigoFuncionario.editableProperty().set(false);
+			        txtCodigoFuncionario.setStyle("-fx-background-color: grey;");
 				}catch(FuncionarioNaoExisteException e){
 					lblMensagem.setText(e.getMessage());
 				}
+			} else{
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+	            Parent root1 = (Parent) fxmlLoader.load();
+	            Stage stage = new Stage();
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.initStyle(StageStyle.UNDECORATED);
+	            stage.setTitle("Panela Fit");
+	            stage.setScene(new Scene(root1));  
+	            stage.show();
 			}
 	}
 	

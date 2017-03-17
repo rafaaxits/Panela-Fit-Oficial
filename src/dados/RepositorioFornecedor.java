@@ -99,15 +99,17 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 	}
 	
 	public boolean alterar(Fornecedor novoFornecedor) {
+		ArrayList<Fornecedor> listaRemovidos = new ArrayList<Fornecedor>();
 		boolean alt = false;
 	for(Fornecedor fornecedor : listaFornecedores){	
 		if(fornecedor.getCodigo() == novoFornecedor.getCodigo()) {
-				listaFornecedores.remove(fornecedor);
-					listaFornecedores.add(novoFornecedor);				
+				listaRemovidos.add(fornecedor);				
 						alt = true;
 				}
 			}
-			return alt;
+			listaFornecedores.removeAll(listaRemovidos);
+				listaFornecedores.add(novoFornecedor);
+					return alt;
 }
 	
 	public Fornecedor buscar(int codigo) {

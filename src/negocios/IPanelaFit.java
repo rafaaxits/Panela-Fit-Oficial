@@ -6,7 +6,6 @@ import java.util.List;
 import exceptions.FormatacaoInvalidaException;
 import exceptions.ClienteJaExisteException;
 import exceptions.ClienteNaoExisteException;
-import exceptions.FornecedorInvalidoException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
 import exceptions.FuncionarioJaExisteException;
@@ -25,7 +24,7 @@ public interface IPanelaFit {
 	//CADASTRAR
 	public void cadastrarCliente(Cliente c) throws ClienteJaExisteException, FormatacaoInvalidaException;
 	
-	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException;
+	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FormatacaoInvalidaException;
 	
 	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FormatacaoInvalidaException;
 
@@ -38,7 +37,7 @@ public interface IPanelaFit {
 	//REMOVER
 	public void removerCliente(Cliente cliente) throws ClienteNaoExisteException, FormatacaoInvalidaException;
 	
-	public void removerFornecedor(Fornecedor fornecedor) throws FornecedorNaoExisteException,FornecedorInvalidoException;
+	public void removerFornecedor(Fornecedor fornecedor) throws FornecedorNaoExisteException,FormatacaoInvalidaException;
 	
 	public void removerFuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException, FormatacaoInvalidaException;
 	
@@ -64,7 +63,7 @@ public interface IPanelaFit {
 	//ALTERAR
 	public abstract void alterarCliente(Cliente novoCliente) throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException;
 	
-	public abstract void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException; 
+	public abstract void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException; 
 	
 	public abstract void alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FormatacaoInvalidaException;
 	
@@ -104,4 +103,6 @@ public interface IPanelaFit {
 	public boolean existeCliente(int codigo);
 	
 	public boolean existeFuncionario(int codigo);
+	
+	public boolean existeFornecedor(int codigo);
 }

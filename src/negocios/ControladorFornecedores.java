@@ -3,7 +3,7 @@ package negocios;
 import dados.IRepositorioFornecedor;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
-import exceptions.FornecedorInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import java.util.List;
 
 public class ControladorFornecedores {
@@ -20,9 +20,9 @@ public class ControladorFornecedores {
 		    }
 	}
 	
-	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
+	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException,  FormatacaoInvalidaException{
 		if(fornecedor == null) {
-			throw new FornecedorInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} else {
 			if(this.repositorio.existe(fornecedor.getCodigo()) == false) {
 			this.repositorio.inserir(fornecedor);	
@@ -42,9 +42,9 @@ public class ControladorFornecedores {
 		}
 	}
 	
-	public void remover(Fornecedor fornecedor) throws FornecedorNaoExisteException, FornecedorInvalidoException{
+	public void remover(Fornecedor fornecedor) throws FornecedorNaoExisteException, FormatacaoInvalidaException{
 		if(fornecedor == null){
-			throw new FornecedorInvalidoException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.fornecedorContem(fornecedor) == true){
 				this.repositorio.remover(fornecedor.getCodigo());
@@ -56,9 +56,9 @@ public class ControladorFornecedores {
 		
 	}
 	
-	public void alterar(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
+	public void alterar(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException{
 		if(novoFornecedor == null) {
-			throw new FornecedorInvalidoException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.fornecedorContem(novoFornecedor)==true){
 			throw new FornecedorJaExisteException(novoFornecedor.getCodigo());
@@ -80,6 +80,14 @@ public class ControladorFornecedores {
 		} else {
 			throw new FornecedorNaoExisteException();
 		}	
+	}
+	
+	public boolean existe(int codigo){
+		boolean alt = false;
+			if(repositorio.existe(codigo)==true){
+				alt=true;
+			}
+			return alt;
 	}
 	
 	public List <Fornecedor> listaFornecedores(){

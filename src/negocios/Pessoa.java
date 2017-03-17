@@ -20,8 +20,8 @@ public abstract class Pessoa implements Serializable {
 		this.setNome(nome);;
 		this.setCpf(cpf);
 		this.setIdade(idade);
-		this.endereco = endereco;
-		this.telefone = telefone;
+		this.setEndereco(endereco);
+		this.setTelefone(telefone);
 	}
 	
 	public Pessoa(){
@@ -69,7 +69,8 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public void setTelefone(String telefone) throws FormatacaoInvalidaException {
-		if(telefone.length() >= 10 && telefone.length() <= 11){
+		System.out.println("Tamanho do telefone:" + telefone.length());
+		if(telefone.length() ==11){
 		this.telefone = telefone;
 		}else{
 			throw new FormatacaoInvalidaException();

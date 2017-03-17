@@ -110,7 +110,7 @@ public class RepositorioCliente implements IRepositorioCliente, Serializable {
 				}
 			listaClientes.removeAll(listaRemovidos);
 				listaClientes.add(novoCliente);
-			return alt;
+					return alt;
 	}
 	
 	public Cliente buscar(int codigo){

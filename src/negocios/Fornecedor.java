@@ -2,6 +2,8 @@ package negocios;
 
 import java.io.Serializable;
 
+import exceptions.FormatacaoInvalidaException;
+
 public class Fornecedor implements Serializable {
 	/**
 	 * 
@@ -12,11 +14,11 @@ public class Fornecedor implements Serializable {
 	private String telefone;
 	private int codigo;
 	
-	public Fornecedor(String nomeFornecedor, String enderecoFornecedor, String telefone, int codigo) {
-		this.nomeFornecedor = nomeFornecedor;
-		this.enderecoFornecedor = enderecoFornecedor;
-		this.telefone = telefone;
-		this.codigo = codigo;
+	public Fornecedor(String nomeFornecedor, String enderecoFornecedor, String telefone, int codigo) throws FormatacaoInvalidaException {
+		this.setNomeFornecedor(nomeFornecedor);
+		this.setEnderecoFornecedor(enderecoFornecedor);
+		this.setTelefone(telefone);
+		this.setCodigo(codigo);
 	}
 	
 	public Fornecedor(){
@@ -43,8 +45,12 @@ public class Fornecedor implements Serializable {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone(String telefone) throws FormatacaoInvalidaException {
+		if(telefone.length()==11){
+			this.telefone = telefone;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 
 	public int getCodigo() {

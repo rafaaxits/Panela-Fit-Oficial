@@ -14,7 +14,6 @@ import exceptions.ClienteNaoExisteException;
 import exceptions.FormatacaoInvalidaException;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
-import exceptions.FornecedorInvalidoException;
 import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
 import exceptions.MateriaPrimaJaExisteException;
@@ -85,11 +84,11 @@ public class PanelaFit implements IPanelaFit{
 	
 	//FORNECEDORES
 	
-	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FornecedorNaoExisteException, FornecedorInvalidoException{
+	public void cadastrarFornecedor(Fornecedor f) throws FornecedorJaExisteException, FormatacaoInvalidaException{
 		this.fornecedores.cadastrar(f);
 	}
 	
-	public void removerFornecedor(Fornecedor f) throws FornecedorNaoExisteException, FornecedorInvalidoException {
+	public void removerFornecedor(Fornecedor f) throws FornecedorNaoExisteException, FormatacaoInvalidaException {
 		this.fornecedores.remover(f);
 	}
 	
@@ -97,7 +96,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.fornecedores.buscar(codigo);
 	}
 	
-	public void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FornecedorInvalidoException {
+	public void alterarFornecedor(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException {
 		this.fornecedores.alterar(novoFornecedor);
 	}
 	
@@ -107,6 +106,14 @@ public class PanelaFit implements IPanelaFit{
 	
 	public List<Fornecedor> listarFornecedores(){
 		return this.fornecedores.listaFornecedores();
+	}
+	
+	public boolean existeFornecedor(int codigo){
+		boolean alt = false;
+			if(this.fornecedores.existe(codigo)==true){
+				alt=true;
+			}
+			return alt;
 	}
 	//FUNCIONARIO
 	
