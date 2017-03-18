@@ -3,6 +3,7 @@ package negocios;
 import dados.IRepositorioMateriaPrima;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
+import exceptions.ClienteNaoExisteException;
 import exceptions.MateriaPrimaInvalidaException;
 import java.util.List;
 
@@ -77,6 +78,17 @@ public class ControladorMateriaPrimas {
 		} else {
 			throw new MateriaPrimaNaoExisteException();
 		}
+	}
+	
+	public boolean existe(int codigo) throws MateriaPrimaNaoExisteException{
+		boolean alt=false;
+			if(repositorio.existe(codigo)==true){
+				alt=true;
+			}else{
+				throw new MateriaPrimaNaoExisteException();
+			}
+		return alt;
+		
 	}
 	
 	public List <MateriaPrima> listaMateriaPrimas(){

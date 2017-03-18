@@ -7,7 +7,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
-<?import GUI.MaskField?>
 
 <BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FornecedorPaneController">
    <left>
@@ -25,10 +24,10 @@
             <Button layoutX="286.0" layoutY="49.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
             <TableView fx:id="tabelaFornecedores" layoutX="3.0" layoutY="289.0" onMouseClicked="#selecionarFornecedor" prefHeight="200.0" prefWidth="453.0">
               <columns>
-                <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
-                  <TableColumn fx:id="colunaEndereco" prefWidth="75.0" text="Endereço" />
-                  <TableColumn fx:id="colunaTelefone" prefWidth="75.0" text="Telefone" />
-                  <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="Código" />
+                <TableColumn fx:id="colunaNome" prefWidth="116.0" text="Nome" />
+                  <TableColumn fx:id="colunaEndereco" prefWidth="110.0" text="Endereço" />
+                  <TableColumn fx:id="colunaTelefone" prefWidth="111.0" text="Telefone" />
+                  <TableColumn fx:id="colunaCodigo" prefWidth="115.0" text="Código" />
               </columns>
             </TableView>
             <Label layoutX="163.0" layoutY="24.0" text="Fornecedores">
@@ -42,11 +41,11 @@
             <Label layoutX="16.0" layoutY="93.0" text="Código:" />
             <TextField fx:id="txtNomeFornecedor" layoutX="77.0" layoutY="140.0" prefHeight="27.0" prefWidth="297.0" />
             <TextField fx:id="txtEnderecoFornecedor" layoutX="76.0" layoutY="252.0" prefHeight="27.0" prefWidth="297.0" />
-            <MaskField fx:id="txtTelefoneFornecedor" layoutX="76.0" layoutY="196.0" mask="(DD)DDDDD-DDDD" prefHeight="27.0" prefWidth="297.0" />
-            <TextField fx:id="txtCodigoFornecedor" layoutX="77.0" layoutY="88.0" prefHeight="27.0" prefWidth="297.0" />
             <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
             <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
             <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />
+            <MaskField fx:id="txtCodigoFornecedor" layoutX="74.0" layoutY="89.0" mask="DDDDD" prefHeight="28.0" prefWidth="296.0" />
+            <MaskField fx:id="txtTelefoneFornecedor" layoutX="76.0" layoutY="197.0" mask="(DD)DDDDD-DDDD" prefHeight="30.0" prefWidth="294.0" />
          </children>
       </AnchorPane>
    </left>

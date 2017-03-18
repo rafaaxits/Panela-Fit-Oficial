@@ -171,6 +171,14 @@ public class PanelaFit implements IPanelaFit{
 		return materiaPrimas.getQuantidade(codigo);
 	}
 	
+	public boolean existeMateriaPrima(int codigo)throws MateriaPrimaNaoExisteException{
+		boolean alt = false;
+		if(this.materiaPrimas.existe(codigo)==true){
+			alt = true;
+		}
+		return alt;
+	}
+	
 	public List<MateriaPrima> listarMateriasPrimas(){
 		return this.materiaPrimas.listaMateriaPrimas();
 	}

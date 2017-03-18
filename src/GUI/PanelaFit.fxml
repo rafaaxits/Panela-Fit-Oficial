@@ -48,7 +48,7 @@
           </Menu>
             <Menu mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="113.0" text="Matéria-primas" />
+                  <Button fx:id="butMateriaPrima" mnemonicParsing="false" onAction="#telaMateriaPrima" prefHeight="27.0" prefWidth="113.0" text="Matéria-primas" />
                </graphic>
             </Menu>
             <Menu mnemonicParsing="false">
@@ -65,3 +65,4 @@
       </MenuBar>
    </top>
 </BorderPane>
+

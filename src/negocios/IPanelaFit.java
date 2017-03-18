@@ -105,4 +105,7 @@ public interface IPanelaFit {
 	public boolean existeFuncionario(int codigo) throws FuncionarioNaoExisteException;
 	
 	public boolean existeFornecedor(int codigo)throws FornecedorNaoExisteException;
+	
+	public boolean existeMateriaPrima(int codigo) throws MateriaPrimaNaoExisteException;
 }
+

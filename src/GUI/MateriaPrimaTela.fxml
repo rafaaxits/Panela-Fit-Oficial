@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import GUI.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MateriaPrimaPaneController">
+   <left>
+      <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="65.0" fitWidth="70.0" layoutX="373.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="butCadastrar" layoutX="28.0" layoutY="49.0" mnemonicParsing="false" onAction="#cadastrarMateriaPrima" text="Cadastrar" />
+            <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" onAction="#removerMateriaPrima" text="Remover" />
+            <Button layoutX="204.0" layoutY="49.0" mnemonicParsing="false" onAction="#alterarMateriaPrima" text="Alterar" />
+            <Button layoutX="381.0" layoutY="88.0" mnemonicParsing="false" onAction="#buscarMateriaPrima" text="Buscar" />
+            <Button layoutX="286.0" layoutY="49.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
+            <TableView fx:id="tabelaMateriasPrimas" layoutX="3.0" layoutY="289.0" onMouseClicked="#selecionarMateriaPrima" onMouseDragEntered="#selecionarMateriaPrima" prefHeight="200.0" prefWidth="453.0">
+              <columns>
+                <TableColumn fx:id="colunaNome" prefWidth="172.0" text="Nome" />
+                  <TableColumn fx:id="colunaQuantidade" prefWidth="91.0" text="Quantidade" />
+                  <TableColumn fx:id="colunaPreco" prefWidth="91.0" text="Preço" />
+                  <TableColumn fx:id="colunaCodigo" prefWidth="98.0" text="Código" />
+              </columns>
+            </TableView>
+            <Label layoutX="163.0" layoutY="24.0" text="Matérias Primas">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="145.0" text="Nome:" />
+            <Label layoutX="9.0" layoutY="257.0" text="Preço:" />
+            <Label layoutX="11.0" layoutY="201.0" text="Quantidade:" />
+            <Label layoutX="16.0" layoutY="93.0" text="Código:" />
+            <TextField fx:id="txtNomeMateriaPrima" layoutX="77.0" layoutY="140.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtPrecoMateriaPrima" layoutX="76.0" layoutY="252.0" prefHeight="27.0" prefWidth="297.0" />
+            <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
+            <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
+            <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />
+            <TextField fx:id="txtQuantidadeMateriaPrima" layoutX="83.0" layoutY="194.0" prefHeight="31.0" prefWidth="161.0" />
+            <MaskField fx:id="txtCodigoMateriaPrima" layoutX="76.0" layoutY="88.0" mask="DDDDD" prefHeight="31.0" prefWidth="293.0" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

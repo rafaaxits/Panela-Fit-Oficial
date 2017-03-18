@@ -17,6 +17,7 @@ public class PanelaFitPaneController {
 	@FXML Button butX;
 	@FXML Button butFuncionario;
 	@FXML Button butFornecedor;
+	@FXML Button butMateriaPrima;
 	
 	@FXML
 	public void initialize()throws Exception{
@@ -80,6 +81,26 @@ public class PanelaFitPaneController {
 				e.printStackTrace();
 			}
 		}
+		
+		@FXML 
+		public void telaMateriaPrima(ActionEvent event){
+			Parent root;
+			Stage stage;
+			try{
+				if(event.getSource()==butMateriaPrima){
+					stage = (Stage) butMateriaPrima.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/GUI/MateriaPrimaTela.fxml"));
+				}else {
+					stage = (Stage) butFornecedor.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("/GUI/PanelaFit.fxml"));
+				}
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
 	public void sair(ActionEvent event){
 		((Node) event.getSource()).getScene().getWindow().hide();
 
@@ -90,3 +111,4 @@ public class PanelaFitPaneController {
 	}
 	
 }
+
