@@ -3,8 +3,7 @@ package negocios;
 import dados.IRepositorioMateriaPrima;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
-import exceptions.ClienteNaoExisteException;
-import exceptions.MateriaPrimaInvalidaException;
+import exceptions.FormatacaoInvalidaException;
 import java.util.List;
 
 public class ControladorMateriaPrimas {
@@ -21,9 +20,9 @@ public class ControladorMateriaPrimas {
 		    }
 	}
 	
-	public void cadastrar (MateriaPrima materiaPrima) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
+	public void cadastrar (MateriaPrima materiaPrima) throws MateriaPrimaJaExisteException, FormatacaoInvalidaException{
 		if(materiaPrima == null) {
-			throw new MateriaPrimaInvalidaException();
+			throw new FormatacaoInvalidaException();
 		} else {
 			if(this.repositorio.existe(materiaPrima.getCodigo()) == false){
 				this.repositorio.inserir(materiaPrima);
@@ -41,9 +40,9 @@ public class ControladorMateriaPrimas {
 		}
 	}
 	
-	public void remover(MateriaPrima materiaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException {
+	public void remover(MateriaPrima materiaPrima) throws MateriaPrimaNaoExisteException, FormatacaoInvalidaException {
 	if(materiaPrima == null) {
-		throw new MateriaPrimaInvalidaException();
+		throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.materiaPrimaContem(materiaPrima) == true) {
 				this.repositorio.remover(materiaPrima.getCodigo());
@@ -54,9 +53,9 @@ public class ControladorMateriaPrimas {
 		}
 	}
 	
-	public void alterar(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException,MateriaPrimaInvalidaException{
+	public void alterar(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException,FormatacaoInvalidaException{
 		if(novaMateriaPrima == null){
-			throw new MateriaPrimaInvalidaException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.materiaPrimaContem(novaMateriaPrima) == true){
 			throw new MateriaPrimaJaExisteException(novaMateriaPrima.getCodigo());

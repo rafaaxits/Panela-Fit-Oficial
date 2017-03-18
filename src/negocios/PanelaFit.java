@@ -18,7 +18,6 @@ import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
-import exceptions.MateriaPrimaInvalidaException;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
 import exceptions.ProdutoInvalidoException;
@@ -151,11 +150,11 @@ public class PanelaFit implements IPanelaFit{
 	
 	//MATERIAPRIMA
 	
-	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
+	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, FormatacaoInvalidaException{
 		this.materiaPrimas.cadastrar(m);
 	}
 	
-	public void removerMateriaPrima(MateriaPrima m) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException{
+	public void removerMateriaPrima(MateriaPrima m) throws MateriaPrimaNaoExisteException, FormatacaoInvalidaException{
 		this.materiaPrimas.remover(m);
 	}
 	
@@ -163,7 +162,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.materiaPrimas.buscar(codigo);
 	}
 	
-	public void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException {
+	public void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, FormatacaoInvalidaException {
 		this.materiaPrimas.alterar(novaMateriaPrima);
 	}
 	

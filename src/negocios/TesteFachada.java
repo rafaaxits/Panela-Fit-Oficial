@@ -13,8 +13,8 @@ public class TesteFachada {
 		//CLIENTES
 		
 		Cliente c1 = new Cliente(8, "fulano", "11132436717", 23, "Rua Jose Bras", "81997755432");
-		Cliente c2 = new Cliente(8, "jailton", "55976332677", 54, "Av bernardo vieira", "8795300999");
-		Cliente c4 = new Cliente(7, "cicrano", "55443367677", 19, "Rua Jose Bras", "349221119");
+		Cliente c2 = new Cliente(8, "jailton", "51597633267", 54, "Av bernardo vieira", "87953009991");
+		Cliente c4 = new Cliente(7, "cicrano", "55443367677", 19, "Rua Jose Bras", "34922111119");
 		Cliente c5 = null;
 		System.out.println("" +panelaFit.listarClientes());
 
@@ -116,11 +116,11 @@ public class TesteFachada {
 		
 		//FUNCION�RIOS
 		
-		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "9873743821");
-		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "9834726731");
+		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "98737438211");
+		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "91834726731");
 		Funcionario f4 = null;
-		Funcionario f5 = new Funcionario(9,4,"testinho", "39239283892", 65, "Rua ali perto", "3777278232");
-		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "7364364227");
+		Funcionario f5 = new Funcionario(9,4,"testinho", "39239283892", 65, "Rua ali perto", "37772782312");
+		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "73643642217");
 		try{
 			panelaFit.cadastrarFuncionario(f4); //tentando cadastrar um funcionario nulo e a exception apareceu
 		}catch(Exception e){
@@ -225,9 +225,9 @@ public class TesteFachada {
 	
 //FORNECEDORES
 
-		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "33445123", 123);
-		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "334256772", 123);
-		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37765123", 122);
+		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "22334451213", 123);
+		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "33425677222", 123);
+		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37123765123", 122);
 		Fornecedor for5 = null;
 	
 		System.out.println("" +panelaFit.listarFornecedores());

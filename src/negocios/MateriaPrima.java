@@ -2,6 +2,8 @@ package negocios;
 
 import java.io.Serializable;
 
+import exceptions.FormatacaoInvalidaException;
+
 public class MateriaPrima implements Serializable {
 	/**
 	 * 
@@ -43,8 +45,11 @@ public class MateriaPrima implements Serializable {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(int quantidade) throws FormatacaoInvalidaException {
+		Integer aux = new Integer(quantidade);
+		if(aux.toString().length()==3){
 		this.quantidade = quantidade;
+		}
 	}
 
 	public double getPreco() {

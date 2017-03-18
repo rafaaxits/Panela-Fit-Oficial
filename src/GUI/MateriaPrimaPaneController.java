@@ -22,7 +22,7 @@ import negocios.MateriaPrima;
 import negocios.PanelaFit;
 import java.io.IOException;
 import javax.xml.bind.ValidationException;
-import exceptions.MateriaPrimaInvalidaException;
+import exceptions.FormatacaoInvalidaException;
 import exceptions.MateriaPrimaNaoExisteException;
 import exceptions.MateriaPrimaJaExisteException;
 
@@ -85,14 +85,14 @@ private PanelaFit panelaFit;
 			}			
 	}	
 	
-	public void cadastrarMateriaPrima() throws ValidationException, IOException, MateriaPrimaNaoExisteException {
+	public void cadastrarMateriaPrima() throws ValidationException, IOException {
 		
 		if(validateFields()){
 			try{
 				String nome;
 				Integer codigo = new Integer (txtCodigoMateriaPrima.getText());
-				Integer quantidade = new Integer (txtQuantidadeMateriaPrima.getText());
-				Double preco = new Double(txtPrecoMateriaPrima.getText());
+				Integer quantidade = new Integer (txtQuantidadeMateriaPrima.getText().replace("K", "").replace("G", ""));
+				Double preco = new Double(txtPrecoMateriaPrima.getText().replace("R", "").replace("$", "").replace(".", ""));
 				nome = txtNomeMateriaPrima.getText();
 				MateriaPrima aux = new MateriaPrima(nome, codigo, quantidade, preco);
 				validateAttributes(aux);
@@ -100,7 +100,7 @@ private PanelaFit panelaFit;
 				refreshTable();
 				limparForm();
 				lblMensagem.setText("MateriaPrima cadastrada");
-			}catch(MateriaPrimaInvalidaException e){
+			}catch(FormatacaoInvalidaException e){
 				lblMensagem.setText(e.getMessage());
 			}catch(MateriaPrimaJaExisteException e){
 				lblMensagem.setText(e.getMessage());
@@ -110,14 +110,14 @@ private PanelaFit panelaFit;
 		
 	}
 		
-		public void removerMateriaPrima() throws MateriaPrimaInvalidaException, MateriaPrimaNaoExisteException, IOException {
-			MateriaPrima mpSelecionada = tabelaMateriasPrimas.getSelectionModel().getSelectedItem();	
+		public void removerMateriaPrima() throws  MateriaPrimaNaoExisteException, IOException, FormatacaoInvalidaException {
+			MateriaPrima materiaPrimaSelecionada = tabelaMateriasPrimas.getSelectionModel().getSelectedItem();	
 			
 				try{
-					if(mpSelecionada != null){
-					Integer codig = new Integer (mpSelecionada.getCodigo());
+					if(materiaPrimaSelecionada != null){
+					Integer codig = new Integer (materiaPrimaSelecionada.getCodigo());
 					if(panelaFit.existeMateriaPrima(codig)){
-						panelaFit.removerMateriaPrima(mpSelecionada);
+						panelaFit.removerMateriaPrima(materiaPrimaSelecionada);
 						lblMensagem.setText("Materia Prima Removida");
 						tabelaMateriasPrimas.getItems().remove(tabelaMateriasPrimas.getSelectionModel().getSelectedIndex());
 						limparForm();
@@ -126,10 +126,10 @@ private PanelaFit panelaFit;
 					}else {
 						Integer code = new Integer (txtCodigoMateriaPrima.getText());
 						if(panelaFit.existeMateriaPrima(code)){
+							lblMensagem.setText("Materia Prima Removida");
 							MateriaPrima aux = panelaFit.buscarMateriaPrima(code);
 							panelaFit.removerMateriaPrima(aux);
 							refreshTable();
-							lblMensagem.setText("Materia Prima Removida");
 							limparForm();	
 						}
 					  }
@@ -148,14 +148,14 @@ private PanelaFit panelaFit;
 				
 				}
 		
-		public void alterarMateriaPrima() throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException, ValidationException, IOException{
+		public void alterarMateriaPrima() throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, ValidationException, IOException, FormatacaoInvalidaException{
 			
 			if(validateFields()){
 				try{
 					String nome;
 					Integer codigo = new Integer (txtCodigoMateriaPrima.getText());
-					Integer quantidade = new Integer (txtQuantidadeMateriaPrima.getText());
-				    Double preco = new Double(txtPrecoMateriaPrima.getText());
+					Integer quantidade = new Integer (txtQuantidadeMateriaPrima.getText().replace("K", "").replace("G", ""));
+					Double preco = new Double(txtPrecoMateriaPrima.getText().replace("R", "").replace("$", "").replace(".", ""));
 					nome = txtNomeMateriaPrima.getText();
 					MateriaPrima aux = new MateriaPrima(nome, codigo, quantidade, preco);
 					validateAttributes(aux);
@@ -163,12 +163,21 @@ private PanelaFit panelaFit;
 					refreshTable();
 					limparForm();
 					lblMensagem.setText("Materia Prima aletrada");
-				}catch(MateriaPrimaInvalidaException e){
+				}catch(FormatacaoInvalidaException e){
 					lblMensagem.setText(e.getMessage());
 				}catch(MateriaPrimaJaExisteException e){
 					lblMensagem.setText(e.getMessage());
 				}catch(MateriaPrimaNaoExisteException e){
 					lblMensagem.setText(e.getMessage());
+				}catch(NumberFormatException e){
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+		            Parent root1 = (Parent) fxmlLoader.load();
+		            Stage stage = new Stage();
+		            stage.initModality(Modality.APPLICATION_MODAL);
+		            stage.initStyle(StageStyle.UNDECORATED);
+		            stage.setTitle("Panela Fit");
+		            stage.setScene(new Scene(root1));  
+		            stage.show();
 				}
 			}
 		}	
@@ -184,7 +193,7 @@ private PanelaFit panelaFit;
 	
 		colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaQuantidade.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("quantidade"));
-		colunaPreco.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("preço"));
+		colunaPreco.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("preco"));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("codigo"));
 		
 		data = FXCollections.observableArrayList();
@@ -216,7 +225,7 @@ private PanelaFit panelaFit;
 			returnMs += "'Quantidade' ";
 		}
 		if(mp.toString() == null || preco.toString().isEmpty()){
-			returnMs += "'Preço' ";
+			returnMs += "'Preco' ";
 		}
 		if(codigo.toString() == null || codigo.toString().isEmpty()){
 			returnMs +="'Codigo' ";
@@ -229,7 +238,8 @@ private PanelaFit panelaFit;
 	private boolean validateFields() throws IOException{
 		boolean validate=false;
 		try{
-			if(txtNomeMateriaPrima.getText().isEmpty() || (txtQuantidadeMateriaPrima.getText().isEmpty() || txtPrecoMateriaPrima.getText().isEmpty() || (txtCodigoMateriaPrima.getText().isEmpty() || !txtCodigoMateriaPrima.getText().matches("[0-9][0-9][0-9][0-9][0-9]")))) {
+			if(txtNomeMateriaPrima.getText().isEmpty()  || (txtQuantidadeMateriaPrima.getText().isEmpty() || !txtQuantidadeMateriaPrima.getText().matches("[0-9][0-9][0-9]KG")) || (txtPrecoMateriaPrima.getText().isEmpty() || !txtPrecoMateriaPrima.getText().matches("[R][$][0-9][0-9][0-9].[0-9][0-9]")) ||
+					(txtCodigoMateriaPrima.getText().isEmpty() || !txtCodigoMateriaPrima.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))) {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -256,15 +266,36 @@ private PanelaFit panelaFit;
 	}
 	@FXML
 	public void selecionarMateriaPrima(MouseEvent arg0) {
-			MateriaPrima mp = tabelaMateriasPrimas.getSelectionModel().getSelectedItem();
-	        Integer codigo = mp.getCodigo();
-			Integer quantidade = mp.getQuantidade();
-			Double preco = mp.getPreco();
-			txtNomeMateriaPrima.setText(mp.getNome());
+			MateriaPrima materiaPrimaSelecionada= tabelaMateriasPrimas.getSelectionModel().getSelectedItem();
+	        Integer codigo = materiaPrimaSelecionada.getCodigo();
+			Integer quantidade = materiaPrimaSelecionada.getQuantidade();
+			Double preco = materiaPrimaSelecionada.getPreco();
+			txtNomeMateriaPrima.setText(materiaPrimaSelecionada.getNome());
 	        txtQuantidadeMateriaPrima.setText(quantidade.toString());
 	        txtCodigoMateriaPrima.setText(codigo.toString());
-	        txtPrecoMateriaPrima.setText(mp.toString());
-	
+	        preco.toString();
+			txtPrecoMateriaPrima.setText(String.format("%.0f",preco));
+	        char [] a = txtQuantidadeMateriaPrima.getText().toCharArray();
+	        String quantity = "";
+	        for(int i = 0; i < a.length; i++){
+	        	if(i==2 || i==1){
+	        		quantity += a[i]+"KG";
+	        	}else{
+	        		quantity += a[i];
+	        	}	        }
+	        txtQuantidadeMateriaPrima.setText(quantity);
+	        char [] b = txtPrecoMateriaPrima.getText().toCharArray();
+	        String price = "";
+	        for(int i = 0; i<b.length; i++){
+	        	if(i==0){
+	        		price += "R$"+b[i];
+	        	}else if(i==2){
+	        		price += b[i]+".";
+	        	}else {
+	        		price += b[i];
+	        	}
+	        }
+	        txtPrecoMateriaPrima.setText(price);
 	        txtCodigoMateriaPrima.editableProperty().set(false);
 	        txtCodigoMateriaPrima.setStyle("-fx-background-color: gray;");
 	    }
@@ -282,8 +313,30 @@ private PanelaFit panelaFit;
 					txtNomeMateriaPrima.setText(mp.getNome());
 			        txtQuantidadeMateriaPrima.setText(quantidade.toString());
 			        txtCodigoMateriaPrima.setText(codigo.toString());
-			        txtPrecoMateriaPrima.setText(preco.toString());
-			
+			        preco.toString();
+					txtPrecoMateriaPrima.setText(String.format("%.0f",preco));
+			        char [] a = txtQuantidadeMateriaPrima.getText().toCharArray();
+			        String quantity = "";
+			        for(int i = 0; i < a.length; i++){
+			        	if(i==2 || i==1){
+			        		quantity += a[i]+"KG";
+			        	}else{
+			        		quantity += a[i];
+			        	}
+			        }
+			        txtQuantidadeMateriaPrima.setText(quantity);
+			        char [] b = txtPrecoMateriaPrima.getText().toCharArray();
+			        String price = "";
+			        for(int i = 0; i<b.length; i++){
+			        	if(i==0){
+			        		price += "R$"+b[i];
+			        	}else if(i==2){
+			        		price += b[i]+".";
+			        	}else {
+			        		price += b[i];
+			        	}
+			        }
+			        txtPrecoMateriaPrima.setText(price);			        
 			        txtCodigoMateriaPrima.editableProperty().set(false);
 			        txtCodigoMateriaPrima.setStyle("-fx-background-color: gray;");
 				}catch(NumberFormatException e) {

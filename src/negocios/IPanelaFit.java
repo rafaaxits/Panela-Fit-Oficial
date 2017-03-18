@@ -10,7 +10,6 @@ import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
 import exceptions.FuncionarioJaExisteException;
 import exceptions.FuncionarioNaoExisteException;
-import exceptions.MateriaPrimaInvalidaException;
 import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
 import exceptions.ProdutoInvalidoException;
@@ -28,7 +27,7 @@ public interface IPanelaFit {
 	
 	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FormatacaoInvalidaException;
 
-	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException, MateriaPrimaNaoExisteException,MateriaPrimaInvalidaException;
+	public void cadastrarMateriaPrima(MateriaPrima m) throws MateriaPrimaJaExisteException,FormatacaoInvalidaException;
 
 	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException;
 	
@@ -41,7 +40,7 @@ public interface IPanelaFit {
 	
 	public void removerFuncionario(Funcionario funcionario) throws FuncionarioNaoExisteException, FormatacaoInvalidaException;
 	
-	public void removerMateriaPrima(MateriaPrima materiaprima) throws MateriaPrimaNaoExisteException, MateriaPrimaInvalidaException;
+	public void removerMateriaPrima(MateriaPrima materiaprima) throws MateriaPrimaNaoExisteException, FormatacaoInvalidaException;
 	
 	public void removerProduto(Produto produto) throws ProdutoNaoExisteException, ProdutoInvalidoException;
 	
@@ -67,7 +66,7 @@ public interface IPanelaFit {
 	
 	public abstract void alterarFuncionario(Funcionario novoFuncionario) throws FuncionarioNaoExisteException, FuncionarioJaExisteException, FormatacaoInvalidaException;
 	
-	public abstract void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, MateriaPrimaInvalidaException;
+	public abstract void alterarMateriaPrima(MateriaPrima novaMateriaPrima) throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, FormatacaoInvalidaException;
 	
 	public abstract void alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException;
 

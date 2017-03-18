@@ -100,15 +100,17 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	}
 	
 	public boolean alterar(MateriaPrima novaMateriaPrima) {
-		boolean alt = false;
-	for(MateriaPrima materiaPrima : listaMateriasPrimas){	
-		if(materiaPrima.getCodigo() == novaMateriaPrima.getCodigo()){
-			listaMateriasPrimas.remove(materiaPrima);
-				listaMateriasPrimas.add(novaMateriaPrima);
-					alt = true;
-			}
+ArrayList<MateriaPrima> listaRemovidos = new ArrayList<MateriaPrima>();
+	boolean alt = false;
+		for(MateriaPrima materiaPrima : listaMateriasPrimas){	
+			if(materiaPrima.getCodigo() == novaMateriaPrima.getCodigo()){
+				listaRemovidos.add(materiaPrima);
+						alt = true;
+				}
 		}
-		return alt;
+		listaMateriasPrimas.removeAll(listaRemovidos);
+			listaMateriasPrimas.add(novaMateriaPrima);
+				return alt;
 	}
 	
 	public MateriaPrima buscar(int codigo) {

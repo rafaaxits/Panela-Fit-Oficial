@@ -130,7 +130,6 @@ public class ClientePaneController {
 	}
 	public void removerCliente() throws FormatacaoInvalidaException, ClienteNaoExisteException, IOException{
 		Cliente clienteSelecionado = tabelaClientes.getSelectionModel().getSelectedItem();	
-		
 			try{
 				if(clienteSelecionado != null){
 				Integer codig = new Integer (clienteSelecionado.getCodigo());

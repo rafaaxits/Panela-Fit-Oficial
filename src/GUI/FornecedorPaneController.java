@@ -118,48 +118,51 @@ public class FornecedorPaneController {
 	}	
 	}
 	
-	public void removerFornecedor() throws FormatacaoInvalidaException, IOException{
+	public void removerFornecedor() throws FormatacaoInvalidaException,FornecedorNaoExisteException, IOException{
+		Fornecedor fornecedorSelecionado = tabelaFornecedores.getSelectionModel().getSelectedItem();
 		try{
-			Fornecedor fornecedorSelecionado = tabelaFornecedores.getSelectionModel().getSelectedItem();
 			if(fornecedorSelecionado != null){
+				Integer codig = new Integer(fornecedorSelecionado.getCodigo());
+				if(panelaFit.existeFornecedor(codig)){
 				panelaFit.removerFornecedor(fornecedorSelecionado);
 				lblMensagem.setText("Fornecedor Removido");
 				tabelaFornecedores.getItems().remove(tabelaFornecedores.getSelectionModel().getSelectedIndex());
 				limparForm();
 				refreshTable();
-			} else if(fornecedorSelecionado == null && !txtCodigoFornecedor.getText().isEmpty()){
-				Integer code = new Integer (txtCodigoFornecedor.getText());
-				if(panelaFit.existeFornecedor(code) == true){
+			}
+		} else{
+			Integer code = new Integer(txtCodigoFornecedor.getText());
+				if(panelaFit.existeFornecedor(code)){
 					Fornecedor aux = panelaFit.buscarFornecedor(code);
 					panelaFit.removerFornecedor(aux);
 					refreshTable();
 					lblMensagem.setText("Fornecedor Removido");
-				}
-				
+					limparForm();
 			}
-			else {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
-	            Parent root1 = (Parent) fxmlLoader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.initStyle(StageStyle.UNDECORATED);
-	            stage.setTitle("Panela Fit");
-	            stage.setScene(new Scene(root1));  
-	            stage.show();
-			}
-		}catch(FornecedorNaoExisteException e){
-			lblMensagem.setText(e.getMessage());
 		}
+	}catch(FornecedorNaoExisteException e){
+		lblMensagem.setText(e.getMessage());
+	}catch(NumberFormatException e){
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Panela Fit");
+        stage.setScene(new Scene(root1));  
+        stage.show();
 	}
+}
 	
-	public void alterarFornecedor() throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException, ValidationException{
-		String nome, endereco, telefone;
-		Integer codigo = new Integer (txtCodigoFornecedor.getText());
-		nome = txtNomeFornecedor.getText();
-		endereco = txtEnderecoFornecedor.getText();
-		telefone = txtTelefoneFornecedor.getText();
-		if(!nome.equals("") && !endereco.equals("") && !telefone.equals("") && !codigo.equals("")){
-			try{
+	public void alterarFornecedor() throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException, ValidationException, IOException{
+		
+		if(validateFields()){
+				try{String nome, endereco, telefone;
+				Integer codigo = new Integer (txtCodigoFornecedor.getText());
+				nome = txtNomeFornecedor.getText();
+				endereco = txtEnderecoFornecedor.getText();
+				telefone = txtTelefoneFornecedor.getText();
+				telefone = telefone.replace("(", "").replace(")", "").replace("-","");
 				Fornecedor aux = new Fornecedor(nome, endereco, telefone, codigo);
 				validateAttributes(aux);
 				panelaFit.alterarFornecedor(aux);;
@@ -268,6 +271,20 @@ public class FornecedorPaneController {
 		        txtEnderecoFornecedor.setText(f.getEnderecoFornecedor());
 		        txtTelefoneFornecedor.setText(f.getTelefone());
 		        txtCodigoFornecedor.setText(codigo.toString());
+		        char[] b = txtTelefoneFornecedor.getText().toCharArray();
+		        String telefone = "";
+		        for(int i=0;i<b.length;i++){
+		        	if(i==0){
+		        		telefone +="("+ b[i];
+		        	}else if(i==1){
+		        		telefone += b[i] + ")";
+		        	}else if(i==6){
+		        		telefone += b[i] + "-";
+		        	}else{
+		        		telefone += b[i];
+		        	}
+		        }
+		        txtTelefoneFornecedor.setText(telefone);
 		        txtCodigoFornecedor.editableProperty().set(false);
 		        txtCodigoFornecedor.setStyle("-fx-background-color: gray;");
 		       
@@ -285,6 +302,20 @@ public class FornecedorPaneController {
 				        txtEnderecoFornecedor.setText(f.getEnderecoFornecedor());
 				        txtTelefoneFornecedor.setText(f.getTelefone());
 				        txtCodigoFornecedor.setText(codigo.toString());
+				        char[] b = txtTelefoneFornecedor.getText().toCharArray();
+				        String telefone = "";
+				        for(int i=0;i<b.length;i++){
+				        	if(i==0){
+				        		telefone +="("+ b[i];
+				        	}else if(i==1){
+				        		telefone += b[i] + ")";
+				        	}else if(i==6){
+				        		telefone += b[i] + "-";
+				        	}else{
+				        		telefone += b[i];
+				        	}
+				        }
+				        txtTelefoneFornecedor.setText(telefone);
 				        txtCodigoFornecedor.editableProperty().set(false);
 				        txtCodigoFornecedor.setStyle("-fx-background-color: gray;");
 					}catch(FornecedorNaoExisteException e){
