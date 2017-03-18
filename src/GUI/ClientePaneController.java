@@ -109,16 +109,10 @@ public class ClientePaneController {
 						end=txtEnderecoCliente.getText();
 						telefone=txtTelefoneCliente.getText();
 						System.out.println(cpf);
-						cpf = cpf.replace(".", "");
-						System.out.println(cpf);
-						cpf = cpf.replace("-", "");
+						cpf = cpf.replace(".", "").replace("-", "");
 						System.out.println(cpf);
 						System.out.println(telefone);
-						telefone = telefone.replace("(", "");
-						System.out.println(telefone);
-						telefone = telefone.replace(")", "");
-						System.out.println(telefone);
-						telefone = telefone.replace("-", "");
+						telefone = telefone.replace("(", "").replace(")", "").replace("-","");
 						System.out.println(telefone);
 						Cliente aux = new Cliente(codigo, nome, cpf, idade, end, telefone);
 						validateAttributes(aux);
@@ -134,26 +128,32 @@ public class ClientePaneController {
 					}
 			}	
 	}
-	public void removerCliente() throws FormatacaoInvalidaException, IOException{
+	public void removerCliente() throws FormatacaoInvalidaException, ClienteNaoExisteException, IOException{
+		Cliente clienteSelecionado = tabelaClientes.getSelectionModel().getSelectedItem();	
+		
 			try{
-				Cliente clienteSelecionado = tabelaClientes.getSelectionModel().getSelectedItem();
 				if(clienteSelecionado != null){
+				Integer codig = new Integer (clienteSelecionado.getCodigo());
+				if(panelaFit.existeCliente(codig)){
 					panelaFit.removerCliente(clienteSelecionado);
 					lblMensagem.setText("Cliente Removido");
 					tabelaClientes.getItems().remove(tabelaClientes.getSelectionModel().getSelectedIndex());
 					limparForm();
 					refreshTable();
-				}else if(clienteSelecionado == null && !txtCodigoCliente.getText().isEmpty()){
-					Integer code = new Integer (txtCodigoCliente.getText());
-					if(panelaFit.existeCliente(code)==true){
-					Cliente aux = panelaFit.buscarCliente(code);
-					panelaFit.removerCliente(aux);
-					refreshTable();
-					lblMensagem.setText("Cliente Removido");
-					limparForm();
-					
 					}
-				}else {
+				}else{
+					Integer code = new Integer (txtCodigoCliente.getText());
+					if(panelaFit.existeCliente(code)){
+						Cliente aux = panelaFit.buscarCliente(code);
+						panelaFit.removerCliente(aux);
+						refreshTable();
+						lblMensagem.setText("Cliente Removido");
+						limparForm();	
+					}
+				  }
+				}catch(ClienteNaoExisteException e){
+					lblMensagem.setText(e.getMessage());
+				}catch(NumberFormatException e){
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
 		            Parent root1 = (Parent) fxmlLoader.load();
 		            Stage stage = new Stage();
@@ -163,22 +163,25 @@ public class ClientePaneController {
 		            stage.setScene(new Scene(root1));  
 		            stage.show();
 				}
-			}catch(ClienteNaoExisteException e){
-				lblMensagem.setText(e.getMessage());
+			
 			}
-		}
+
 		
-	public void alterarCliente() throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException, ValidationException{
-		String nome, cpf, end, telefone;
-		Integer codigo = new Integer (txtCodigoCliente.getText());
-		Integer idade = new Integer (txtIdadeCliente.getText());
-		nome=txtNomeCliente.getText();
-		cpf=txtCpfCliente.getText();
-		end=txtEnderecoCliente.getText();
-		telefone=txtTelefoneCliente.getText();
-		if(!nome.equals("") && !cpf.equals("") && !idade.equals("") && 
-				!end.equals("") && !telefone.equals("") && !codigo.equals("")){
+	public void alterarCliente() throws ClienteNaoExisteException, ClienteJaExisteException, FormatacaoInvalidaException, ValidationException, IOException{
+		
+		if(validateFields()){
 			try{
+				String nome, cpf, end, telefone;
+				Integer codigo = new Integer (txtCodigoCliente.getText());
+				Integer idade = new Integer (txtIdadeCliente.getText());
+				nome=txtNomeCliente.getText();
+				cpf=txtCpfCliente.getText();
+				end=txtEnderecoCliente.getText();
+				telefone=txtTelefoneCliente.getText();
+				cpf = cpf.replace(".", "").replace("-", "");
+				telefone = telefone.replace("(", "").replace(")", "").replace("-","");
+				System.out.println(telefone);
+				System.out.println(cpf);
 				Cliente aux = new Cliente(codigo, nome, cpf, idade, end, telefone);
 				validateAttributes(aux);
 				panelaFit.alterarCliente(aux);;
@@ -225,6 +228,7 @@ public class ClientePaneController {
 		txtCodigoCliente.clear();
         txtCodigoCliente.editableProperty().set(true);
         txtCodigoCliente.setStyle(null);
+        lblMensagem.setText(null);
 
     }
 	
@@ -258,10 +262,9 @@ public class ClientePaneController {
 	private boolean validateFields() throws IOException{
 		boolean validate=false;
 		try{
-			//String match_text = txtTelefoneCliente.getText();
-			//boolean match = txtTelefoneCliente.getText().matches("([0-9][0-9])[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]");
 			if(txtNomeCliente.getText().isEmpty() || (txtCpfCliente.getText().isEmpty() || !txtCpfCliente.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) || 
-					txtTelefoneCliente.getText().isEmpty()  /*!txtTelefoneCliente.getText().matches("([0-9][0-9])[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")*/ || txtIdadeCliente.getText().isEmpty() || txtEnderecoCliente.getText().isEmpty() || txtCodigoCliente.getText().isEmpty()){
+					(txtTelefoneCliente.getText().isEmpty() || !txtTelefoneCliente.getText().matches("[(][0-9][0-9][)][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")) || (txtIdadeCliente.getText().isEmpty() || !txtIdadeCliente.getText().matches("[0-9][0-9]")) || txtEnderecoCliente.getText().isEmpty() ||
+					(txtCodigoCliente.getText().isEmpty() || !txtCodigoCliente.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))){
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -271,7 +274,6 @@ public class ClientePaneController {
             stage.setScene(new Scene(root1));  
             stage.show();
 			}else{
-				lblMensagem.setText("DEU ");
 				validate = true;
 			}
 		} catch(NumberFormatException e){
@@ -297,6 +299,32 @@ public class ClientePaneController {
 	        txtTelefoneCliente.setText(c.getTelefone());
 	        txtCodigoCliente.setText(codigo.toString());
 	        txtIdadeCliente.setText(idade.toString());
+	        char[] a = txtCpfCliente.getText().toCharArray();
+	        String cpf = "";
+	        for(int i = 0; i < a.length; i++){
+	        	if(i == 2 || i == 5){
+	        		cpf += a[i]+".";
+	        	}else if(i == 8){
+	        		cpf += a[i]+"-";
+	        	}else{
+	        		cpf += a[i];
+	        	}
+	        }
+	        txtCpfCliente.setText(cpf);
+	        char[] b = txtTelefoneCliente.getText().toCharArray();
+	        String telefone = "";
+	        for(int i=0;i<b.length;i++){
+	        	if(i==0){
+	        		telefone +="("+ b[i];
+	        	}else if(i==1){
+	        		telefone += b[i] + ")";
+	        	}else if(i==6){
+	        		telefone += b[i] + "-";
+	        	}else{
+	        		telefone += b[i];
+	        	}
+	        }
+	        txtTelefoneCliente.setText(telefone);
 	        txtCodigoCliente.editableProperty().set(false);
 	        txtCodigoCliente.setStyle("-fx-background-color: gray;");
 	    }
@@ -305,7 +333,6 @@ public class ClientePaneController {
 	public void buscarCliente() throws ClienteNaoExisteException, IOException{
 		Cliente c;
 		
-			if(!txtCodigoCliente.getText().isEmpty()){
 				try{
 					Integer code = new Integer(txtCodigoCliente.getText());
 					c = panelaFit.buscarCliente(code);
@@ -317,20 +344,45 @@ public class ClientePaneController {
 			        txtTelefoneCliente.setText(c.getTelefone());
 			        txtCodigoCliente.setText(codigo.toString());
 			        txtIdadeCliente.setText(idade.toString());
+			        char[] a = txtCpfCliente.getText().toCharArray();
+			        String cpf = "";
+			        for(int i = 0; i < a.length; i++){
+			        	if(i == 2 || i == 5){
+			        		cpf += a[i]+".";
+			        	}else if(i == 8){
+			        		cpf += a[i]+"-";
+			        	}else{
+			        		cpf += a[i];
+			        	}
+			        }
+			        txtCpfCliente.setText(cpf);
+			        char[] b = txtTelefoneCliente.getText().toCharArray();
+			        String telefone = "";
+			        for(int i=0;i<b.length;i++){
+			        	if(i==0){
+			        		telefone +="("+ b[i];
+			        	}else if(i==1){
+			        		telefone += b[i] + ")";
+			        	}else if(i==6){
+			        		telefone += b[i] + "-";
+			        	}else{
+			        		telefone += b[i];
+			        	}
+			        }
+			        txtTelefoneCliente.setText(telefone);
 			        txtCodigoCliente.editableProperty().set(false);
 			        txtCodigoCliente.setStyle("-fx-background-color: gray;");
+				}catch(NumberFormatException e){
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+		            Parent root1 = (Parent) fxmlLoader.load();
+		            Stage stage = new Stage();
+		            stage.initModality(Modality.APPLICATION_MODAL);
+		            stage.initStyle(StageStyle.UNDECORATED);
+		            stage.setTitle("Panela Fit");
+		            stage.setScene(new Scene(root1));  
+		            stage.show();
 				}catch(ClienteNaoExisteException e){
 					lblMensagem.setText(e.getMessage());
 				}
-			}else{
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
-	            Parent root1 = (Parent) fxmlLoader.load();
-	            Stage stage = new Stage();
-	            stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.initStyle(StageStyle.UNDECORATED);
-	            stage.setTitle("Panela Fit");
-	            stage.setScene(new Scene(root1));  
-	            stage.show();
 			}
-	}
 }

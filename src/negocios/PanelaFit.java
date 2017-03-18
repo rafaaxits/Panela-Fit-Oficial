@@ -74,7 +74,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.clientes.listaClientes();
 	}
 	
-	public boolean existeCliente(int codigo){
+	public boolean existeCliente(int codigo) throws ClienteNaoExisteException{
 		boolean alt=false;
 		if(this.clientes.existe(codigo)==true){
 			alt=true;
@@ -108,7 +108,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.fornecedores.listaFornecedores();
 	}
 	
-	public boolean existeFornecedor(int codigo){
+	public boolean existeFornecedor(int codigo) throws FornecedorNaoExisteException{
 		boolean alt = false;
 			if(this.fornecedores.existe(codigo)==true){
 				alt=true;
@@ -141,7 +141,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.funcionarios.listarFuncionarios();
 	}
 	
-	public boolean existeFuncionario(int codigo){
+	public boolean existeFuncionario(int codigo)throws FuncionarioNaoExisteException{
 		boolean alt = false;
 		if(this.funcionarios.existe(codigo)==true){
 			alt = true;

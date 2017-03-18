@@ -100,9 +100,9 @@ public interface IPanelaFit {
 	public void excluirVendas();
 	
 	//EXISTIR
-	public boolean existeCliente(int codigo);
+	public boolean existeCliente(int codigo)throws ClienteNaoExisteException;
 	
-	public boolean existeFuncionario(int codigo);
+	public boolean existeFuncionario(int codigo) throws FuncionarioNaoExisteException;
 	
-	public boolean existeFornecedor(int codigo);
+	public boolean existeFornecedor(int codigo)throws FornecedorNaoExisteException;
 }

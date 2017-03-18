@@ -232,7 +232,8 @@ public class FornecedorPaneController {
 	private boolean validateFields() throws IOException{
 		boolean validate=false;
 		try{
-			if(txtNomeFornecedor.getText().isEmpty() || txtEnderecoFornecedor.getText().isEmpty() || txtCodigoFornecedor.getText().isEmpty() || txtTelefoneFornecedor.getText().isEmpty() /*!txtTelefoneFornecedor.getText().matches("([0-9][0-9])[0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")*/){
+			if(txtNomeFornecedor.getText().isEmpty() || txtEnderecoFornecedor.getText().isEmpty() || txtCodigoFornecedor.getText().isEmpty() ||
+					(txtTelefoneFornecedor.getText().isEmpty() || !txtTelefoneFornecedor.getText().matches("[(][0-9][0-9][)][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]"))){
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
 	            Parent root1 = (Parent) fxmlLoader.load();
 	            Stage stage = new Stage();

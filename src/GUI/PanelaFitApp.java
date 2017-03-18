@@ -29,7 +29,7 @@ public class PanelaFitApp extends Application {
 		this.primaryStage.setTitle("Panela Fit");
 		this.rootScene = new BorderPane();
 		
-		Scene scene = new Scene(rootScene, 650, 560);
+		Scene scene = new Scene(rootScene, 680, 560);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		

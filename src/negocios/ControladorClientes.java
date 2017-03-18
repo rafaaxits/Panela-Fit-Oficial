@@ -36,7 +36,7 @@ public class ControladorClientes {
 	public Cliente buscar(int codigo) throws ClienteNaoExisteException {
 		if(this.repositorio.existe(codigo) == true) {
 			return this.repositorio.buscar(codigo);
-		} else {
+		} else{
 			throw new ClienteNaoExisteException();
 		}
 	}
@@ -70,10 +70,12 @@ public class ControladorClientes {
 		}
 		
 }
-	public boolean existe(int codigo){
+	public boolean existe(int codigo) throws ClienteNaoExisteException{
 		boolean alt=false;
 			if(repositorio.existe(codigo)==true){
 				alt=true;
+			}else{
+				throw new ClienteNaoExisteException();
 			}
 		return alt;
 		

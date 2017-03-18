@@ -79,10 +79,12 @@ public class ControladorFuncionarios {
 		}
 	}
 	
-	public boolean existe(int codigo){
+	public boolean existe(int codigo) throws FuncionarioNaoExisteException{
 		boolean alt = false;
 			if(repositorio.existe(codigo)==true){
 				alt=true;
+			}else{
+				throw new FuncionarioNaoExisteException();
 			}
 		return alt;
 	}

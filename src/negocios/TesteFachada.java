@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exceptions.FormatacaoInvalidaException;
-import exceptions.ClienteNaoExisteException;
 
 public class TesteFachada {
 
