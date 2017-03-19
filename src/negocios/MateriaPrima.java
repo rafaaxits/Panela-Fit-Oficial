@@ -14,11 +14,11 @@ public class MateriaPrima implements Serializable {
 	private int quantidade;
 	private double preco;
 
-	public MateriaPrima(String nome, int codigo, int quantidade, double preco){
-		this.nome = nome;
-		this.codigo = codigo;
-		this.quantidade = quantidade;
-		this.preco = preco;
+	public MateriaPrima(String nome, int codigo, int quantidade, double preco) throws FormatacaoInvalidaException{
+		this.setNome(nome);
+		this.setCodigo(codigo);
+		this.setQuantidade(quantidade);
+		this.setPreco(preco);
 	}
 	
 	public MateriaPrima(){
@@ -37,8 +37,13 @@ public class MateriaPrima implements Serializable {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo)throws FormatacaoInvalidaException{
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 
 	public int getQuantidade() {
@@ -47,8 +52,10 @@ public class MateriaPrima implements Serializable {
 
 	public void setQuantidade(int quantidade) throws FormatacaoInvalidaException {
 		Integer aux = new Integer(quantidade);
-		if(aux.toString().length()==3){
+		if(aux.toString().length()==2){
 		this.quantidade = quantidade;
+		} else{
+			throw new FormatacaoInvalidaException();
 		}
 	}
 

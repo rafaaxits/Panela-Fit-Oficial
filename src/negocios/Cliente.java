@@ -14,7 +14,7 @@ public class Cliente extends Pessoa{
 	
 	public Cliente(int codigo, String nome, String cpf, int idade, String endereco, String telefone) throws FormatacaoInvalidaException{
 		super(nome, cpf, idade, endereco, telefone);
-		this.codigo = codigo;
+		this.setCodigo(codigo);
 	}
 	
 	public Cliente(){
@@ -25,8 +25,13 @@ public class Cliente extends Pessoa{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException{
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 	
 	public boolean equals(Cliente cliente){

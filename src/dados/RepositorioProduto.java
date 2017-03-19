@@ -99,15 +99,17 @@ public class RepositorioProduto implements IRepositorioProduto, Serializable{
 	}
 	
 	public boolean alterar(Produto novoProduto) {
+		ArrayList<Produto> listaRemovidos = new ArrayList<Produto>();
 		boolean alt = false;
 			for(Produto produto : listaProdutos){
 				if(produto.getCodigo() == novoProduto.getCodigo()){
-					listaProdutos.remove(produto);
-						listaProdutos.add(novoProduto);
+					listaRemovidos.add(produto);
 							alt = true;
 			}
 		}
-		return alt;
+		listaProdutos.removeAll(listaRemovidos);
+			listaProdutos.add(novoProduto);
+				return alt;
 	}
 	
 	public Produto buscar(int codigo) {

@@ -8,20 +8,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="548.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanelaFitPaneController">
+<BorderPane prefHeight="583.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PanelaFitPaneController">
    <center>
-      <AnchorPane prefHeight="475.0" prefWidth="570.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="561.0" prefWidth="678.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="455.0" fitWidth="528.0" layoutX="97.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../Documents/Imagens/panela%20fit.jpg" />
-               </image></ImageView>
             <Label layoutX="223.0" layoutY="-18.0" text="Bem Vindo">
                <font>
                   <Font name="Bangla MN Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="butX" layoutX="621.0" layoutY="4.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#ee0606" />
+            <Button fx:id="butX" layoutX="632.0" layoutY="1.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#ee0606" />
+            <ImageView fitHeight="471.0" fitWidth="526.0" layoutX="95.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/insta3.jpg" />
+               </image>
+            </ImageView>
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -53,16 +54,15 @@
             </Menu>
             <Menu mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" text="Produtos" />
+                  <Button fx:id="butProduto" mnemonicParsing="false" onAction="#telaProduto" text="Produtos" />
                </graphic>
             </Menu>
             <Menu mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" text="Vendas" />
+                  <Button fx:id="butVenda" mnemonicParsing="false" onAction="#telaVendas" text="Vendas" />
                </graphic>
             </Menu>
         </menus>
       </MenuBar>
    </top>
 </BorderPane>
-

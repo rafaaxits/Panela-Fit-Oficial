@@ -106,7 +106,7 @@ public class FuncionarioPaneController {
 			}			
 	}	
 	
-	public void cadastrarFuncionario() throws ValidationException, IOException, FuncionarioNaoExisteException {
+	public void cadastrarFuncionario() throws ValidationException, IOException {
 		
 		if(validateFields()) {
 			try {
@@ -146,10 +146,11 @@ public class FuncionarioPaneController {
 				Integer codig = new Integer (funcionarioSelecionado.getCodigo());
 				if(panelaFit.existeFuncionario(codig)){
 					panelaFit.removerFuncionario(funcionarioSelecionado);
-						lblMensagem.setText("Funcionario Removido");
-							tabelaFuncionarios.getItems().remove(tabelaFuncionarios.getSelectionModel().getSelectedIndex());
-								limparForm();
-									refreshTable();
+						tabelaFuncionarios.getItems().remove(tabelaFuncionarios.getSelectionModel().getSelectedIndex());
+							limparForm();
+								refreshTable();
+									lblMensagem.setText("Funcionario Removido");
+
 				}
 			}else{
 					Integer code = new Integer (txtCodigoFuncionario.getText());
@@ -157,8 +158,8 @@ public class FuncionarioPaneController {
 						Funcionario aux = panelaFit.buscarFuncionario(code);
 						panelaFit.removerFuncionario(aux);
 						refreshTable();
-						lblMensagem.setText("Funcionario Removido");
 						limparForm();
+						lblMensagem.setText("Funcionario Removido");
 					}
 				}
 			}catch(FuncionarioNaoExisteException e){
@@ -216,7 +217,7 @@ public class FuncionarioPaneController {
 		colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaCpf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
 		colunaIdade.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("idade"));
-		colunaEndereco.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
+		colunaEndereco.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEndereco()));
 		colunaTelefone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefone()));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("codigo"));
 		colunaNivel.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nivel"));	
@@ -236,7 +237,9 @@ public class FuncionarioPaneController {
 		txtCodigoFuncionario.clear();
 		txtCodigoFuncionario.editableProperty().set(true);
         txtCodigoFuncionario.setStyle(null);
+        txtNomeFuncionario.setStyle(null);
         lblMensagem.setText(null);
+        tabelaFuncionarios.getSelectionModel().clearSelection();
 	}
 	
 	private void validateAttributes(Funcionario funcionario) throws ValidationException {
@@ -274,7 +277,7 @@ public class FuncionarioPaneController {
 	private boolean validateFields() throws IOException {
 		boolean validate = false;
 		try{
-			if(txtNomeFuncionario.getText().isEmpty() || (txtCpfFuncionario.getText().isEmpty() || !txtCpfFuncionario.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) ||
+			if((txtNomeFuncionario.getText().isEmpty() || !txtNomeFuncionario.getText().matches("[a-z A-Z]+")) || (txtCpfFuncionario.getText().isEmpty() || !txtCpfFuncionario.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) ||
 				(txtTelefoneFuncionario.getText().isEmpty() || !txtTelefoneFuncionario.getText().matches("[(][0-9][0-9][)][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")) || (txtIdadeFuncionario.getText().isEmpty() || !txtIdadeFuncionario.getText().matches("[0-9][0-9]")) || 
 				txtEnderecoFuncionario.getText().isEmpty() || (txtCodigoFuncionario.getText().isEmpty() || !txtCodigoFuncionario.getText().matches("[0-9][0-9][0-9][0-9][0-9]")) || cbNivel.getSelectionModel().isEmpty()){
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
@@ -285,6 +288,9 @@ public class FuncionarioPaneController {
 	            stage.setTitle("Panela Fit");
 	            stage.setScene(new Scene(root1));  
 	            stage.show();
+	            if(txtNomeFuncionario.getText().isEmpty() || !txtNomeFuncionario.getText().matches("[a-z A-Z]+")){
+	            	txtNomeFuncionario.setStyle("-fx-background-color: red;");
+	            }
 			}else{
 				lblMensagem.setText("DEU");
 				validate = true;
@@ -350,14 +356,12 @@ public class FuncionarioPaneController {
 	@FXML 
 	public void buscarFuncionario() throws FuncionarioNaoExisteException, IOException {
 		Funcionario f;
-			if(!txtCodigoFuncionario.getText().isEmpty()){
 				try{
 					Integer code = new Integer(txtCodigoFuncionario.getText());
 					f = panelaFit.buscarFuncionario(code);
 					Integer codigo = f.getCodigo();
 					Integer nivel = f.getNivel();
 					Integer idade = f.getIdade(); 
-					
 					txtNomeFuncionario.setText(f.getNome());
 			        txtCpfFuncionario.setText(f.getCpf());
 			        txtEnderecoFuncionario.setText(f.getEndereco());
@@ -406,6 +410,6 @@ public class FuncionarioPaneController {
 				catch(FuncionarioNaoExisteException e){
 					lblMensagem.setText(e.getMessage());
 				}
-			} 
+			 
 	}
 }

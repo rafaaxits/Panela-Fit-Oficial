@@ -44,8 +44,8 @@
             <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
             <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />
             <MaskField fx:id="txtCodigoMateriaPrima" layoutX="88.0" layoutY="86.0" mask="DDDDD" prefHeight="31.0" prefWidth="302.0" />
-            <MaskField fx:id="txtQuantidadeMateriaPrima" layoutX="90.0" layoutY="196.0" mask="DDDKG" prefHeight="27.0" prefWidth="305.0" />
-            <MaskField fx:id="txtPrecoMateriaPrima" layoutX="88.0" layoutY="252.0" mask="R$DDD.DD" prefHeight="27.0" prefWidth="309.0" />
+            <MaskField fx:id="txtQuantidadeMateriaPrima" layoutX="90.0" layoutY="196.0" mask="DDKG" prefHeight="27.0" prefWidth="305.0" />
+            <MaskField fx:id="txtPrecoMateriaPrima" layoutX="88.0" layoutY="252.0" mask="R$DDD" prefHeight="27.0" prefWidth="309.0" />
          </children>
       </AnchorPane>
    </top>

@@ -17,12 +17,12 @@ public class TesteVenda {
 		LocalDate val3 = LocalDate.of(2018, 2, 22);
 		LocalDate fab3 = LocalDate.of(2018, 4, 13);
 		
-		Produto pro1 = new Produto("Pao fit", 200, 159, 5,10,3, d1,d1);
-		Produto pro2 = new Produto("Parfait de banana", 300, 250, 6,50,10, d1,d1);
-		Produto pro3 = new Produto("Parfait de maça", 500, 250, 6,50,10, d1,d1);
-		Produto p1 = new Produto("Produto1", 10, 5, 123, 50, 40, fab1, val1);
-		Produto p2 = new Produto("Produto2", 4, 2, 123, 40, 60, fab2, val2);
-		Produto p3 = new Produto("Produto3", 20, 77, 456, 30, 50, fab3, val3);
+		Produto pro1 = new Produto("Pao fit", 200, 159, 56432,10,3, d1,d1);
+		Produto pro2 = new Produto("Parfait de banana", 300, 250, 64345,50,10, d1,d1);
+		Produto pro3 = new Produto("Parfait de maça", 500, 250, 62345,50,10, d1,d1);
+		Produto p1 = new Produto("Produto1", 10, 5, 12376, 50, 40, fab1, val1);
+		Produto p2 = new Produto("Produto2", 4, 2, 12323, 40, 60, fab2, val2);
+		Produto p3 = new Produto("Produto3", 20, 77, 45689, 30, 50, fab3, val3);
 		
 		ItemVenda item1 = new ItemVenda(pro1,3);
 		ItemVenda item2 = new ItemVenda(pro2,5);
@@ -43,13 +43,13 @@ public class TesteVenda {
 		
 		System.out.println("" +listaItemVenda1.size());
 		
-		Cliente c1 = new Cliente(7, "zé pilinta", "10455882923", 26, "Rua Ernesto Paula Santos", "987984573");
-		Cliente c2 = new Cliente(8, "jailton", "55332677", 54, "Av bernardo vieira", "879530099");
-		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "987374821");
-		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "983726731");
+		Cliente c1 = new Cliente(77777, "zé pilinta", "10455882923", 26, "Rua Ernesto Paula Santos", "98798457223");
+		Cliente c2 = new Cliente(88888, "jailton", "55332612377", 54, "Av bernardo vieira", "87955530099");
+		Funcionario f1 = new Funcionario(2,55555, "leleo", "26379263782", 45, "Rua domingos ferreia", "98737421821");
+		Funcionario f2 = new Funcionario(2,44444, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "98323726731");
 
-		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
-		Venda venda2 = new Venda(456,c2,f2,listaItemVenda2,val1);
+		Venda venda1 = new Venda(12345,c1,f1,listaItemVenda1, d1);
+		Venda venda2 = new Venda(45678,c2,f2,listaItemVenda2,val1);
 		
 		venda1.inserirItem(item1);
 		venda1.inserirItem(item2);

@@ -72,7 +72,7 @@ public class ControladorClientes {
 }
 	public boolean existe(int codigo) throws ClienteNaoExisteException{
 		boolean alt=false;
-			if(repositorio.existe(codigo)==true){
+			if(repositorio.existe(codigo)){
 				alt=true;
 			}else{
 				throw new ClienteNaoExisteException();

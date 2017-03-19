@@ -135,10 +135,10 @@ public class ClientePaneController {
 				Integer codig = new Integer (clienteSelecionado.getCodigo());
 				if(panelaFit.existeCliente(codig)){
 					panelaFit.removerCliente(clienteSelecionado);
-					lblMensagem.setText("Cliente Removido");
 					tabelaClientes.getItems().remove(tabelaClientes.getSelectionModel().getSelectedIndex());
 					limparForm();
 					refreshTable();
+					lblMensagem.setText("Cliente Removido");
 					}
 				}else{
 					Integer code = new Integer (txtCodigoCliente.getText());
@@ -146,8 +146,8 @@ public class ClientePaneController {
 						Cliente aux = panelaFit.buscarCliente(code);
 						panelaFit.removerCliente(aux);
 						refreshTable();
-						lblMensagem.setText("Cliente Removido");
 						limparForm();	
+						lblMensagem.setText("Cliente Removido");
 					}
 				  }
 				}catch(ClienteNaoExisteException e){
@@ -227,7 +227,9 @@ public class ClientePaneController {
 		txtCodigoCliente.clear();
         txtCodigoCliente.editableProperty().set(true);
         txtCodigoCliente.setStyle(null);
+        txtNomeCliente.setStyle(null);
         lblMensagem.setText(null);
+        tabelaClientes.getSelectionModel().clearSelection();
 
     }
 	
@@ -261,9 +263,9 @@ public class ClientePaneController {
 	private boolean validateFields() throws IOException{
 		boolean validate=false;
 		try{
-			if(txtNomeCliente.getText().isEmpty() || (txtCpfCliente.getText().isEmpty() || !txtCpfCliente.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) || 
-					(txtTelefoneCliente.getText().isEmpty() || !txtTelefoneCliente.getText().matches("[(][0-9][0-9][)][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")) || (txtIdadeCliente.getText().isEmpty() || !txtIdadeCliente.getText().matches("[0-9][0-9]")) || txtEnderecoCliente.getText().isEmpty() ||
-					(txtCodigoCliente.getText().isEmpty() || !txtCodigoCliente.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))){
+			if((txtNomeCliente.getText().isEmpty() || !txtNomeCliente.getText().matches("[a-z A-Z]+")) ||  (txtCpfCliente.getText().isEmpty() || !txtCpfCliente.getText().matches("[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9][0-9]")) || 
+					(txtTelefoneCliente.getText().isEmpty() || !txtTelefoneCliente.getText().matches("[(][0-9][0-9][)][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]")) || (txtIdadeCliente.getText().isEmpty() || !txtIdadeCliente.getText().matches("[0-9][0-9]")) || 
+					txtEnderecoCliente.getText().isEmpty()  || (txtCodigoCliente.getText().isEmpty() || !txtCodigoCliente.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))){
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -272,6 +274,9 @@ public class ClientePaneController {
             stage.setTitle("Panela Fit");
             stage.setScene(new Scene(root1));  
             stage.show();
+	            if(txtNomeCliente.getText().isEmpty() || !txtNomeCliente.getText().matches("[a-z A-Z]+")){
+	    	        txtNomeCliente.setStyle("-fx-background-color: red;");
+	            }
 			}else{
 				validate = true;
 			}

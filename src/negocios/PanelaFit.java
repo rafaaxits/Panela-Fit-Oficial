@@ -2,7 +2,6 @@ package negocios;
 
 import java.time.*;
 import java.util.List;
-
 import dados.RepositorioCliente;
 import dados.RepositorioFornecedor;
 import dados.RepositorioFuncionario;
@@ -20,8 +19,6 @@ import exceptions.MateriaPrimaJaExisteException;
 import exceptions.MateriaPrimaNaoExisteException;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
-import exceptions.ProdutoInvalidoException;
-import exceptions.VendaInvalidaException;
 import exceptions.VendaJaExisteException;
 import exceptions.VendaNaoExisteException;
 
@@ -116,7 +113,7 @@ public class PanelaFit implements IPanelaFit{
 	}
 	//FUNCIONARIO
 	
-	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FuncionarioNaoExisteException, FormatacaoInvalidaException {
+	public void cadastrarFuncionario(Funcionario f) throws FuncionarioJaExisteException, FormatacaoInvalidaException {
 		this.funcionarios.cadastrar(f);
 	}
 	
@@ -170,6 +167,10 @@ public class PanelaFit implements IPanelaFit{
 		return materiaPrimas.getQuantidade(codigo);
 	}
 	
+	public List<MateriaPrima> listarMateriasPrimas(){
+		return this.materiaPrimas.listaMateriaPrimas();
+	}
+	
 	public boolean existeMateriaPrima(int codigo)throws MateriaPrimaNaoExisteException{
 		boolean alt = false;
 		if(this.materiaPrimas.existe(codigo)==true){
@@ -178,17 +179,13 @@ public class PanelaFit implements IPanelaFit{
 		return alt;
 	}
 	
-	public List<MateriaPrima> listarMateriasPrimas(){
-		return this.materiaPrimas.listaMateriaPrimas();
-	}
-	
 	//PRODUTOS
 	
-	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
+	public void cadastrarProduto(Produto p) throws ProdutoJaExisteException, FormatacaoInvalidaException{
 		this.produtos.cadastrar(p);
 	}
 	
-	public void removerProduto(Produto p) throws ProdutoNaoExisteException, ProdutoInvalidoException {
+	public void removerProduto(Produto p) throws ProdutoNaoExisteException, FormatacaoInvalidaException {
 		this.produtos.remover(p);
 	}
 	
@@ -196,7 +193,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.produtos.buscar(codigo);
 	}
 	
-	public void alterarProdutos(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
+	public void alterarProduto(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, FormatacaoInvalidaException {
 		this.produtos.alterar(novoProduto);
 	}
 	
@@ -212,13 +209,20 @@ public class PanelaFit implements IPanelaFit{
 		return this.produtos.listaProdutos();
 	}
 	
+	public boolean existeProduto(int codigo) throws ProdutoNaoExisteException{
+		boolean alt=false;
+			if(this.produtos.existe(codigo)){
+				alt = true;
+			}
+		return alt;
+	}
 	//VENDAS
 	
-	public void cadastrarVenda(Venda v) throws VendaJaExisteException, VendaNaoExisteException, VendaInvalidaException{
+	public void cadastrarVenda(Venda v) throws VendaJaExisteException, FormatacaoInvalidaException{
 		this.vendas.cadastrar(v);
 	}
 	
-	public void removerVenda(Venda v) throws VendaNaoExisteException, VendaInvalidaException{
+	public void removerVenda(Venda v) throws VendaNaoExisteException, FormatacaoInvalidaException{
 		this.vendas.remover(v);
 	}
 	
@@ -226,7 +230,7 @@ public class PanelaFit implements IPanelaFit{
 		return this.vendas.buscar(codigo);
 	}
 	
-	public void alterarVenda(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, VendaInvalidaException{
+	public void alterarVenda(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, FormatacaoInvalidaException{
 		this.vendas.alterar(novaVenda);
 	}
 	
@@ -237,5 +241,12 @@ public class PanelaFit implements IPanelaFit{
 	public List<Venda> listarVendas(){
 		return this.vendas.listarVendas();
 	}
-
+	
+	public boolean existeVenda(int codigo) throws VendaNaoExisteException{
+		boolean alt=false;
+			if(this.vendas.existe(codigo)){
+				alt=true;
+			}
+			return alt;
+	}
 }

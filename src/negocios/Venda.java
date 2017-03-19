@@ -1,5 +1,8 @@
 package negocios;
 import java.util.ArrayList;
+
+import exceptions.FormatacaoInvalidaException;
+
 import java.io.Serializable;
 import java.time.*;
 public class Venda implements Serializable {
@@ -19,13 +22,13 @@ public class Venda implements Serializable {
 
 
 	public Venda(int codigo, Cliente cliente, Funcionario funcionario, ArrayList<ItemVenda> listaItensDeVenda,
-			LocalDate dataDaVenda) {
+			LocalDate dataDaVenda) throws FormatacaoInvalidaException{
 		super();
-		this.codigo = codigo;
-		this.cliente = cliente;
-		this.funcionario = funcionario;
-		this.listaItensDeVenda = listaItensDeVenda;
-		this.dataDaVenda = dataDaVenda;
+		this.setCodigo(codigo);
+		this.setCliente(cliente);
+		this.setFuncionario(funcionario);
+		this.setListaItensDeVenda(listaItensDeVenda);
+		this.setDataDaVenda(dataDaVenda);
 	}
 	
 	public Venda(){
@@ -44,8 +47,13 @@ public class Venda implements Serializable {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException {
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 
 	public Cliente getCliente() {

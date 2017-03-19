@@ -2,9 +2,9 @@ package negocios;
 
 import java.util.List;
 import dados.IRepositorioVenda;
-import exceptions.VendaInvalidaException;
 import exceptions.VendaJaExisteException;
 import exceptions.VendaNaoExisteException;
+import exceptions.FormatacaoInvalidaException;
 
 public class ControladorVendas {
 	IRepositorioVenda repositorio;
@@ -20,9 +20,9 @@ public class ControladorVendas {
 		    }
 	}
 	
-	public void cadastrar(Venda venda) throws VendaJaExisteException, VendaNaoExisteException, VendaInvalidaException{
+	public void cadastrar(Venda venda) throws VendaJaExisteException, FormatacaoInvalidaException{
 		if(venda == null || venda.calcularVenda()<=0){
-			throw new VendaInvalidaException();
+			throw new FormatacaoInvalidaException();
 		}else{
 			if(this.repositorio.existe(venda.getCodigo()) == false){
 				this.repositorio.inserir(venda);
@@ -41,9 +41,9 @@ public class ControladorVendas {
 		}
 	}
 	
-	public void remover(Venda venda) throws VendaNaoExisteException, VendaInvalidaException{
+	public void remover(Venda venda) throws VendaNaoExisteException, FormatacaoInvalidaException{
 		if(venda == null){
-			throw new VendaInvalidaException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.vendaContem(venda)==true){
 			this.repositorio.remover(venda.getCodigo());
@@ -54,9 +54,9 @@ public class ControladorVendas {
 		}
 	}
 	
-	public void alterar(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, VendaInvalidaException{
+	public void alterar(Venda novaVenda) throws VendaNaoExisteException, VendaJaExisteException, FormatacaoInvalidaException{
 		if(novaVenda==null || novaVenda.calcularVenda()<=0){
-			throw new VendaInvalidaException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.vendaContem(novaVenda)==true){
 			throw new VendaJaExisteException(novaVenda.getCodigo());
@@ -69,6 +69,16 @@ public class ControladorVendas {
 		}
 	}
 
+	public boolean existe(int codigo) throws VendaNaoExisteException{
+		boolean alt = false;
+			if(repositorio.existe(codigo)){
+				alt = true;
+			}else {
+				throw new VendaNaoExisteException();
+			}
+		return alt;
+	}
+	
 	public void excluirVendas(){
 		this.repositorio.excluirVendas();
 		this.repositorio.salvarArquivo();

@@ -118,10 +118,10 @@ private PanelaFit panelaFit;
 					Integer codig = new Integer (materiaPrimaSelecionada.getCodigo());
 					if(panelaFit.existeMateriaPrima(codig)){
 						panelaFit.removerMateriaPrima(materiaPrimaSelecionada);
-						lblMensagem.setText("Materia Prima Removida");
 						tabelaMateriasPrimas.getItems().remove(tabelaMateriasPrimas.getSelectionModel().getSelectedIndex());
 						limparForm();
 						refreshTable();
+						lblMensagem.setText("Materia Prima Removida");
 						}
 					}else {
 						Integer code = new Integer (txtCodigoMateriaPrima.getText());
@@ -131,6 +131,7 @@ private PanelaFit panelaFit;
 							panelaFit.removerMateriaPrima(aux);
 							refreshTable();
 							limparForm();	
+							lblMensagem.setText("Materia Prima Removida");
 						}
 					  }
 					}catch(MateriaPrimaNaoExisteException e){
@@ -188,12 +189,14 @@ private PanelaFit panelaFit;
 
 	@FXML
 	private void initialize(){
-	
+		
+		// preco.toString();
+		//txtPrecoMateriaPrima.setText(String.format("%.0f",preco));
 		panelaFit = PanelaFit.getInstance();
 	
 		colunaNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaQuantidade.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("quantidade"));
-		colunaPreco.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("preco"));
+		colunaPreco.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("Preco"));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<MateriaPrima, String>("codigo"));
 		
 		data = FXCollections.observableArrayList();
@@ -209,7 +212,9 @@ private PanelaFit panelaFit;
 		txtCodigoMateriaPrima.clear();
         txtCodigoMateriaPrima.editableProperty().set(true);
         txtCodigoMateriaPrima.setStyle(null);
+        txtNomeMateriaPrima.setStyle(null);
         lblMensagem.setText(null);
+        tabelaMateriasPrimas.getSelectionModel().clearSelection();
 
     }
 	
@@ -238,8 +243,9 @@ private PanelaFit panelaFit;
 	private boolean validateFields() throws IOException{
 		boolean validate=false;
 		try{
-			if(txtNomeMateriaPrima.getText().isEmpty()  || (txtQuantidadeMateriaPrima.getText().isEmpty() || !txtQuantidadeMateriaPrima.getText().matches("[0-9][0-9][0-9]KG")) || (txtPrecoMateriaPrima.getText().isEmpty() || !txtPrecoMateriaPrima.getText().matches("[R][$][0-9][0-9][0-9].[0-9][0-9]")) ||
-					(txtCodigoMateriaPrima.getText().isEmpty() || !txtCodigoMateriaPrima.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))) {
+			if((txtNomeMateriaPrima.getText().isEmpty() || !txtNomeMateriaPrima.getText().matches("[a-z A-Z]+")) || (txtQuantidadeMateriaPrima.getText().isEmpty() || !txtQuantidadeMateriaPrima.getText().matches("[0-9][0-9]KG")) ||
+					(txtPrecoMateriaPrima.getText().isEmpty() || !txtPrecoMateriaPrima.getText().matches("[R][$][0-9][0-9][0-9]")) ||
+						(txtCodigoMateriaPrima.getText().isEmpty() || !txtCodigoMateriaPrima.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))) {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -248,6 +254,10 @@ private PanelaFit panelaFit;
             stage.setTitle("Panela Fit");
             stage.setScene(new Scene(root1));  
             stage.show();
+            	if(txtNomeMateriaPrima.getText().isEmpty() || !txtNomeMateriaPrima.getText().matches("[a-z A-Z]+")){
+            		txtNomeMateriaPrima.setStyle("-fx-background-color: red;");
+            	}
+            
 			}else{
 				validate = true;
 			}
@@ -278,7 +288,7 @@ private PanelaFit panelaFit;
 	        char [] a = txtQuantidadeMateriaPrima.getText().toCharArray();
 	        String quantity = "";
 	        for(int i = 0; i < a.length; i++){
-	        	if(i==2 || i==1){
+	        	if(i==1){
 	        		quantity += a[i]+"KG";
 	        	}else{
 	        		quantity += a[i];
@@ -289,8 +299,6 @@ private PanelaFit panelaFit;
 	        for(int i = 0; i<b.length; i++){
 	        	if(i==0){
 	        		price += "R$"+b[i];
-	        	}else if(i==2){
-	        		price += b[i]+".";
 	        	}else {
 	        		price += b[i];
 	        	}
@@ -318,7 +326,7 @@ private PanelaFit panelaFit;
 			        char [] a = txtQuantidadeMateriaPrima.getText().toCharArray();
 			        String quantity = "";
 			        for(int i = 0; i < a.length; i++){
-			        	if(i==2 || i==1){
+			        	if(i==1){
 			        		quantity += a[i]+"KG";
 			        	}else{
 			        		quantity += a[i];
@@ -330,8 +338,6 @@ private PanelaFit panelaFit;
 			        for(int i = 0; i<b.length; i++){
 			        	if(i==0){
 			        		price += "R$"+b[i];
-			        	}else if(i==2){
-			        		price += b[i]+".";
 			        	}else {
 			        		price += b[i];
 			        	}

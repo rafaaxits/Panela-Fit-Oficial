@@ -8,7 +8,7 @@ public class MateriaPrimaNaoExisteException extends Exception {
 	
 
 	  public MateriaPrimaNaoExisteException() {
-	    super("Nao existe nenhuma materia prima com o codigo");
+	    super("Nao existe nenhuma materia prima com este codigo");
 	 
 	  }
 }

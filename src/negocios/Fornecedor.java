@@ -57,8 +57,13 @@ public class Fornecedor implements Serializable {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException{
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 	
 	public boolean equals(Fornecedor fornecedor){

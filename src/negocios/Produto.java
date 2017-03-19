@@ -3,13 +3,15 @@ package negocios;
 import java.io.Serializable;
 import java.time.*;
 
+import exceptions.FormatacaoInvalidaException;
+
 public class Produto implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2336117108494125603L;
 	private String nome;
-	private int peso;
+	private float peso;
 	private int calorias;
 	private int codigo;
 	private int quantEstoque;
@@ -17,15 +19,15 @@ public class Produto implements Serializable{
 	private LocalDate dataFabricacao;
 	private LocalDate dataValidade;
 	
-	public Produto(String nome, int peso, int calorias, int codigo, int quantEstoque, double preco, LocalDate dataFabricacao, LocalDate dataValidade){
-		this.nome = nome;
-		this.peso = peso;
-		this.calorias = calorias;
-		this.codigo = codigo;
-		this.quantEstoque = quantEstoque;
-		this.preco = preco;
-		this.dataFabricacao = dataFabricacao;
-		this.dataValidade = dataValidade;
+	public Produto(String nome, float peso, int calorias, int codigo, int quantEstoque, double preco, LocalDate dataFabricacao, LocalDate dataValidade) throws FormatacaoInvalidaException{
+		this.setNome(nome);
+		this.setPeso(peso);
+		this.setCalorias(calorias);
+		this.setCodigo(codigo);
+		this.setQuantEstoque(quantEstoque);
+		this.setPreco(preco);
+		this.setDataFabricacao(dataFabricacao);
+		this.setDataValidade(dataValidade);
 	}
 	
 	public Produto (){
@@ -40,11 +42,11 @@ public class Produto implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getPeso() {
+	public float getPeso() {
 		return peso;
 	}
 
-	public void setPeso(int peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
 
@@ -60,8 +62,13 @@ public class Produto implements Serializable{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException {
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 
 	public int getQuantEstoque() {

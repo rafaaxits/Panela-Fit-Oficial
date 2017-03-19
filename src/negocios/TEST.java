@@ -11,7 +11,7 @@ public class TEST {
 
 	public static void main(String[] args) throws FormatacaoInvalidaException {
 		RepositorioCliente rep = new RepositorioCliente();
-		Cliente c1 = new Cliente(3,"Rafael", "10303577495", 19, "rua pedro antonio da silva", "997457748");
+		Cliente c1 = new Cliente(32121,"Rafael", "10303577495", 19, "rua pedro antonio da silva", "92974577418");
 		rep.inserir(c1);
 		System.out.println(" " +rep.listar());
 		

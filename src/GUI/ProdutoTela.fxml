@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import GUI.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProdutoPaneController">
+   <left>
+      <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="57.0" fitWidth="56.0" layoutX="403.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="butCadastrar" layoutX="18.0" layoutY="32.0" mnemonicParsing="false" onAction="#cadastrarProduto" text="Cadastrar" />
+            <Button layoutX="114.0" layoutY="32.0" mnemonicParsing="false" onAction="#removerProduto" text="Remover" />
+            <Button layoutX="203.0" layoutY="32.0" mnemonicParsing="false" onAction="#alterarProduto" text="Alterar" />
+            <Button layoutX="392.0" layoutY="66.0" mnemonicParsing="false" onAction="#buscarProduto" text="Buscar" />
+            <Button layoutX="280.0" layoutY="32.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
+            <TableView fx:id="tabelaProdutos" layoutX="3.0" layoutY="336.0" onMouseClicked="#selecionarProduto" prefHeight="168.0" prefWidth="526.0">
+              <columns>
+                <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="colunaCodigo" prefWidth="75.0" text="Código" />
+                  <TableColumn fx:id="colunaPeso" prefWidth="75.0" text="Peso" />
+                  <TableColumn fx:id="colunaCalorias" prefWidth="75.0" text="Calorias" />
+                  <TableColumn fx:id="colunaQuantEstoque" prefWidth="75.0" text="Quantidade" />
+                  <TableColumn fx:id="colunaPreco" prefWidth="75.0" text="Preco" />
+                  <TableColumn fx:id="colunaDataFab" prefWidth="75.0" text="DataFab" />
+                  <TableColumn fx:id="colunaDataVal" prefWidth="75.0" text="DataVal" />
+              </columns>
+            </TableView>
+            <Label layoutX="204.0" layoutY="1.0" text="Produtos">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="107.0" text="Nome:" />
+            <Label layoutX="11.0" layoutY="143.0" text="Peso:" />
+            <Label layoutX="9.0" layoutY="249.0" text="Preco:" />
+            <Label layoutX="6.0" layoutY="177.0" text="Calorias:" />
+            <Label layoutX="6.0" layoutY="216.0" text="Quantidade:" />
+            <Label layoutX="9.0" layoutY="71.0" text="Código:" />
+            <TextField fx:id="txtNomeProduto" layoutX="86.0" layoutY="102.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtCaloriasProduto" layoutX="86.0" layoutY="172.0" prefHeight="27.0" prefWidth="297.0" />
+            <Button layoutX="516.0" layoutY="1.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
+            <Button layoutX="489.0" layoutY="1.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
+            <Label fx:id="lblMensagem" layoutX="4.0" layoutY="19.0" prefHeight="0.0" prefWidth="327.0" />
+            <Label layoutX="4.0" layoutY="278.0" prefHeight="26.0" prefWidth="59.0" text="DataFab:" />
+            <MaskField fx:id="txtCodigoProduto" layoutX="87.0" layoutY="66.0" mask="DDDDD" prefHeight="13.0" prefWidth="295.0" text="_____" />
+            <MaskField fx:id="txtPrecoProduto" layoutX="83.0" layoutY="244.0" mask="R$DDD" prefHeight="27.0" prefWidth="301.0" />
+            <TextField fx:id="txtQuantEstoqueProduto" layoutX="85.0" layoutY="211.0" prefHeight="27.0" prefWidth="300.0" />
+            <MaskField fx:id="txtDataFab" layoutX="81.0" layoutY="278.0" mask="DD/DD/DDDD" prefHeight="27.0" prefWidth="304.0" />
+            <MaskField fx:id="txtDataVal" layoutX="81.0" layoutY="309.0" mask="DD/DD/DDDD" prefHeight="27.0" prefWidth="303.0" />
+            <Label layoutX="8.0" layoutY="314.0" text="DataVal:" />
+            <MaskField fx:id="txtPesoProduto" layoutX="89.0" layoutY="138.0" mask="DDDG" prefHeight="27.0" prefWidth="292.0" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

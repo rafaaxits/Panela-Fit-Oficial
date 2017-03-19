@@ -84,7 +84,7 @@ public class ControladorFornecedores {
 	
 	public boolean existe(int codigo) throws FornecedorNaoExisteException{
 		boolean alt = false;
-			if(repositorio.existe(codigo)==true){
+			if(repositorio.existe(codigo)){
 				alt=true;
 			}else{
 				throw new FornecedorNaoExisteException();

@@ -13,8 +13,8 @@ public class Funcionario extends Pessoa {
 	
 	public Funcionario(int nivel, int codigo, String nome, String cpf, int idade, String endereco, String telefone) throws FormatacaoInvalidaException{
 		super(nome, cpf, idade, endereco, telefone);
-		this.nivel = nivel;
-		this.codigo = codigo;
+		this.setNivel(nivel);
+		this.setCodigo(codigo);
 	}
 	
 	public Funcionario(){
@@ -33,8 +33,13 @@ public class Funcionario extends Pessoa {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException{
+		Integer code = codigo;
+			if(code.toString().length()==5){
+				this.codigo = codigo;
+		}else{
+			throw new FormatacaoInvalidaException();
+		}
 	}
 	
 	public boolean equals(Funcionario funcionario){

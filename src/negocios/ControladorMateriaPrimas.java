@@ -81,7 +81,7 @@ public class ControladorMateriaPrimas {
 	
 	public boolean existe(int codigo) throws MateriaPrimaNaoExisteException{
 		boolean alt=false;
-			if(repositorio.existe(codigo)==true){
+			if(repositorio.existe(codigo)){
 				alt=true;
 			}else{
 				throw new MateriaPrimaNaoExisteException();

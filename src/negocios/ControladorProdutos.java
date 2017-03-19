@@ -3,7 +3,7 @@ package negocios;
 import dados.IRepositorioProduto;
 import exceptions.ProdutoJaExisteException;
 import exceptions.ProdutoNaoExisteException;
-import exceptions.ProdutoInvalidoException;
+import exceptions.FormatacaoInvalidaException;
 import java.time.*;
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class ControladorProdutos {
 	}
 
 
-	public void cadastrar(Produto produto) throws ProdutoJaExisteException, ProdutoNaoExisteException, ProdutoInvalidoException{
+	public void cadastrar(Produto produto) throws ProdutoJaExisteException, FormatacaoInvalidaException{
 		if(produto == null) {
-			throw new ProdutoInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} else {
 			if(this.repositorio.existe(produto.getCodigo()) == false){
 				this.repositorio.inserir(produto);
@@ -44,9 +44,9 @@ public class ControladorProdutos {
 		}
 	}
 	
-	public void remover(Produto produto) throws ProdutoNaoExisteException, ProdutoInvalidoException {
+	public void remover(Produto produto) throws ProdutoNaoExisteException, FormatacaoInvalidaException {
 		if(produto == null) {
-			throw new ProdutoInvalidoException();
+			throw new FormatacaoInvalidaException();
 		}
 		else if(this.repositorio.produtoContem(produto) == true) {
 				this.repositorio.remover(produto.getCodigo());
@@ -57,9 +57,9 @@ public class ControladorProdutos {
 		}
 	}
 	
-	public void alterar(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, ProdutoInvalidoException {
+	public void alterar(Produto novoProduto) throws ProdutoNaoExisteException, ProdutoJaExisteException, FormatacaoInvalidaException {
 		if(novoProduto == null) {
-			throw new ProdutoInvalidoException();
+			throw new FormatacaoInvalidaException();
 		} 
 		else if(this.repositorio.produtoContem(novoProduto) == true){
 			throw new ProdutoJaExisteException(novoProduto.getCodigo());
@@ -90,6 +90,16 @@ public class ControladorProdutos {
 		}else {
 			throw new ProdutoNaoExisteException();
 		}
+	}
+	
+	public boolean existe(int codigo) throws ProdutoNaoExisteException{
+		boolean alt=false;
+			if(repositorio.existe(codigo)){
+				alt=true;
+			}else{
+				throw new ProdutoNaoExisteException();
+			}
+		return alt;
 	}
 	
 	public List <Produto> listaProdutos(){

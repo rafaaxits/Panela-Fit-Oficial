@@ -18,11 +18,11 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6477082268000107480L;
-	private ArrayList<Venda> listaVenda;
+	private ArrayList<Venda> listaVendas;
 	private static RepositorioVenda instance;
 	
 	public RepositorioVenda(){
-		this.listaVenda = new ArrayList<Venda>();
+		this.listaVendas = new ArrayList<Venda>();
 	}
 	
 	public static RepositorioVenda getInstance(){
@@ -34,7 +34,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	}
 	
 	public ArrayList<Venda> getListaVendas(){
-		return listaVenda;
+		return listaVendas;
 	}
 	
 	private static RepositorioVenda lerDoArquivo() {
@@ -90,7 +90,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	
 	public boolean inserir(Venda venda){
 		try{
-			listaVenda.add(venda);
+			listaVendas.add(venda);
 		}
 		catch(Exception e){
 			return false;
@@ -99,19 +99,21 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	}
 	
 	public boolean alterar(Venda novaVenda){
+	ArrayList<Venda> listaRemovidos = new ArrayList<Venda>();
 	boolean alt = false;
-		for(Venda venda : listaVenda){
+		for(Venda venda : listaVendas){
 			if(venda.getCodigo() == novaVenda.getCodigo()){
-				listaVenda.remove(venda);
-					listaVenda.add(novaVenda);
+				listaRemovidos.add(venda);
 						alt = true;
 			}
 		}
-		return alt;
+		listaVendas.removeAll(listaRemovidos);
+			listaVendas.add(novaVenda);
+				return alt;
 	}
 	
 	public Venda buscar(int codigo){
-		for(Venda venda : listaVenda){
+		for(Venda venda : listaVendas){
 			if(venda.getCodigo() == codigo){
 				return venda;
 			}
@@ -121,9 +123,9 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	
 	public boolean remover(int codigo){
 		boolean igual=false;
-		for(int i=0; i<listaVenda.size();i++){
-			if(listaVenda.get(i).getCodigo()==codigo){
-				listaVenda.remove(i);
+		for(int i=0; i<listaVendas.size();i++){
+			if(listaVendas.get(i).getCodigo()==codigo){
+				listaVendas.remove(i);
 				igual=true;
 			}
 		}
@@ -132,7 +134,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	
 	public boolean vendaContem(Venda venda){
 		boolean contem = false;
-		if(listaVenda.contains(venda)){
+		if(listaVendas.contains(venda)){
 			contem = true;
 		}
 		return contem;
@@ -141,7 +143,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	public boolean existe(int codigo){
 		int c;
 		boolean x = false;
-		for(Venda venda : listaVenda){
+		for(Venda venda : listaVendas){
 			c=venda.getCodigo();
 			if(c==codigo){
 				x=true;
@@ -152,9 +154,9 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 
 	public boolean excluirVendas(){
 	boolean alt = false;
-		if(listaVenda !=null){
-			for(int i=0; i<listaVenda.size();i++){
-				listaVenda.remove(i);
+		if(listaVendas !=null){
+			for(int i=0; i<listaVendas.size();i++){
+				listaVendas.remove(i);
 					alt=true;
 			}
 				
@@ -163,12 +165,12 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	}
 
 	public List<Venda> listar(){
-		return Collections.unmodifiableList(this.listaVenda);
+		return Collections.unmodifiableList(this.listaVendas);
 	}
 	
 	@Override
 	public String toString() {
-		return "RespositorioVenda [listaVendas=" + listaVenda + "]";
+		return "RespositorioVenda [listaVendas=" + listaVendas + "]";
 	}
 	
 }

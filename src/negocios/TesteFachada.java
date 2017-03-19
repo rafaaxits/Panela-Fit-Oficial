@@ -12,9 +12,9 @@ public class TesteFachada {
 		
 		//CLIENTES
 		
-		Cliente c1 = new Cliente(8, "fulano", "11132436717", 23, "Rua Jose Bras", "81997755432");
-		Cliente c2 = new Cliente(8, "jailton", "51597633267", 54, "Av bernardo vieira", "87953009991");
-		Cliente c4 = new Cliente(7, "cicrano", "55443367677", 19, "Rua Jose Bras", "34922111119");
+		Cliente c1 = new Cliente(85555, "fulano", "11132436717", 23, "Rua Jose Bras", "81997755432");
+		Cliente c2 = new Cliente(85555, "jailton", "51597633267", 54, "Av bernardo vieira", "87953009991");
+		Cliente c4 = new Cliente(77777, "cicrano", "55443367677", 19, "Rua Jose Bras", "34922111119");
 		Cliente c5 = null;
 		System.out.println("" +panelaFit.listarClientes());
 
@@ -116,11 +116,11 @@ public class TesteFachada {
 		
 		//FUNCION�RIOS
 		
-		Funcionario f1 = new Funcionario(2,5, "leleo", "26379263782", 45, "Rua domingos ferreia", "98737438211");
-		Funcionario f2 = new Funcionario(2,4, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "91834726731");
+		Funcionario f1 = new Funcionario(2,55555, "leleo", "26379263782", 45, "Rua domingos ferreia", "98737438211");
+		Funcionario f2 = new Funcionario(2,44444, "joaozinho", "73636276723", 32, "Rua Dom Bosco", "91834726731");
 		Funcionario f4 = null;
-		Funcionario f5 = new Funcionario(9,4,"testinho", "39239283892", 65, "Rua ali perto", "37772782312");
-		Funcionario f6 = new Funcionario(6,7, "abestalhado", "25623562353", 78, "RUA ARE BABA", "73643642217");
+		Funcionario f5 = new Funcionario(9,44444,"testinho", "39239283892", 65, "Rua ali perto", "37772782312");
+		Funcionario f6 = new Funcionario(6,77777, "abestalhado", "25623562353", 78, "RUA ARE BABA", "73643642217");
 		try{
 			panelaFit.cadastrarFuncionario(f4); //tentando cadastrar um funcionario nulo e a exception apareceu
 		}catch(Exception e){
@@ -225,9 +225,9 @@ public class TesteFachada {
 	
 //FORNECEDORES
 
-		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "22334451213", 123);
-		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "33425677222", 123);
-		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37123765123", 122);
+		Fornecedor for1 = new Fornecedor("iFruit", "Av bernardo vieira", "22334451213", 12345);
+		Fornecedor for2 = new Fornecedor("Greenfood", "Av conselheiro aguiar", "33425677222", 12345);
+		Fornecedor for4 = new Fornecedor("Verdefruitt", "Rua jose bras", "37123765123", 12222);
 		Fornecedor for5 = null;
 	
 		System.out.println("" +panelaFit.listarFornecedores());
@@ -332,9 +332,9 @@ public class TesteFachada {
 		
 		//MAT�RIAS PRIMAS
 		
-		MateriaPrima mp1 = new MateriaPrima("MateriaPrima1", 4, 30, 100);
-		MateriaPrima mp2 = new MateriaPrima("MateriaPrima2", 4, 20, 200);
-		MateriaPrima mp4 = new MateriaPrima("MateriaPrima4", 5, 50, 400);
+		MateriaPrima mp1 = new MateriaPrima("MateriaPrima1", 44444, 30, 100);
+		MateriaPrima mp2 = new MateriaPrima("MateriaPrima2", 44444, 20, 200);
+		MateriaPrima mp4 = new MateriaPrima("MateriaPrima4", 55555, 50, 400);
 		MateriaPrima mp5 = null;
 	
 		System.out.println("" +panelaFit.listarMateriasPrimas());
@@ -440,9 +440,9 @@ public class TesteFachada {
 		LocalDate val3 = LocalDate.of(2018, 2, 22);
 		LocalDate fab3 = LocalDate.of(2018, 4, 13);
 		
-		Produto p1 = new Produto("Produto1", 10, 5, 123, 50, 40, fab1, val1);
-		Produto p2 = new Produto("Produto2", 4, 2, 123, 40, 60, fab2, val2);
-		Produto p3 = new Produto("Produto4", 20, 77, 456, 30, 50, fab3, val3);
+		Produto p1 = new Produto("Produto1", 10, 5, 12345, 50, 40, fab1, val1);
+		Produto p2 = new Produto("Produto2", 4, 2, 12345, 40, 60, fab2, val2);
+		Produto p3 = new Produto("Produto4", 20, 77, 45678, 30, 50, fab3, val3);
 		Produto p4 = null;
 		
 		System.out.println("" +panelaFit.listarProdutos());
@@ -473,21 +473,21 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarProdutos());
 	
 		try {
-			panelaFit.alterarProdutos(p3);
+			panelaFit.alterarProduto(p3);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarProdutos(p1);
+			panelaFit.alterarProduto(p1);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
 		}
 	
 		try {
-			panelaFit.alterarProdutos(p4);
+			panelaFit.alterarProduto(p4);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -496,7 +496,7 @@ public class TesteFachada {
 		System.out.println("" +panelaFit.listarProdutos());
 	
 		try {
-			panelaFit.alterarProdutos(p2);
+			panelaFit.alterarProduto(p2);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.out.print("\n");
@@ -547,9 +547,9 @@ public class TesteFachada {
 		
 		LocalDate d1 = LocalDate.of(2016, 9, 23);
 		
-		Produto pro1 = new Produto("Pao fit", 200, 159, 5,10,3, d1,d1);
-		Produto pro2 = new Produto("Parfait de banana", 300, 250, 6,50,10, d1,d1);
-		Produto pro3 = new Produto("Parfait de maça", 500, 250, 6,50,10, d1,d1);
+		Produto pro1 = new Produto("Pao fit", 200, 159, 55555,10,3, d1,d1);
+		Produto pro2 = new Produto("Parfait de banana", 300, 250, 66666,50,10, d1,d1);
+		Produto pro3 = new Produto("Parfait de maça", 500, 250, 66666,50,10, d1,d1);
 	
 		ItemVenda item1 = new ItemVenda(pro1,3);
 		ItemVenda item2 = new ItemVenda(pro2,5);
@@ -569,10 +569,18 @@ public class TesteFachada {
 		listaItemVenda2.add(item5);
 		listaItemVenda2.add(item6);
 		
-		Venda venda1 = new Venda(123,c1,f1,listaItemVenda1, d1);
-		Venda venda2 = new Venda(123,c2,f2,listaItemVenda2,val1);
-		Venda venda3 = new Venda(776,c4,f6, listaItemVenda2, fab2);
+		Venda venda1 = new Venda(12345,c1,f1,listaItemVenda1, d1);
+		Venda venda2 = new Venda(12345,c2,f2,listaItemVenda2,val1);
+		Venda venda3 = new Venda(77666,c4,f6, listaItemVenda2, fab2);
 		Venda venda4 = null;
+		
+
+		try{
+			panelaFit.cadastrarVenda(venda1);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("\n");
+		}
 		
 		System.out.println(""+panelaFit.listarVendas());
 
