@@ -93,7 +93,7 @@ public class Venda implements Serializable {
 	@Override
 	public String toString() {
 		return "Venda [codigo=" + codigo + ", cliente=" + this.getCliente()+ ", funcionario=" + this.getFuncionario()
-				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda + "]";
+				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda +  ",Total=" + this.calcularVenda() + "]";
 	}
 	
 	public double calcularVenda(){

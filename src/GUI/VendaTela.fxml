@@ -22,12 +22,14 @@
             <Button layoutX="204.0" layoutY="49.0" mnemonicParsing="false" text="Alterar" />
             <Button layoutX="408.0" layoutY="88.0" mnemonicParsing="false" text="Buscar" />
             <Button layoutX="286.0" layoutY="49.0" mnemonicParsing="false" text="Limpar" />
-            <TableView layoutX="3.0" layoutY="289.0" prefHeight="200.0" prefWidth="453.0">
+            <TableView layoutX="3.0" layoutY="289.0" prefHeight="200.0" prefWidth="508.0">
               <columns>
-                <TableColumn prefWidth="172.0" text="Nome" />
-                  <TableColumn prefWidth="91.0" text="Quantidade" />
-                  <TableColumn prefWidth="91.0" text="Preço" />
                   <TableColumn prefWidth="98.0" text="Código" />
+                  <TableColumn prefWidth="91.0" text="Cliente" />
+                  <TableColumn prefWidth="91.0" text="Funcionário" />
+                  <TableColumn prefWidth="75.0" text="ListaItens" />
+                  <TableColumn prefWidth="75.0" text="DataVenda" />
+                  <TableColumn prefWidth="75.0" text="Total" />
               </columns>
             </TableView>
             <Label layoutX="194.0" layoutY="24.0" text="Vendas">

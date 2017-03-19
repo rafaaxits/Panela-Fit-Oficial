@@ -686,6 +686,5 @@ public class TesteFachada {
 
 		System.out.println(""+panelaFit.listarVendas());
 		
-		
 	}
 }

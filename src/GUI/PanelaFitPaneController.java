@@ -39,8 +39,7 @@ public class PanelaFitPaneController {
 				}
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
-				
-				
+				panelaFitApp.changeStage(stage);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -59,7 +58,7 @@ public class PanelaFitPaneController {
 				}
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
-				
+				panelaFitApp.changeStage(stage);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -79,6 +78,7 @@ public class PanelaFitPaneController {
 				}
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
+				panelaFitApp.changeStage(stage);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -98,6 +98,7 @@ public class PanelaFitPaneController {
 				}
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
+				panelaFitApp.changeStage(stage);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -117,6 +118,7 @@ public class PanelaFitPaneController {
 		}
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
+			panelaFitApp.changeStage(stage);
 	}catch(Exception e){
 		e.printStackTrace();
 	}
@@ -135,6 +137,7 @@ public class PanelaFitPaneController {
 				}
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
+				panelaFitApp.changeStage(stage);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

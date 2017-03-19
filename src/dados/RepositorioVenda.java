@@ -153,16 +153,16 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	}
 
 	public boolean excluirVendas(){
-	boolean alt = false;
-		if(listaVendas !=null){
-			for(int i=0; i<listaVendas.size();i++){
-				listaVendas.remove(i);
-					alt=true;
+		ArrayList<Venda> listaRemovidos = new ArrayList<Venda>();
+		boolean alt = false;
+			for(Venda venda : listaVendas){
+					listaRemovidos.add(venda);
+							alt = true;
 			}
-				
-		}
-		return alt;
+			listaVendas.removeAll(listaRemovidos);
+					return alt;
 	}
+
 
 	public List<Venda> listar(){
 		return Collections.unmodifiableList(this.listaVendas);

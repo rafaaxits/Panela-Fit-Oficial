@@ -25,7 +25,7 @@
             <Button layoutX="281.0" layoutY="49.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
             <TableView fx:id="tabelaClientes" layoutX="3.0" layoutY="289.0" onMouseClicked="#selecionarCliente" prefHeight="200.0" prefWidth="453.0">
               <columns>
-                <TableColumn fx:id="colunaNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="colunaNome" onEditStart="#selecionarCliente" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="colunaCpf" prefWidth="75.0" text="CPF" />
                   <TableColumn fx:id="colunaIdade" prefWidth="75.0" text="Idade" />
                   <TableColumn fx:id="colunaEndereco" prefWidth="75.0" text="Endereço" />

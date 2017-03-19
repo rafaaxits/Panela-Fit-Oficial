@@ -54,7 +54,6 @@ public class ClientePaneController {
 	@FXML
 	private TextField txtCodigoCliente;
 	
-	
 	@FXML
 	private TableView<Cliente> tabelaClientes;
 	

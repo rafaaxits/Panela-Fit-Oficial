@@ -58,6 +58,9 @@ public class FuncionarioPaneController {
 	private TextField txtCodigoFuncionario;
 	
 	@FXML
+	private TextField txtNivelFuncionario;
+	
+	@FXML
 	private ChoiceBox<Integer> cbNivel = new ChoiceBox<Integer>(FXCollections.observableArrayList(1,2,3,4,5));
 	
 	@FXML
@@ -222,6 +225,8 @@ public class FuncionarioPaneController {
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionario,String>("codigo"));
 		colunaNivel.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nivel"));	
 		cbNivel.getItems().addAll(1,2,3,4,5);
+		txtNivelFuncionario.editableProperty().set(false);
+		txtNivelFuncionario.setStyle("-fx-background-color: grey;");
 		data = FXCollections.observableArrayList();
 		data.addAll(panelaFit.listarFuncionarios());
 		tabelaFuncionarios.setItems(data);
@@ -235,9 +240,11 @@ public class FuncionarioPaneController {
 		txtEnderecoFuncionario.clear();
 		txtTelefoneFuncionario.clear();
 		txtCodigoFuncionario.clear();
+		txtNivelFuncionario.clear();
 		txtCodigoFuncionario.editableProperty().set(true);
         txtCodigoFuncionario.setStyle(null);
         txtNomeFuncionario.setStyle(null);
+        cbNivel.setStyle(null);
         lblMensagem.setText(null);
         tabelaFuncionarios.getSelectionModel().clearSelection();
 	}
@@ -291,6 +298,9 @@ public class FuncionarioPaneController {
 	            if(txtNomeFuncionario.getText().isEmpty() || !txtNomeFuncionario.getText().matches("[a-z A-Z]+")){
 	            	txtNomeFuncionario.setStyle("-fx-background-color: red;");
 	            }
+	            if(cbNivel.getSelectionModel().isEmpty()){
+	            	cbNivel.setStyle("-fx-background-color: red;");
+	            }
 			}else{
 				lblMensagem.setText("DEU");
 				validate = true;
@@ -320,6 +330,7 @@ public class FuncionarioPaneController {
         txtEnderecoFuncionario.setText(f.getEndereco());
         txtTelefoneFuncionario.setText(f.getTelefone());
         txtCodigoFuncionario.setText(codigo.toString());
+        txtNivelFuncionario.setText(nivel.toString());
         cbNivel.setAccessibleText(nivel.toString());
         txtIdadeFuncionario.setText(idade.toString());
         char[] a = txtCpfFuncionario.getText().toCharArray();
@@ -368,6 +379,7 @@ public class FuncionarioPaneController {
 			        txtTelefoneFuncionario.setText(f.getTelefone());
 			        txtCodigoFuncionario.setText(codigo.toString());
 			        cbNivel.setAccessibleText(nivel.toString());
+			        txtNivelFuncionario.setText(nivel.toString());
 			        txtIdadeFuncionario.setText(idade.toString());
 			        char[] a = txtCpfFuncionario.getText().toCharArray();
 			        String cpf = "";
