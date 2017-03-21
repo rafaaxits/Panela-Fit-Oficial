@@ -12,8 +12,8 @@ public class Venda implements Serializable {
 	 */
 	private static final long serialVersionUID = -1931621942968592228L;
 	private int codigo;
-	Cliente cliente;
-	Funcionario funcionario;
+	private Cliente cliente;
+	private Funcionario funcionario;
 	private ArrayList<ItemVenda> listaItensDeVenda;
 	private LocalDate dataDaVenda;
 	
@@ -115,5 +115,4 @@ public class Venda implements Serializable {
 			}
 			return alt;
 	}
-//comitando essa merda 
 }

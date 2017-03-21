@@ -44,9 +44,9 @@
             <Label layoutX="2.0" layoutY="190.0" text="Endereço:" />
             <Label layoutX="4.0" layoutY="229.0" text="Telefone:" />
             <Label layoutX="9.0" layoutY="84.0" text="Código:" />
-            <TextField fx:id="txtNomeCliente" layoutX="76.0" layoutY="149.0" prefHeight="27.0" prefWidth="297.0" />
-            <MaskField fx:id="txtCpfCliente" layoutX="77.0" layoutY="111.0" mask="DDD.DDD.DDD-DD" prefHeight="27.0" prefWidth="297.0" />
-            <TextField fx:id="txtEnderecoCliente" layoutX="76.0" layoutY="185.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtNomeCliente" layoutX="76.0" layoutY="149.0" prefHeight="27.0" prefWidth="297.0" promptText="Nome do Cliente" />
+            <MaskField fx:id="txtCpfCliente" layoutX="77.0" layoutY="111.0" mask="DDD.DDD.DDD-DD" placeholder="" prefHeight="27.0" prefWidth="297.0" whatMask="" />
+            <TextField fx:id="txtEnderecoCliente" layoutX="76.0" layoutY="185.0" prefHeight="27.0" prefWidth="297.0" promptText="Endereço" />
             <MaskField fx:id="txtTelefoneCliente" layoutX="76.0" layoutY="224.0" mask="(DD)DDDDD-DDDD" prefHeight="27.0" prefWidth="297.0" />
             <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
             <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />

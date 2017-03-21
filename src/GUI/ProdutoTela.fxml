@@ -46,19 +46,19 @@
             <Label layoutX="6.0" layoutY="177.0" text="Calorias:" />
             <Label layoutX="6.0" layoutY="216.0" text="Quantidade:" />
             <Label layoutX="9.0" layoutY="71.0" text="Código:" />
-            <TextField fx:id="txtNomeProduto" layoutX="86.0" layoutY="102.0" prefHeight="27.0" prefWidth="297.0" />
-            <TextField fx:id="txtCaloriasProduto" layoutX="86.0" layoutY="172.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtNomeProduto" layoutX="82.0" layoutY="102.0" prefHeight="27.0" prefWidth="301.0" promptText="Nome do Produto" />
+            <TextField fx:id="txtCaloriasProduto" layoutX="84.0" layoutY="172.0" prefHeight="27.0" prefWidth="299.0" promptText="Calorias" />
             <Button layoutX="516.0" layoutY="1.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
             <Button layoutX="489.0" layoutY="1.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
             <Label fx:id="lblMensagem" layoutX="4.0" layoutY="19.0" prefHeight="0.0" prefWidth="327.0" />
             <Label layoutX="4.0" layoutY="278.0" prefHeight="26.0" prefWidth="59.0" text="DataFab:" />
-            <MaskField fx:id="txtCodigoProduto" layoutX="87.0" layoutY="66.0" mask="DDDDD" prefHeight="13.0" prefWidth="295.0" text="_____" />
+            <MaskField fx:id="txtCodigoProduto" layoutX="82.0" layoutY="66.0" mask="DDDDD" prefHeight="27.0" prefWidth="300.0" text="_____" />
             <MaskField fx:id="txtPrecoProduto" layoutX="83.0" layoutY="244.0" mask="R$DDD" prefHeight="27.0" prefWidth="301.0" />
-            <TextField fx:id="txtQuantEstoqueProduto" layoutX="85.0" layoutY="211.0" prefHeight="27.0" prefWidth="300.0" />
+            <TextField fx:id="txtQuantEstoqueProduto" layoutX="84.0" layoutY="211.0" prefHeight="27.0" prefWidth="301.0" promptText="Quantidade" />
             <MaskField fx:id="txtDataFab" layoutX="81.0" layoutY="278.0" mask="DD/DD/DDDD" prefHeight="27.0" prefWidth="304.0" />
             <MaskField fx:id="txtDataVal" layoutX="81.0" layoutY="309.0" mask="DD/DD/DDDD" prefHeight="27.0" prefWidth="303.0" />
             <Label layoutX="8.0" layoutY="314.0" text="DataVal:" />
-            <MaskField fx:id="txtPesoProduto" layoutX="89.0" layoutY="138.0" mask="DDDG" prefHeight="27.0" prefWidth="292.0" />
+            <MaskField fx:id="txtPesoProduto" layoutX="84.0" layoutY="138.0" mask="DDDG" prefHeight="27.0" prefWidth="297.0" />
          </children>
       </AnchorPane>
    </left>

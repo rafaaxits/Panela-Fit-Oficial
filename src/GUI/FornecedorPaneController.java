@@ -270,6 +270,7 @@ public class FornecedorPaneController {
 		
 		@FXML
 		public void selecionarFornecedor(MouseEvent arg0) {
+			if(!tabelaFornecedores.getSelectionModel().isEmpty()){
 				Fornecedor f = tabelaFornecedores.getSelectionModel().getSelectedItem();
 		        Integer codigo = f.getCodigo();
 				txtNomeFornecedor.setText(f.getNomeFornecedor());
@@ -292,8 +293,8 @@ public class FornecedorPaneController {
 		        txtTelefoneFornecedor.setText(telefone);
 		        txtCodigoFornecedor.editableProperty().set(false);
 		        txtCodigoFornecedor.setStyle("-fx-background-color: gray;");
-		       
-		    }
+		}
+}
 		
 		@FXML
 		public void buscarFornecedor() throws FornecedorNaoExisteException, IOException{

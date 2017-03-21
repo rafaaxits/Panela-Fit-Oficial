@@ -293,6 +293,7 @@ public class ClientePaneController {
 	}
 	@FXML
 	public void selecionarCliente(MouseEvent arg0) {
+		if(!tabelaClientes.getSelectionModel().isEmpty()){
 	        Cliente c = tabelaClientes.getSelectionModel().getSelectedItem();
 	        Integer codigo = c.getCodigo();
 			Integer idade = c.getIdade(); 
@@ -330,8 +331,8 @@ public class ClientePaneController {
 	        txtTelefoneCliente.setText(telefone);
 	        txtCodigoCliente.editableProperty().set(false);
 	        txtCodigoCliente.setStyle("-fx-background-color: gray;");
-	    }
-	
+		}
+}
 	@FXML
 	public void buscarCliente() throws ClienteNaoExisteException, IOException{
 		Cliente c;

@@ -30,7 +30,7 @@
                   <TableColumn fx:id="colunaCodigo" prefWidth="98.0" text="Código" />
               </columns>
             </TableView>
-            <Label layoutX="163.0" layoutY="24.0" text="Matérias Primas">
+            <Label layoutX="163.0" layoutY="24.0" text="Matérias-Primas">
                <font>
                   <Font size="20.0" />
                </font>
@@ -39,7 +39,7 @@
             <Label layoutX="9.0" layoutY="257.0" text="Preço:" />
             <Label layoutX="11.0" layoutY="201.0" text="Quantidade:" />
             <Label layoutX="16.0" layoutY="93.0" text="Código:" />
-            <TextField fx:id="txtNomeMateriaPrima" layoutX="88.0" layoutY="140.0" prefHeight="27.0" prefWidth="304.0" />
+            <TextField fx:id="txtNomeMateriaPrima" layoutX="88.0" layoutY="140.0" prefHeight="27.0" prefWidth="304.0" promptText="Nome da Matéria-prima" />
             <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
             <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
             <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />

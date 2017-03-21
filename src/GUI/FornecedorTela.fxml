@@ -39,8 +39,8 @@
             <Label layoutX="9.0" layoutY="257.0" text="Endereço:" />
             <Label layoutX="11.0" layoutY="201.0" text="Telefone:" />
             <Label layoutX="16.0" layoutY="93.0" text="Código:" />
-            <TextField fx:id="txtNomeFornecedor" layoutX="77.0" layoutY="140.0" prefHeight="27.0" prefWidth="297.0" />
-            <TextField fx:id="txtEnderecoFornecedor" layoutX="76.0" layoutY="252.0" prefHeight="27.0" prefWidth="297.0" />
+            <TextField fx:id="txtNomeFornecedor" layoutX="77.0" layoutY="140.0" prefHeight="27.0" prefWidth="297.0" promptText="Nome do Fornecedor" />
+            <TextField fx:id="txtEnderecoFornecedor" layoutX="76.0" layoutY="252.0" prefHeight="27.0" prefWidth="297.0" promptText="Endereço" />
             <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
             <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
             <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />

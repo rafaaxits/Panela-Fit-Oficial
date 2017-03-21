@@ -276,6 +276,7 @@ private PanelaFit panelaFit;
 	}
 	@FXML
 	public void selecionarMateriaPrima(MouseEvent arg0) {
+		if(!tabelaMateriasPrimas.getSelectionModel().isEmpty()){
 			MateriaPrima materiaPrimaSelecionada= tabelaMateriasPrimas.getSelectionModel().getSelectedItem();
 	        Integer codigo = materiaPrimaSelecionada.getCodigo();
 			Integer quantidade = materiaPrimaSelecionada.getQuantidade();
@@ -307,6 +308,7 @@ private PanelaFit panelaFit;
 	        txtCodigoMateriaPrima.editableProperty().set(false);
 	        txtCodigoMateriaPrima.setStyle("-fx-background-color: gray;");
 	    }
+}
 	
 	@FXML
 	public void buscarMateriaPrima() throws MateriaPrimaNaoExisteException, IOException{

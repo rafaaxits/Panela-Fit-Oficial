@@ -186,7 +186,7 @@ public class FuncionarioPaneController {
 				String nome, cpf, endereco, telefone;
 				Integer idade = new Integer(txtIdadeFuncionario.getText());
 				Integer codigo = new Integer(txtCodigoFuncionario.getText());
-				Integer nivel = new Integer(cbNivel.getAccessibleText());
+				Integer nivel = new Integer(cbNivel.getSelectionModel().getSelectedItem());
 				nome = txtNomeFuncionario.getText();
 				cpf = txtCpfFuncionario.getText();
 				endereco = txtEnderecoFuncionario.getText();
@@ -321,6 +321,7 @@ public class FuncionarioPaneController {
 	
 	@FXML
 	public void selecionarFuncionario(MouseEvent arg0) {
+		if(!tabelaFuncionarios.getSelectionModel().isEmpty()){
 		Funcionario f = tabelaFuncionarios.getSelectionModel().getSelectedItem();
         Integer codigo = f.getCodigo();
 		Integer idade = f.getIdade(); 
@@ -363,6 +364,7 @@ public class FuncionarioPaneController {
         txtCodigoFuncionario.setStyle("-fx-background-color: grey;");
 
 	}
+}
 	
 	@FXML 
 	public void buscarFuncionario() throws FuncionarioNaoExisteException, IOException {

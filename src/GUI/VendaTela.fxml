@@ -8,45 +8,149 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VendaPaneController">
-   <top>
-      <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="587.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VendaPaneController">
+   <center>
+      <AnchorPane prefHeight="590.0" prefWidth="595.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="65.0" fitWidth="70.0" layoutX="373.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="65.0" fitWidth="70.0" layoutX="457.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Documents/Imagens/insta1.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="28.0" layoutY="49.0" mnemonicParsing="false" text="Cadastrar" />
+            <Button layoutX="28.0" layoutY="49.0" mnemonicParsing="false" onAction="#cadastrarVenda" text="Cadastrar" />
             <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" text="Remover" />
-            <Button layoutX="204.0" layoutY="49.0" mnemonicParsing="false" text="Alterar" />
+            <Button layoutX="209.0" layoutY="50.0" mnemonicParsing="false" text="Alterar" />
             <Button layoutX="408.0" layoutY="88.0" mnemonicParsing="false" text="Buscar" />
-            <Button layoutX="286.0" layoutY="49.0" mnemonicParsing="false" text="Limpar" />
-            <TableView layoutX="3.0" layoutY="289.0" prefHeight="200.0" prefWidth="508.0">
-              <columns>
-                  <TableColumn prefWidth="98.0" text="Código" />
-                  <TableColumn prefWidth="91.0" text="Cliente" />
-                  <TableColumn prefWidth="91.0" text="Funcionário" />
-                  <TableColumn prefWidth="75.0" text="ListaItens" />
-                  <TableColumn prefWidth="75.0" text="DataVenda" />
-                  <TableColumn prefWidth="75.0" text="Total" />
-              </columns>
-            </TableView>
-            <Label layoutX="194.0" layoutY="24.0" text="Vendas">
+            <Button layoutX="286.0" layoutY="50.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
+            <Label layoutX="234.0" layoutY="2.0" text="Vendas">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="9.0" layoutY="257.0" text="Preço:" />
-            <Label layoutX="11.0" layoutY="201.0" text="Quantidade:" />
             <Label layoutX="16.0" layoutY="93.0" text="Código:" />
-            <Button layoutX="497.0" layoutY="10.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
-            <Button layoutX="469.0" layoutY="10.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
-            <Label fx:id="lblMensagem" layoutX="3.0" layoutY="6.0" prefHeight="17.0" prefWidth="337.0" />
-            <MaskField layoutX="88.0" layoutY="86.0" mask="DDDDD" prefHeight="31.0" prefWidth="302.0" />
-            <MaskField layoutX="90.0" layoutY="196.0" mask="DDKG" prefHeight="27.0" prefWidth="305.0" />
-            <MaskField layoutX="88.0" layoutY="252.0" mask="R$DDD" prefHeight="27.0" prefWidth="309.0" />
+            <Button layoutX="549.0" layoutY="1.0" mnemonicParsing="false" onAction="#sair" text="X" textFill="#eb0b0b" />
+            <Button layoutX="522.0" layoutY="1.0" mnemonicParsing="false" onAction="#voltarMenuPrincipal" text="&lt;" />
+            <Label fx:id="lblMensagem" layoutX="4.0" layoutY="28.0" prefHeight="17.0" prefWidth="337.0" />
+            <MaskField fx:id="txtCodigoVenda" layoutX="88.0" layoutY="86.0" mask="DDDDD" prefHeight="31.0" prefWidth="302.0" />
+            <TabPane fx:id="tbPaneVendas" layoutX="6.0" layoutY="393.0" prefHeight="189.0" prefWidth="570.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tabClientes" text="Clientes">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="566.0">
+                           <children>
+                              <TableView fx:id="tabelaClientes" onMouseClicked="#selecionarCliente" prefHeight="162.0" prefWidth="562.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNomeCliente" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="colunaCpfCliente" prefWidth="75.0" text="CPF" />
+                                    <TableColumn fx:id="colunaIdadeCliente" prefWidth="75.0" text="Idade" />
+                                    <TableColumn fx:id="colunaEnderecoCliente" prefWidth="75.0" text="Endereco" />
+                                    <TableColumn fx:id="colunaTelefoneCliente" prefWidth="75.0" text="Telefone" />
+                                    <TableColumn fx:id="colunaCodigoCliente" prefWidth="75.0" text="Código" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="tabFuncionarios" text="Funcionários">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tabelaFuncionarios" layoutX="2.0" onMouseClicked="#selecionarFuncionario" prefHeight="169.0" prefWidth="566.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNomeFuncionario" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="colunaCpfFuncionario" prefWidth="75.0" text="CPF" />
+                                    <TableColumn fx:id="colunaIdadeFuncionario" prefWidth="75.0" text="Idade" />
+                                    <TableColumn fx:id="colunaEnderecoFuncionario" prefWidth="75.0" text="Endereço" />
+                                    <TableColumn fx:id="colunaTelefoneFuncionario" prefWidth="75.0" text="Telefone" />
+                                    <TableColumn fx:id="colunaCodigoFuncionario" prefWidth="75.0" text="Código" />
+                                    <TableColumn fx:id="colunaNivelFuncionario" prefWidth="75.0" text="Nível" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab fx:id="tabProdutos" text="Produtos">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tabelaProdutos" onMouseClicked="#selecionarProduto" prefHeight="155.0" prefWidth="569.0">
+                                <columns>
+                                  <TableColumn fx:id="colunaNomeProduto" prefWidth="75.0" text="Nome" />
+                                  <TableColumn fx:id="colunaCodigoProduto" prefWidth="75.0" text="Código" />
+                                    <TableColumn fx:id="colunaPesoProduto" prefWidth="75.0" text="Peso" />
+                                    <TableColumn fx:id="colunaCaloriasProduto" prefWidth="75.0" text="Calorias" />
+                                    <TableColumn fx:id="colunaQuantEstoqueProduto" prefWidth="75.0" text="Quantidade" />
+                                    <TableColumn fx:id="colunaPrecoProduto" prefWidth="75.0" text="Preco" />
+                                    <TableColumn fx:id="colunaDataFabProduto" prefWidth="75.0" text="DataFab" />
+                                    <TableColumn fx:id="colunaDataValProduto" prefWidth="75.0" text="DataVal" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Vendas">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="165.0" prefWidth="566.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="Código" />
+                                  <TableColumn prefWidth="75.0" text="Cliente" />
+                                    <TableColumn prefWidth="75.0" text="Funcionário" />
+                                    <TableColumn prefWidth="75.0" text="ListaItens" />
+                                    <TableColumn prefWidth="75.0" text="DataVenda" />
+                                    <TableColumn prefWidth="75.0" text="Total" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="ListaDeItens">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tabelaListaitemVenda" prefHeight="165.0" prefWidth="566.0">
+                                 <columns>
+                                    <TableColumn fx:id="colunaNomeProdutoItemVenda" prefWidth="75.0" text="Produto" />
+                                    <TableColumn fx:id="colunaQuantidadeItemVenda" prefWidth="75.0" text="Quantidade" />
+                                 </columns></TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <TextField fx:id="txtQuantidadeItem" layoutX="90.0" layoutY="359.0" prefHeight="27.0" prefWidth="77.0" promptText="Quantidade" />
+            <Label layoutX="15.0" layoutY="364.0" text="Quantidade:" />
+            <TextField fx:id="txtNomeProduto" layoutX="90.0" layoutY="326.0" prefHeight="27.0" prefWidth="135.0" />
+            <Label layoutX="16.0" layoutY="334.0" text="Produto:" />
+            <Button layoutX="175.0" layoutY="359.0" mnemonicParsing="false" onAction="#setItemNaLista" text="AddItem" />
+            <Label layoutX="12.0" layoutY="298.0" text="Cod.Prod:" />
+            <Button layoutX="179.0" layoutY="293.0" mnemonicParsing="false" onAction="#buscarProduto" prefHeight="27.0" prefWidth="63.0" text="Buscar" />
+            <Label layoutX="255.0" layoutY="298.0" text="Cod.Cliente:" />
+            <Label layoutX="269.0" layoutY="334.0" text="Cliente:" />
+            <Label layoutX="278.0" layoutY="364.0" text="CPF:" />
+            <MaskField fx:id="txtCodigoProduto" layoutX="91.0" layoutY="293.0" mask="DDDDD" prefHeight="27.0" prefWidth="76.0" />
+            <MaskField fx:id="txtCodigoCliente" layoutX="337.0" layoutY="293.0" mask="DDDDD" prefHeight="27.0" prefWidth="100.0" />
+            <TextField fx:id="txtNomeCliente" layoutX="336.0" layoutY="326.0" prefHeight="27.0" prefWidth="98.0" />
+            <MaskField fx:id="txtCpfCliente" layoutX="335.0" layoutY="359.0" mask="DDD.DDD.DDD-DD" prefHeight="27.0" prefWidth="100.0" />
+            <Button layoutX="447.0" layoutY="359.0" mnemonicParsing="false" text="AddCliente" />
+            <Label layoutX="16.0" layoutY="128.0" text="DataVenda:" />
+            <MaskField fx:id="txtDataVenda" layoutX="88.0" layoutY="123.0" mask="DD/DD/DDDD" prefHeight="27.0" prefWidth="301.0" />
+            <Button layoutX="447.0" layoutY="293.0" mnemonicParsing="false" onAction="#buscarCliente" text="Buscar" />
+            <Label layoutX="15.0" layoutY="178.0" text="Cod.Funcionário:" />
+            <MaskField fx:id="txtCodigoFuncionario" layoutX="126.0" layoutY="173.0" mask="DDDDD" prefHeight="27.0" prefWidth="93.0" />
+            <Button layoutX="223.0" layoutY="173.0" mnemonicParsing="false" onAction="#buscarFuncionario" text="Buscar" />
+            <Label layoutX="37.0" layoutY="213.0" text="Funcionário:" />
+            <Label layoutX="60.0" layoutY="249.0" text="CPF:" />
+            <TextField fx:id="txtNomeFuncionario" layoutX="126.0" layoutY="208.0" prefHeight="27.0" prefWidth="93.0" />
+            <MaskField fx:id="txtCpfFuncionario" layoutX="124.0" layoutY="244.0" mask="DDD.DDD.DDD-DD" prefHeight="27.0" prefWidth="95.0" />
+            <Button layoutX="224.0" layoutY="244.0" mnemonicParsing="false" text="AddFuncionário" />
          </children>
       </AnchorPane>
-   </top>
+   </center>
 </BorderPane>
