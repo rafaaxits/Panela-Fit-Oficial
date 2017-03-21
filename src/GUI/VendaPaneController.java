@@ -6,22 +6,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
 import javax.xml.bind.ValidationException;
-
 import exceptions.ClienteNaoExisteException;
 import exceptions.FormatacaoInvalidaException;
 import exceptions.FuncionarioNaoExisteException;
 import exceptions.ProdutoNaoExisteException;
 import exceptions.VendaJaExisteException;
-import javafx.beans.InvalidationListener;
+import exceptions.VendaNaoExisteException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +39,6 @@ import negocios.ItemVenda;
 import negocios.PanelaFit;
 import negocios.Produto;
 import negocios.Venda;
-import negocios.Cliente;
 
 public class VendaPaneController {
 	
@@ -54,6 +46,12 @@ public class VendaPaneController {
 	
 	@FXML
 	private Label lblMensagem;
+	
+	@FXML
+	private Label lblTotal;
+	
+	@FXML
+	private Label lblAuxTotal;
 	
 	@FXML
 	private  TabPane tbPaneVendas;
@@ -185,16 +183,22 @@ public class VendaPaneController {
 	TableColumn<Venda,String> colunaCliente;
 	
 	@FXML
+	TableColumn<Venda,String> colunaClienteCpf;
+	
+	@FXML
 	TableColumn<Venda,String> colunaFuncionario;
 	
 	@FXML
-	TableColumn<Venda,ArrayList<ItemVenda>> colunaListaItens;
+	TableColumn<Venda,String> colunaFuncionarioCpf;
+	
+	@FXML
+	TableColumn<Venda,String> colunaListaItens;
 	
 	@FXML
 	TableColumn<Venda,String> colunaDataVenda;
 	
 	@FXML
-	TableColumn<Venda,Double> colunaTotal;
+	TableColumn<Venda,String> colunaTotal;
 	
 	@FXML 
 	TableColumn<ItemVenda, String> colunaNomeProdutoItemVenda;
@@ -251,6 +255,9 @@ public class VendaPaneController {
 				ArrayList<ItemVenda> listaDeItensDeVenda = this.listaItensDeVenda;
 				Venda venda = new Venda(codigoVenda, c, f, listaDeItensDeVenda, dataVenda);
 				panelaFit.cadastrarVenda(venda);
+				//validateAttributes(venda);
+				refreshTableVenda();
+				refreshTableListaDeItens();
 				limparForm();
 				lblMensagem.setText("Venda Cadastrada");
 				System.out.println(venda);
@@ -259,8 +266,7 @@ public class VendaPaneController {
 				lblMensagem.setText(e.getMessage());
 			}catch(VendaJaExisteException e){
 				lblMensagem.setText(e.getMessage());
-			}
-			catch(DateTimeException e){
+			}catch(DateTimeException e){
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
@@ -277,6 +283,8 @@ public class VendaPaneController {
 	@FXML
 	private void initialize(){
 		panelaFit = PanelaFit.getInstance();
+		
+		lblAuxTotal.setVisible(false);
 		
 		colunaNomeCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
 		colunaCpfCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCpf()));
@@ -304,6 +312,15 @@ public class VendaPaneController {
 		
 		this.listaItensDeVenda = new ArrayList<ItemVenda>();
 		
+		colunaCodigoVenda.setCellValueFactory(new PropertyValueFactory<Venda, String>("Codigo"));
+		colunaCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNome()));
+		colunaClienteCpf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getCpf()));
+		colunaFuncionario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFuncionario().getNome()));
+		colunaFuncionarioCpf.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFuncionario().getCpf()));
+		colunaListaItens.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getListaItensDeVenda().toString()));
+		colunaDataVenda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataDaVenda().toString()));
+		colunaTotal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().calcularVenda().toString()));
+		
 		dataItemVenda = FXCollections.observableArrayList();
 		dataItemVenda.addAll(listaItensDeVenda);
 		
@@ -318,6 +335,10 @@ public class VendaPaneController {
 		dataProduto = FXCollections.observableArrayList();
 		dataProduto.addAll(panelaFit.listarProdutos());
 		tabelaProdutos.setItems(dataProduto);
+		
+		dataVenda = FXCollections.observableArrayList();
+		dataVenda.addAll(panelaFit.listarVendas());
+		tabelaVendas.setItems(dataVenda);
 		
 	}
 	
@@ -345,6 +366,9 @@ public class VendaPaneController {
 		txtCodigoProduto.setStyle(null);
 		txtCodigoProduto.editableProperty().set(true);
 		tabelaProdutos.getSelectionModel().clearSelection();
+		txtCodigoVenda.clear();
+		txtCodigoVenda.editableProperty().set(true);
+		txtCodigoVenda.setStyle(null);
 		lblMensagem.setText(null);
 		txtCodigoVenda.clear();
 		txtDataVenda.clear();
@@ -353,6 +377,124 @@ public class VendaPaneController {
 	
 	public void setDados(ObservableList<Cliente> dadosCliente){
 			tabelaClientes.setItems(dadosCliente);
+	}
+	
+	@FXML
+	private void refreshTableVenda(){
+		dataVenda = FXCollections.observableArrayList();
+		dataVenda.addAll(panelaFit.listarVendas());
+		tabelaVendas.setItems(dataVenda);
+	}
+	
+	@FXML
+	private void refreshTableListaDeItens(){
+		this.listaItensDeVenda.clear();
+	}
+	
+	@FXML
+	public void selecionarVenda(MouseEvent arg0){
+		limparForm();
+		if(!tabelaVendas.getSelectionModel().isEmpty()){
+			Venda vendaSelecionada = tabelaVendas.getSelectionModel().getSelectedItem();
+			Integer codigoVenda = vendaSelecionada.getCodigo();
+			Integer codigoCliente = vendaSelecionada.getCliente().getCodigo();
+			Integer codigoFuncionario = vendaSelecionada.getFuncionario().getCodigo();
+			txtDataVenda.setText(DATE_FORMAT.format(vendaSelecionada.getDataDaVenda()));
+			txtCodigoCliente.setText(codigoCliente.toString());
+			txtCodigoFuncionario.setText(codigoFuncionario.toString());
+			txtCodigoVenda.setText(codigoVenda.toString());
+			txtNomeCliente.setText(vendaSelecionada.getCliente().getNome());
+			txtCpfCliente.setText(vendaSelecionada.getCliente().getCpf());
+			txtNomeFuncionario.setText(vendaSelecionada.getFuncionario().getNome());
+			txtCpfFuncionario.setText(vendaSelecionada.getFuncionario().getCpf());
+			char[] a = txtCpfCliente.getText().toCharArray();
+	        String cpfCliente = "";
+	        for(int i = 0; i < a.length; i++){
+	        	if(i == 2 || i == 5){
+	        		cpfCliente += a[i]+".";
+	        	}else if(i == 8){
+	        		cpfCliente += a[i]+"-";
+	        	}else{
+	        		cpfCliente += a[i];
+	        	}
+	        }
+	        txtCpfCliente.setText(cpfCliente);
+	        char[] b = txtCpfFuncionario.getText().toCharArray();
+	        String cpfFuncionario = "";
+	        for(int i = 0; i < b.length; i++){
+	        	if(i == 2 || i == 5){
+	        		cpfFuncionario += b[i]+".";
+	        	}else if(i == 8){
+	        		cpfFuncionario += b[i]+"-";
+	        	}else{
+	        		cpfFuncionario += b[i];
+	        	}
+	        }
+	        txtCpfFuncionario.setText(cpfFuncionario);
+			lblAuxTotal.setVisible(true);
+			lblTotal.setText(vendaSelecionada.calcularVenda().toString());
+			txtCodigoVenda.editableProperty().set(false);
+			txtCodigoVenda.setStyle("-fx-background-color: gray;");
+		}
+	}
+	
+	@FXML
+	public void buscarVenda() throws VendaNaoExisteException, IOException{
+		Venda v;
+		try{
+			Integer code = new Integer(txtCodigoVenda.getText());
+			v = panelaFit.buscarVenda(code);
+			Integer codigoVenda = v.getCodigo();
+			Integer codigoCliente = v.getCliente().getCodigo();
+			Integer codigoFuncionario = v.getFuncionario().getCodigo();
+			txtDataVenda.setText(DATE_FORMAT.format(v.getDataDaVenda()));
+			txtCodigoCliente.setText(codigoCliente.toString());
+			txtCodigoFuncionario.setText(codigoFuncionario.toString());
+			txtCodigoVenda.setText(codigoVenda.toString());
+			txtNomeCliente.setText(v.getCliente().getNome());
+			txtCpfCliente.setText(v.getCliente().getCpf());
+			txtNomeFuncionario.setText(v.getFuncionario().getNome());
+			txtCpfFuncionario.setText(v.getFuncionario().getCpf());
+			char[] a = txtCpfCliente.getText().toCharArray();
+	        String cpfCliente = "";
+	        for(int i = 0; i < a.length; i++){
+	        	if(i == 2 || i == 5){
+	        		cpfCliente += a[i]+".";
+	        	}else if(i == 8){
+	        		cpfCliente += a[i]+"-";
+	        	}else{
+	        		cpfCliente += a[i];
+	        	}
+	        }
+	        txtCpfCliente.setText(cpfCliente);
+	        char[] b = txtCpfFuncionario.getText().toCharArray();
+	        String cpfFuncionario = "";
+	        for(int i = 0; i < b.length; i++){
+	        	if(i == 2 || i == 5){
+	        		cpfFuncionario += b[i]+".";
+	        	}else if(i == 8){
+	        		cpfFuncionario += b[i]+"-";
+	        	}else{
+	        		cpfFuncionario += b[i];
+	        	}
+	        }
+	        txtCpfFuncionario.setText(cpfFuncionario);
+	        lblAuxTotal.setVisible(true);
+			lblTotal.setText(v.calcularVenda().toString());
+			txtCodigoVenda.editableProperty().set(false);
+			txtCodigoVenda.setStyle("-fx-background-color: gray;");
+		}catch(NumberFormatException e){
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initStyle(StageStyle.UNDECORATED);
+			stage.setTitle("Panela Fit");
+			stage.setScene(new Scene(root1));
+			stage.show();
+		}catch(VendaNaoExisteException e){
+			lblMensagem.setText(e.getMessage());
+		}
 	}
 	
 	@FXML

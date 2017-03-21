@@ -1,12 +1,14 @@
 package negocios;
+
 import java.util.ArrayList;
 
 import exceptions.FormatacaoInvalidaException;
 
 import java.io.Serializable;
 import java.time.*;
+
 public class Venda implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -16,13 +18,13 @@ public class Venda implements Serializable {
 	private Funcionario funcionario;
 	private ArrayList<ItemVenda> listaItensDeVenda;
 	private LocalDate dataDaVenda;
-	
-	//data
-	 // metodo gettotal que chama o gettotal de cada item.. varre a lista de itens pega o total de kd
 
+	// data
+	// metodo gettotal que chama o gettotal de cada item.. varre a lista de
+	// itens pega o total de kd
 
 	public Venda(int codigo, Cliente cliente, Funcionario funcionario, ArrayList<ItemVenda> listaItensDeVenda,
-			LocalDate dataDaVenda) throws FormatacaoInvalidaException{
+			LocalDate dataDaVenda) throws FormatacaoInvalidaException {
 		super();
 		this.setCodigo(codigo);
 		this.setCliente(cliente);
@@ -30,9 +32,9 @@ public class Venda implements Serializable {
 		this.setListaItensDeVenda(listaItensDeVenda);
 		this.setDataDaVenda(dataDaVenda);
 	}
-	
-	public Venda(){
-		
+
+	public Venda() {
+
 	}
 
 	public LocalDate getDataDaVenda() {
@@ -49,9 +51,9 @@ public class Venda implements Serializable {
 
 	public void setCodigo(int codigo) throws FormatacaoInvalidaException {
 		Integer code = codigo;
-			if(code.toString().length()==5){
-				this.codigo = codigo;
-		}else{
+		if (code.toString().length() == 5) {
+			this.codigo = codigo;
+		} else {
 			throw new FormatacaoInvalidaException();
 		}
 	}
@@ -79,40 +81,41 @@ public class Venda implements Serializable {
 	public void setListaItensDeVenda(ArrayList<ItemVenda> listaItensDeVenda) {
 		this.listaItensDeVenda = listaItensDeVenda;
 	}
-	
-	public boolean equals(Venda venda){
-		boolean igual= false;
-			if(venda!=null){
-				if(this.codigo == venda.getCodigo()){
-					igual = true;
-				}
+
+	public boolean equals(Venda venda) {
+		boolean igual = false;
+		if (venda != null) {
+			if (this.codigo == venda.getCodigo()) {
+				igual = true;
 			}
-			return igual;
+		}
+		return igual;
 	}
 
 	@Override
 	public String toString() {
-		return "Venda [codigo=" + codigo + ", cliente=" + this.getCliente()+ ", funcionario=" + this.getFuncionario()
-				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda +  ",Total=" + this.calcularVenda() + "]";
+		return "Venda [codigo=" + codigo + ", cliente=" + this.getCliente() + ", funcionario=" + this.getFuncionario()
+				+ ", listaItensDeVenda=" + listaItensDeVenda + ", dataDaVenda=" + dataDaVenda + ",Total="
+				+ this.calcularVenda() + "]";
 	}
-	
-	public double calcularVenda(){
+
+	public Double calcularVenda() {
 		double total = 0;
-		if(this.listaItensDeVenda!=null){
-			for(ItemVenda item : listaItensDeVenda){
+		if (this.listaItensDeVenda != null) {
+			for (ItemVenda item : listaItensDeVenda) {
 				total = total + item.getTotal();
-		}
-			return total;
-	}	
-		return total;
-  }
-	
-	public boolean inserirItem(ItemVenda itemVenda){
-		boolean alt = false;
-			if(itemVenda!=null){
-				this.listaItensDeVenda.add(itemVenda);
-					alt=true;
 			}
-			return alt;
+			return total;
+		}
+		return total;
+	}
+
+	public boolean inserirItem(ItemVenda itemVenda) {
+		boolean alt = false;
+		if (itemVenda != null) {
+			this.listaItensDeVenda.add(itemVenda);
+			alt = true;
+		}
+		return alt;
 	}
 }

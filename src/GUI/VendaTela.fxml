@@ -20,7 +20,7 @@
             <Button layoutX="28.0" layoutY="49.0" mnemonicParsing="false" onAction="#cadastrarVenda" text="Cadastrar" />
             <Button layoutX="118.0" layoutY="49.0" mnemonicParsing="false" text="Remover" />
             <Button layoutX="209.0" layoutY="50.0" mnemonicParsing="false" text="Alterar" />
-            <Button layoutX="408.0" layoutY="88.0" mnemonicParsing="false" text="Buscar" />
+            <Button layoutX="408.0" layoutY="88.0" mnemonicParsing="false" onAction="#buscarVenda" text="Buscar" />
             <Button layoutX="286.0" layoutY="50.0" mnemonicParsing="false" onAction="#limparForm" text="Limpar" />
             <Label layoutX="234.0" layoutY="2.0" text="Vendas">
                <font>
@@ -91,18 +91,20 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Vendas">
+                  <Tab fx:id="tabVendas" text="Vendas">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="165.0" prefWidth="566.0">
+                              <TableView fx:id="tabelaVendas" onMouseClicked="#selecionarVenda" prefHeight="165.0" prefWidth="566.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Código" />
-                                  <TableColumn prefWidth="75.0" text="Cliente" />
-                                    <TableColumn prefWidth="75.0" text="Funcionário" />
-                                    <TableColumn prefWidth="75.0" text="ListaItens" />
-                                    <TableColumn prefWidth="75.0" text="DataVenda" />
-                                    <TableColumn prefWidth="75.0" text="Total" />
+                                  <TableColumn fx:id="colunaCodigoVenda" prefWidth="75.0" text="Código" />
+                                  <TableColumn fx:id="colunaCliente" prefWidth="75.0" text="Cliente" />
+                                    <TableColumn fx:id="colunaClienteCpf" prefWidth="75.0" text="CPF Cliente" />
+                                    <TableColumn fx:id="colunaFuncionario" prefWidth="75.0" text="Funcionário" />
+                                    <TableColumn fx:id="colunaFuncionarioCpf" prefWidth="75.0" text="CPF Funcionário" />
+                                    <TableColumn fx:id="colunaTotal" prefWidth="75.0" text="Total" />
+                                    <TableColumn fx:id="colunaDataVenda" prefWidth="75.0" text="DataVenda" />
+                                    <TableColumn fx:id="colunaListaItens" prefWidth="75.0" text="ListaItens" />
                                 </columns>
                               </TableView>
                            </children>
@@ -150,6 +152,14 @@
             <TextField fx:id="txtNomeFuncionario" layoutX="126.0" layoutY="208.0" prefHeight="27.0" prefWidth="93.0" />
             <MaskField fx:id="txtCpfFuncionario" layoutX="124.0" layoutY="244.0" mask="DDD.DDD.DDD-DD" prefHeight="27.0" prefWidth="95.0" />
             <Button layoutX="224.0" layoutY="244.0" mnemonicParsing="false" text="AddFuncionário" />
+            <Label fx:id="lblAuxTotal" layoutX="423.0" layoutY="150.0" prefHeight="31.0" prefWidth="68.0" text="Total:">
+               <font>
+                  <Font size="22.0" />
+               </font></Label>
+            <Label fx:id="lblTotal" layoutX="422.0" layoutY="195.0" prefHeight="53.0" prefWidth="111.0" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </center>
