@@ -41,7 +41,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 	private static RepositorioFornecedor lerDoArquivo() {
 		RepositorioFornecedor instanciaLocal = null;
 
-		File in = new File("arquivos\\fornecedores.dat");
+		File in = new File("fornecedores.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -69,7 +69,7 @@ public class RepositorioFornecedor implements IRepositorioFornecedor, Serializab
 		if (instance == null) {
 			return;
 		}
-		File out = new File("arquivos\\fornecedores.dat");
+		File out = new File("fornecedores.dat");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 

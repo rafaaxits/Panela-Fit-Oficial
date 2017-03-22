@@ -41,7 +41,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 	private static RepositorioMateriaPrima lerDoArquivo() {
 		RepositorioMateriaPrima instanciaLocal = null;
 
-		File in = new File("arquivos\\materiasprimas.dat");
+		File in = new File("materiasprimas.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -69,7 +69,7 @@ public class RepositorioMateriaPrima implements IRepositorioMateriaPrima, Serial
 		if (instance == null) {
 			return;
 		}
-		File out = new File("arquivos\\materiasprimas.dat");
+		File out = new File("materiasprimas.dat");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 

@@ -41,7 +41,7 @@ public class RepositorioProduto implements IRepositorioProduto, Serializable {
 	private static RepositorioProduto lerDoArquivo() {
 		RepositorioProduto instanciaLocal = null;
 
-		File in = new File("arquivos\\produtos.dat");
+		File in = new File("produtos.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -69,7 +69,7 @@ public class RepositorioProduto implements IRepositorioProduto, Serializable {
 		if (instance == null) {
 			return;
 		}
-		File out = new File("arquivos\\produtos.dat");
+		File out = new File("produtos.dat");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 

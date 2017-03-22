@@ -41,7 +41,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 	private static RepositorioFuncionario lerDoArquivo() {
 		RepositorioFuncionario instanciaLocal = null;
 
-		File in = new File("arquivos\\funcionarios.dat");
+		File in = new File("funcionarios.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -69,7 +69,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario, Serializ
 		if (instance == null) {
 			return;
 		}
-		File out = new File("arquivos\\funcionarios.dat");
+		File out = new File("funcionarios.dat");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 
