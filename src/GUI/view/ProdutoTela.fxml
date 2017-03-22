@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import GUI.resources.*?>
 <?import javafx.scene.shape.*?>
 <?import GUI.*?>
 <?import javafx.scene.text.*?>
@@ -16,7 +17,7 @@
          <children>
             <ImageView fitHeight="57.0" fitWidth="56.0" layoutX="403.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Imagens/insta1.jpg" />
+                  <Image url="@../../../Imagens/insta1.jpg" />
                </image>
             </ImageView>
             <Button fx:id="butCadastrar" layoutX="18.0" layoutY="32.0" mnemonicParsing="false" onAction="#cadastrarProduto" text="Cadastrar" />
