@@ -14,18 +14,20 @@ public abstract class Pessoa implements Serializable {
 	private int idade;
 	private String endereco;
 	private String telefone;
-	
-	public Pessoa(String nome, String cpf, int idade, String endereco, String telefone) throws FormatacaoInvalidaException{
+
+	public Pessoa(String nome, String cpf, int idade, String endereco, String telefone)
+			throws FormatacaoInvalidaException {
 		super();
-		this.setNome(nome);;
+		this.setNome(nome);
+		;
 		this.setCpf(cpf);
 		this.setIdade(idade);
 		this.setEndereco(endereco);
 		this.setTelefone(telefone);
 	}
-	
-	public Pessoa(){
-		
+
+	public Pessoa() {
+
 	}
 
 	public String getNome() {
@@ -41,10 +43,10 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public void setCpf(String cpf) throws FormatacaoInvalidaException {
-		if(cpf.length() == 11){
-		this.cpf = cpf;
-		}else {
-			throw new FormatacaoInvalidaException ();
+		if (cpf.length() == 11) {
+			this.cpf = cpf;
+		} else {
+			throw new FormatacaoInvalidaException();
 		}
 	}
 
@@ -69,18 +71,18 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public void setTelefone(String telefone) throws FormatacaoInvalidaException {
-		if(telefone.length() ==11){
-		this.telefone = telefone;
-		}else{
+		if (telefone.length() == 11) {
+			this.telefone = telefone;
+		} else {
 			throw new FormatacaoInvalidaException();
 		}
 	}
-	
-	public boolean equals(Pessoa pessoa){
+
+	public boolean equals(Pessoa pessoa) {
 		boolean igual = false;
-		if(pessoa!=null){
-			if(this.cpf.equals(pessoa.getCpf())){
-				igual=true;
+		if (pessoa != null) {
+			if (this.cpf.equals(pessoa.getCpf())) {
+				igual = true;
 			}
 		}
 		return igual;
@@ -91,5 +93,5 @@ public abstract class Pessoa implements Serializable {
 		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", idade=" + idade + ", endereco=" + endereco + ", telefone="
 				+ telefone + "]";
 	}
-	
+
 }

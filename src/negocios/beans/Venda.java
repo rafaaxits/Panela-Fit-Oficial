@@ -17,6 +17,7 @@ public class Venda implements Serializable {
 	private Cliente cliente;
 	private Funcionario funcionario;
 	private ArrayList<ItemVenda> listaItensDeVenda;
+
 	public Double getTotal() {
 		return total;
 	}
@@ -40,7 +41,7 @@ public class Venda implements Serializable {
 		this.setFuncionario(funcionario);
 		this.setListaItensDeVenda(listaItensDeVenda);
 		this.setDataDaVenda(dataDaVenda);
-		this.total=this.calcularVenda();
+		this.total = this.calcularVenda();
 	}
 
 	public Venda() {
@@ -89,21 +90,21 @@ public class Venda implements Serializable {
 	}
 
 	public void setListaItensDeVenda(ArrayList<ItemVenda> listaItensDeVenda) {
-		if(listaItensDeVenda != null){
+		if (listaItensDeVenda != null) {
 			this.listaItensDeVenda = listaItensDeVenda;
-		}else{
+		} else {
 			System.out.println("Eh nulo");
 		}
 	}
 
 	public boolean equals(Object o) {
 		boolean igual = false;
-		if(o instanceof Venda){
+		if (o instanceof Venda) {
 			if (o != null) {
 				if (this.codigo == ((Venda) o).getCodigo()) {
 					igual = true;
 				}
-			}	
+			}
 		}
 		return igual;
 	}

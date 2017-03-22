@@ -42,7 +42,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 	private static RepositorioVenda lerDoArquivo() {
 		RepositorioVenda instanciaLocal = null;
 
-		File in = new File("venda.dat");
+		File in = new File("arquivos\\venda.dat");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -70,7 +70,7 @@ public class RepositorioVenda implements IRepositorioVenda, Serializable {
 		if (instance == null) {
 			return;
 		}
-		File out = new File("venda.dat");
+		File out = new File("arquivos\\venda.dat");
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 
