@@ -4,6 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exceptions.FormatacaoInvalidaException;
+import negocios.beans.Cliente;
+import negocios.beans.Fornecedor;
+import negocios.beans.Funcionario;
+import negocios.beans.ItemVenda;
+import negocios.beans.MateriaPrima;
+import negocios.beans.Produto;
+import negocios.beans.Venda;
 
 public class TesteFachada {
 

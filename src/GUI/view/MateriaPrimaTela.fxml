@@ -7,14 +7,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import GUI.resources.MaskField?>
 
-<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MateriaPrimaPaneController">
+<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.MateriaPrimaPaneController">
    <top>
       <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="65.0" fitWidth="70.0" layoutX="373.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+                  <Image url="@../../Imagens/insta1.jpg" />
                </image>
             </ImageView>
             <Button fx:id="butCadastrar" layoutX="28.0" layoutY="49.0" mnemonicParsing="false" onAction="#cadastrarMateriaPrima" text="Cadastrar" />

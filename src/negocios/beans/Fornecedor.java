@@ -1,4 +1,4 @@
-package negocios;
+package negocios.beans;
 
 import java.io.Serializable;
 
@@ -13,16 +13,17 @@ public class Fornecedor implements Serializable {
 	private String enderecoFornecedor;
 	private String telefone;
 	private int codigo;
-	
-	public Fornecedor(String nomeFornecedor, String enderecoFornecedor, String telefone, int codigo) throws FormatacaoInvalidaException {
+
+	public Fornecedor(String nomeFornecedor, String enderecoFornecedor, String telefone, int codigo)
+			throws FormatacaoInvalidaException {
 		this.setNomeFornecedor(nomeFornecedor);
 		this.setEnderecoFornecedor(enderecoFornecedor);
 		this.setTelefone(telefone);
 		this.setCodigo(codigo);
 	}
-	
-	public Fornecedor(){
-		
+
+	public Fornecedor() {
+
 	}
 
 	public String getNomeFornecedor() {
@@ -46,9 +47,9 @@ public class Fornecedor implements Serializable {
 	}
 
 	public void setTelefone(String telefone) throws FormatacaoInvalidaException {
-		if(telefone.length()==11){
+		if (telefone.length() == 11) {
 			this.telefone = telefone;
-		}else{
+		} else {
 			throw new FormatacaoInvalidaException();
 		}
 	}
@@ -57,21 +58,23 @@ public class Fornecedor implements Serializable {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) throws FormatacaoInvalidaException{
+	public void setCodigo(int codigo) throws FormatacaoInvalidaException {
 		Integer code = codigo;
-			if(code.toString().length()==5){
-				this.codigo = codigo;
-		}else{
+		if (code.toString().length() == 5) {
+			this.codigo = codigo;
+		} else {
 			throw new FormatacaoInvalidaException();
 		}
 	}
-	
-	public boolean equals(Fornecedor fornecedor){
+
+	public boolean equals(Object o) {
 		boolean igual = false;
-			if(fornecedor!=null){
-				if(this.codigo==fornecedor.getCodigo()){
+		if (o instanceof Fornecedor) {
+			if (o != null) {
+				if (this.codigo == ((Fornecedor) o).getCodigo()) {
 					igual = true;
 				}
+			}
 		}
 		return igual;
 	}
@@ -81,6 +84,5 @@ public class Fornecedor implements Serializable {
 		return "Fornecedor [nomeFornecedor=" + nomeFornecedor + ", enderecoFornecedor=" + enderecoFornecedor
 				+ ", telefone=" + telefone + ", codigo=" + codigo + "]";
 	}
-	
-	
+
 }

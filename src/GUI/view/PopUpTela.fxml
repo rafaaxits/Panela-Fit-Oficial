@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="208.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PopUpController">
+<BorderPane prefHeight="208.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.PopUpController">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -15,7 +15,7 @@
             <Label fx:id="lblMensagem" layoutX="88.0" layoutY="69.0" prefHeight="62.0" prefWidth="163.0" text="Formatação Inválida" />
             <ImageView fitHeight="65.0" fitWidth="65.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+                  <Image url="@../../../Imagens/insta1.jpg" />
                </image>
             </ImageView>
          </children>

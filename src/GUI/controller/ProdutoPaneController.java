@@ -1,4 +1,4 @@
-package GUI;
+package GUI.controller;
 
 import java.io.IOException;
 import java.time.DateTimeException;
@@ -29,8 +29,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import negocios.Produto;
 import negocios.PanelaFit;
+import negocios.beans.Produto;
 
 public class ProdutoPaneController {
 
@@ -106,7 +106,7 @@ public class ProdutoPaneController {
 		((Node) event.getSource()).getScene().getWindow().hide();
 		Parent parent;
 		try {
-			parent = FXMLLoader.load(getClass().getResource("PanelaFit.fxml"));
+			parent = FXMLLoader.load(getClass().getResource("/GUI/view/PanelaFit.fxml"));
 			Stage stage3 = new Stage();
 			Scene cena = new Scene(parent);
 			stage3.setScene(cena);
@@ -139,7 +139,7 @@ public class ProdutoPaneController {
 			} catch (ProdutoJaExisteException e) {
 				lblMensagem.setText(e.getMessage());
 			} catch (DateTimeException e) {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				stage.initModality(Modality.APPLICATION_MODAL);
@@ -178,7 +178,7 @@ public class ProdutoPaneController {
 		} catch (ProdutoNaoExisteException e) {
 			lblMensagem.setText(e.getMessage());
 		} catch (NumberFormatException e) {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -189,8 +189,8 @@ public class ProdutoPaneController {
 		}
 	}
 
-	public void alterarProduto() throws ProdutoNaoExisteException, ProdutoJaExisteException,
-			FormatacaoInvalidaException, ValidationException, IOException {
+	public void alterarProduto()
+			throws ProdutoNaoExisteException, FormatacaoInvalidaException, ValidationException, IOException {
 		if (validateFields()) {
 			try {
 				String nome;
@@ -210,12 +210,10 @@ public class ProdutoPaneController {
 				lblMensagem.setText("Produto alterado");
 			} catch (FormatacaoInvalidaException e) {
 				lblMensagem.setText(e.getMessage());
-			} catch (ProdutoJaExisteException e) {
-				lblMensagem.setText(e.getMessage());
 			} catch (ProdutoNaoExisteException e) {
 				lblMensagem.setText(e.getMessage());
 			} catch (NumberFormatException e) {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				stage.initModality(Modality.APPLICATION_MODAL);
@@ -224,7 +222,7 @@ public class ProdutoPaneController {
 				stage.setScene(new Scene(root1));
 				stage.show();
 			} catch (DateTimeException e) {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				stage.initModality(Modality.APPLICATION_MODAL);
@@ -334,7 +332,7 @@ public class ProdutoPaneController {
 							|| !txtDataFab.getText().matches("[0-9][0-9][/][0-9][0-9][/][0-9][0-9][0-9][0-9]"))
 					|| (txtDataVal.getText().isEmpty()
 							|| !txtDataVal.getText().matches("[0-9][0-9][/][0-9][0-9][/][0-9][0-9][0-9][0-9]"))) {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 				Parent root1 = (Parent) fxmlLoader.load();
 				Stage stage = new Stage();
 				stage.initModality(Modality.APPLICATION_MODAL);
@@ -456,7 +454,7 @@ public class ProdutoPaneController {
 			txtCodigoProduto.editableProperty().set(false);
 			txtCodigoProduto.setStyle("-fx-background-color: gray;");
 		} catch (NumberFormatException e) {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);

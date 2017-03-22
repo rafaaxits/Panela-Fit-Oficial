@@ -1,4 +1,4 @@
-package negocios;
+package negocios.beans;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,16 @@ public class Venda implements Serializable {
 	private Cliente cliente;
 	private Funcionario funcionario;
 	private ArrayList<ItemVenda> listaItensDeVenda;
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
 	private LocalDate dataDaVenda;
+	private Double total;
 
 	// data
 	// metodo gettotal que chama o gettotal de cada item.. varre a lista de
@@ -31,6 +40,7 @@ public class Venda implements Serializable {
 		this.setFuncionario(funcionario);
 		this.setListaItensDeVenda(listaItensDeVenda);
 		this.setDataDaVenda(dataDaVenda);
+		this.total=this.calcularVenda();
 	}
 
 	public Venda() {
@@ -79,15 +89,21 @@ public class Venda implements Serializable {
 	}
 
 	public void setListaItensDeVenda(ArrayList<ItemVenda> listaItensDeVenda) {
-		this.listaItensDeVenda = listaItensDeVenda;
+		if(listaItensDeVenda != null){
+			this.listaItensDeVenda = listaItensDeVenda;
+		}else{
+			System.out.println("Eh nulo");
+		}
 	}
 
-	public boolean equals(Venda venda) {
+	public boolean equals(Object o) {
 		boolean igual = false;
-		if (venda != null) {
-			if (this.codigo == venda.getCodigo()) {
-				igual = true;
-			}
+		if(o instanceof Venda){
+			if (o != null) {
+				if (this.codigo == ((Venda) o).getCodigo()) {
+					igual = true;
+				}
+			}	
 		}
 		return igual;
 	}

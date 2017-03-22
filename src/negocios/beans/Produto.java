@@ -1,11 +1,11 @@
-package negocios;
+package negocios.beans;
 
 import java.io.Serializable;
 import java.time.*;
 
 import exceptions.FormatacaoInvalidaException;
 
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 	/**
 	 * 
 	 */
@@ -18,8 +18,9 @@ public class Produto implements Serializable{
 	private double preco;
 	private LocalDate dataFabricacao;
 	private LocalDate dataValidade;
-	
-	public Produto(String nome, float peso, int calorias, int codigo, int quantEstoque, double preco, LocalDate dataFabricacao, LocalDate dataValidade) throws FormatacaoInvalidaException{
+
+	public Produto(String nome, float peso, int calorias, int codigo, int quantEstoque, double preco,
+			LocalDate dataFabricacao, LocalDate dataValidade) throws FormatacaoInvalidaException {
 		this.setNome(nome);
 		this.setPeso(peso);
 		this.setCalorias(calorias);
@@ -29,9 +30,9 @@ public class Produto implements Serializable{
 		this.setDataFabricacao(dataFabricacao);
 		this.setDataValidade(dataValidade);
 	}
-	
-	public Produto (){
-		
+
+	public Produto() {
+
 	}
 
 	public String getNome() {
@@ -64,9 +65,9 @@ public class Produto implements Serializable{
 
 	public void setCodigo(int codigo) throws FormatacaoInvalidaException {
 		Integer code = codigo;
-			if(code.toString().length()==5){
-				this.codigo = codigo;
-		}else{
+		if (code.toString().length() == 5) {
+			this.codigo = codigo;
+		} else {
 			throw new FormatacaoInvalidaException();
 		}
 	}
@@ -103,19 +104,22 @@ public class Produto implements Serializable{
 		this.dataValidade = dataValidade;
 	}
 
-	public boolean equals(Produto produto){
+	public boolean equals(Object o) {
 		boolean igual = false;
-			if(produto!=null){
-				if(this.codigo == produto.getCodigo()){
+		if (o instanceof Produto) {
+			if (o != null) {
+				if (this.codigo == ((Produto) o).getCodigo()) {
 					igual = true;
 				}
+			}
 		}
-			return igual;
+		return igual;
 	}
 
 	@Override
 	public String toString() {
 		return "Produto [nome=" + nome + ", peso=" + peso + ", calorias=" + calorias + ", codigo=" + codigo
-				+ ", quantEstoque=" + quantEstoque + ", preco=" + preco + ", dataFabricacao=" + dataFabricacao + ", dataValidade=" + dataValidade + "]";
+				+ ", quantEstoque=" + quantEstoque + ", preco=" + preco + ", dataFabricacao=" + dataFabricacao
+				+ ", dataValidade=" + dataValidade + "]";
 	}
 }

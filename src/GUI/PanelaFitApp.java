@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 
+import GUI.controller.PanelaFitPaneController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -43,7 +44,7 @@ public class PanelaFitApp extends Application {
 	public void carregarTelaPrincipal(){
 		try{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(PanelaFitApp.class.getResource("/GUI/PanelaFit.fxml"));
+		loader.setLocation(PanelaFitApp.class.getResource("/GUI/view/PanelaFit.fxml"));
 		BorderPane pane = (BorderPane) loader.load();
 		
 		this.rootScene.setCenter(pane);

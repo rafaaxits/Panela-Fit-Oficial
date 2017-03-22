@@ -8,14 +8,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import GUI.resources.MaskField?>
 
-<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProdutoPaneController">
+<BorderPane prefHeight="503.0" prefWidth="524.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controller.ProdutoPaneController">
    <left>
       <AnchorPane prefHeight="503.0" prefWidth="543.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="57.0" fitWidth="56.0" layoutX="403.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documents/Imagens/insta1.jpg" />
+                  <Image url="@../../Imagens/insta1.jpg" />
                </image>
             </ImageView>
             <Button fx:id="butCadastrar" layoutX="18.0" layoutY="32.0" mnemonicParsing="false" onAction="#cadastrarProduto" text="Cadastrar" />

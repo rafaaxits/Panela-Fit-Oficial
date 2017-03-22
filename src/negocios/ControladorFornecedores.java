@@ -3,6 +3,7 @@ package negocios;
 import dados.IRepositorioFornecedor;
 import exceptions.FornecedorJaExisteException;
 import exceptions.FornecedorNaoExisteException;
+import negocios.beans.Fornecedor;
 import exceptions.FormatacaoInvalidaException;
 import java.util.List;
 
@@ -56,12 +57,9 @@ public class ControladorFornecedores {
 		
 	}
 	
-	public void alterar(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FornecedorJaExisteException, FormatacaoInvalidaException{
+	public void alterar(Fornecedor novoFornecedor) throws FornecedorNaoExisteException, FormatacaoInvalidaException{
 		if(novoFornecedor == null) {
 			throw new FormatacaoInvalidaException();
-		}
-		else if(this.repositorio.fornecedorContem(novoFornecedor)==true){
-			throw new FornecedorJaExisteException(novoFornecedor.getCodigo());
 		}
 		else if((novoFornecedor != null && this.repositorio.existe(novoFornecedor.getCodigo()))==true) {
 			this.repositorio.alterar(novoFornecedor);

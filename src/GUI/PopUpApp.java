@@ -2,6 +2,7 @@ package GUI;
 
 import java.io.IOException;
 
+import GUI.controller.PopUpController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,7 +39,7 @@ public class PopUpApp  extends Application{
 	public void carregarTelaPopUp(){
 		try{
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(PopUpApp.class.getResource("/GUI/PopUpTela.fxml"));
+			loader.setLocation(PopUpApp.class.getResource("/GUI/view/PopUpTela.fxml"));
 			BorderPane pane = (BorderPane) loader.load();
 			
 			this.rootScene.setCenter(pane);

@@ -1,4 +1,4 @@
-package GUI;
+package GUI.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +18,9 @@ import javafx.scene.control.TableColumn;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import negocios.MateriaPrima;
 import negocios.PanelaFit;
+import negocios.beans.MateriaPrima;
+
 import java.io.IOException;
 import javax.xml.bind.ValidationException;
 import exceptions.FormatacaoInvalidaException;
@@ -75,7 +76,7 @@ private PanelaFit panelaFit;
 		Parent parent;
 			try{
 				parent = FXMLLoader.load(getClass()
-				          .getResource("PanelaFit.fxml"));
+				          .getResource("/GUI/view/PanelaFit.fxml"));
 				Stage stage3 = new Stage();
 			      Scene cena = new Scene(parent);
 			      stage3.setScene(cena);
@@ -137,7 +138,7 @@ private PanelaFit panelaFit;
 					}catch(MateriaPrimaNaoExisteException e){
 						lblMensagem.setText(e.getMessage());
 					}catch(NumberFormatException e){
-						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 			            Parent root1 = (Parent) fxmlLoader.load();
 			            Stage stage = new Stage();
 			            stage.initModality(Modality.APPLICATION_MODAL);
@@ -149,7 +150,7 @@ private PanelaFit panelaFit;
 				
 				}
 		
-		public void alterarMateriaPrima() throws MateriaPrimaNaoExisteException, MateriaPrimaJaExisteException, ValidationException, IOException, FormatacaoInvalidaException{
+		public void alterarMateriaPrima() throws MateriaPrimaNaoExisteException, ValidationException, IOException, FormatacaoInvalidaException{
 			
 			if(validateFields()){
 				try{
@@ -166,12 +167,10 @@ private PanelaFit panelaFit;
 					lblMensagem.setText("Materia Prima aletrada");
 				}catch(FormatacaoInvalidaException e){
 					lblMensagem.setText(e.getMessage());
-				}catch(MateriaPrimaJaExisteException e){
-					lblMensagem.setText(e.getMessage());
 				}catch(MateriaPrimaNaoExisteException e){
 					lblMensagem.setText(e.getMessage());
 				}catch(NumberFormatException e){
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 		            Parent root1 = (Parent) fxmlLoader.load();
 		            Stage stage = new Stage();
 		            stage.initModality(Modality.APPLICATION_MODAL);
@@ -246,7 +245,7 @@ private PanelaFit panelaFit;
 			if((txtNomeMateriaPrima.getText().isEmpty() || !txtNomeMateriaPrima.getText().matches("[a-z A-Z]+")) || (txtQuantidadeMateriaPrima.getText().isEmpty() || !txtQuantidadeMateriaPrima.getText().matches("[0-9][0-9]KG")) ||
 					(txtPrecoMateriaPrima.getText().isEmpty() || !txtPrecoMateriaPrima.getText().matches("[R][$][0-9][0-9][0-9]")) ||
 						(txtCodigoMateriaPrima.getText().isEmpty() || !txtCodigoMateriaPrima.getText().matches("[0-9][0-9][0-9][0-9][0-9]"))) {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -348,7 +347,7 @@ private PanelaFit panelaFit;
 			        txtCodigoMateriaPrima.editableProperty().set(false);
 			        txtCodigoMateriaPrima.setStyle("-fx-background-color: gray;");
 				}catch(NumberFormatException e) {
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/PopUpTela.fxml"));
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 		            Parent root1 = (Parent) fxmlLoader.load();
 		            Stage stage = new Stage();
 		            stage.initModality(Modality.APPLICATION_MODAL);

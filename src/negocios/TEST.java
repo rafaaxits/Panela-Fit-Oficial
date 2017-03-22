@@ -3,6 +3,11 @@ import java.time.*;
 
 import dados.RepositorioProduto;
 import exceptions.FormatacaoInvalidaException;
+import negocios.beans.Cliente;
+import negocios.beans.Fornecedor;
+import negocios.beans.Funcionario;
+import negocios.beans.MateriaPrima;
+import negocios.beans.Produto;
 import dados.RepositorioCliente;
 import dados.RepositorioFornecedor;
 import dados.RepositorioFuncionario;

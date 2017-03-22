@@ -1,4 +1,4 @@
-package negocios;
+package negocios.beans;
 
 import java.io.Serializable;
 
@@ -69,7 +69,6 @@ public abstract class Pessoa implements Serializable {
 	}
 
 	public void setTelefone(String telefone) throws FormatacaoInvalidaException {
-		System.out.println("Tamanho do telefone:" + telefone.length());
 		if(telefone.length() ==11){
 		this.telefone = telefone;
 		}else{

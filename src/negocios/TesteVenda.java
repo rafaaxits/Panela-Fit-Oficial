@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import dados.RepositorioVenda;
 import exceptions.FormatacaoInvalidaException;
+import negocios.beans.Cliente;
+import negocios.beans.Funcionario;
+import negocios.beans.ItemVenda;
+import negocios.beans.Produto;
+import negocios.beans.Venda;
 
 public class TesteVenda {
 
