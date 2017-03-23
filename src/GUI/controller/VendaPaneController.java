@@ -610,6 +610,10 @@ public class VendaPaneController {
 			lblTotal.setText(v.getTotal().toString());
 			txtCodigoVenda.editableProperty().set(false);
 			txtCodigoVenda.setStyle("-fx-background-color: gray;");
+			txtNomeCliente.setStyle("-fx-background-color: gray;");
+			txtCpfCliente.setStyle("-fx-background-color: gray;");
+			txtNomeFuncionario.setStyle("-fx-background-color: gray;");
+			txtCpfFuncionario.setStyle("-fx-background-color: gray;");
 		} catch (NumberFormatException e) {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -631,9 +635,7 @@ public class VendaPaneController {
 			Integer codigo = produtoSelecionado.getCodigo();
 			txtNomeProduto.setText(produtoSelecionado.getNome());
 			txtCodigoProduto.setText(codigo.toString());
-			txtCodigoProduto.editableProperty().set(false);
 			txtNomeProduto.editableProperty().set(false);
-			txtCodigoProduto.setStyle("-fx-background-color: gray;");
 			txtNomeProduto.setStyle("-fx-background-color: gray;");
 		}
 	}
@@ -645,9 +647,7 @@ public class VendaPaneController {
 			Integer code = new Integer(txtCodigoProduto.getText());
 			p = panelaFit.buscarProduto(code);
 			txtNomeProduto.setText(p.getNome());
-			txtCodigoProduto.editableProperty().set(false);
 			txtNomeProduto.editableProperty().set(false);
-			txtCodigoProduto.setStyle("-fx-background-color: gray;");
 			txtNomeProduto.setStyle("-fx-background-color: gray;");
 		} catch (NumberFormatException e) {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/view/PopUpTela.fxml"));
@@ -683,10 +683,8 @@ public class VendaPaneController {
 				}
 			}
 			txtCpfCliente.setText(cpfCliente);
-			txtCodigoCliente.editableProperty().set(false);
 			txtNomeCliente.editableProperty().set(false);
 			txtCpfCliente.editableProperty().set(false);
-			txtCodigoCliente.setStyle("-fx-background-color: gray;");
 			txtNomeCliente.setStyle("-fx-background-color: gray;");
 			txtCpfCliente.setStyle("-fx-background-color: gray;");
 			txtQuantidadeItem.setStyle(null);
@@ -700,7 +698,6 @@ public class VendaPaneController {
 			Integer code = new Integer(txtCodigoCliente.getText());
 			c = panelaFit.buscarCliente(code);
 			txtNomeCliente.setText(c.getNome());
-			txtCodigoCliente.editableProperty().set(false);
 			txtCpfCliente.setText(c.getCpf());
 			char[] a = txtCpfCliente.getText().toCharArray();
 			String cpfCliente = "";
@@ -715,7 +712,6 @@ public class VendaPaneController {
 			}
 			txtCpfCliente.setText(cpfCliente);
 			txtNomeCliente.editableProperty().set(false);
-			txtCodigoCliente.setStyle("-fx-background-color: gray;");
 			txtCpfCliente.editableProperty().set(false);
 			txtNomeCliente.setStyle("-fx-background-color: gray;");
 			txtCpfCliente.setStyle("-fx-background-color: gray;");
@@ -754,10 +750,8 @@ public class VendaPaneController {
 				}
 			}
 			txtCpfFuncionario.setText(cpfFuncionario);
-			txtCodigoFuncionario.editableProperty().set(false);
 			txtNomeFuncionario.editableProperty().set(false);
 			txtCpfFuncionario.editableProperty().set(false);
-			txtCodigoFuncionario.setStyle("-fx-background-color: gray;");
 			txtNomeFuncionario.setStyle("-fx-background-color: gray;");
 			txtCpfFuncionario.setStyle("-fx-background-color: gray;");
 
@@ -771,7 +765,6 @@ public class VendaPaneController {
 			Integer code = new Integer(txtCodigoFuncionario.getText());
 			f = panelaFit.buscarFuncionario(code);
 			txtNomeFuncionario.setText(f.getNome());
-			txtCodigoFuncionario.editableProperty().set(false);
 			txtCpfFuncionario.setText(f.getCpf());
 			char[] b = txtCpfFuncionario.getText().toCharArray();
 			String cpfFuncionario = "";
@@ -786,7 +779,6 @@ public class VendaPaneController {
 			}
 			txtCpfFuncionario.setText(cpfFuncionario);
 			txtNomeFuncionario.editableProperty().set(false);
-			txtCodigoFuncionario.setStyle("-fx-background-color: gray;");
 			txtCpfFuncionario.editableProperty().set(false);
 			txtNomeFuncionario.setStyle("-fx-background-color: gray;");
 			txtCpfFuncionario.setStyle("-fx-background-color: gray;");
