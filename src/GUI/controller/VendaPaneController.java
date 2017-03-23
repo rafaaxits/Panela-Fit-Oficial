@@ -255,13 +255,14 @@ public class VendaPaneController {
 				ArrayList<ItemVenda> listaDeItensDeVenda = this.listaItensDeVenda;
 				Venda venda = new Venda(codigoVenda, c, f, listaDeItensDeVenda, dataVenda);
 				panelaFit.cadastrarVenda(venda);
-				validateAttributes(venda);
-				lblAuxTotal.setVisible(true);
-				lblTotal.setText(venda.getTotal().toString());
-				refreshTableVenda();
-				refreshTableListaDeItens();
 				limparForm();
 				lblMensagem.setText("Venda Cadastrada");
+				lblAuxTotal.setVisible(true);
+				lblTotal.setVisible(true);
+				lblTotal.setText(venda.getTotal().toString());
+				validateAttributes(venda);
+				refreshTableVenda();
+				refreshTableListaDeItens();
 				System.out.println(venda);
 				this.listaItensDeVenda.clear();
 			} catch (FormatacaoInvalidaException e) {
