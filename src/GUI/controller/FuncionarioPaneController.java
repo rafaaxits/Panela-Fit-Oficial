@@ -61,7 +61,7 @@ public class FuncionarioPaneController {
 	private TextField txtNivelFuncionario;
 
 	@FXML
-	private ChoiceBox<Integer> cbNivel = new ChoiceBox<Integer>(FXCollections.observableArrayList(1, 2, 3, 4, 5));
+	private ChoiceBox<Integer> cbNivel = new ChoiceBox<Integer>(FXCollections.observableArrayList(1, 2, 3, 4, 5, 6));
 
 	@FXML
 	private TableView<Funcionario> tabelaFuncionarios;
@@ -221,7 +221,7 @@ public class FuncionarioPaneController {
 		colunaTelefone.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefone()));
 		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("codigo"));
 		colunaNivel.setCellValueFactory(new PropertyValueFactory<Funcionario, String>("nivel"));
-		cbNivel.getItems().addAll(1, 2, 3, 4, 5);
+		cbNivel.getItems().addAll(1, 2, 3, 4, 5, 6);
 		txtNivelFuncionario.editableProperty().set(false);
 		txtNivelFuncionario.setStyle("-fx-background-color: grey;");
 		data = FXCollections.observableArrayList();
@@ -337,7 +337,7 @@ public class FuncionarioPaneController {
 			txtTelefoneFuncionario.setText(f.getTelefone());
 			txtCodigoFuncionario.setText(codigo.toString());
 			txtNivelFuncionario.setText(nivel.toString());
-			cbNivel.setAccessibleText(nivel.toString());
+			cbNivel.getSelectionModel().select(nivel);
 			txtIdadeFuncionario.setText(idade.toString());
 			char[] a = txtCpfFuncionario.getText().toCharArray();
 			String cpf = "";
