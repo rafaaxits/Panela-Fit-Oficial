@@ -57,7 +57,6 @@
             <ChoiceBox fx:id="cbNivel" layoutX="76.0" layoutY="288.0" prefWidth="150.0" />
             <MaskField fx:id="txtCodigoFuncionario" layoutX="77.0" layoutY="79.0" mask="DDDDD" prefHeight="27.0" prefWidth="295.0" />
             <MaskField fx:id="txtIdadeFuncionario" layoutX="77.0" layoutY="257.0" mask="DD" prefHeight="27.0" prefWidth="293.0" />
-            <TextField fx:id="txtNivelFuncionario" layoutX="242.0" layoutY="288.0" prefHeight="27.0" prefWidth="128.0" />
          </children>
       </AnchorPane>
    </top>
